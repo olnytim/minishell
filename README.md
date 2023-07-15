@@ -55,3 +55,5 @@ This is a roadmap outlining the steps involved in creating a minishell project.
 12. **Documentation and Code Review**
     - Document your code, including function descriptions, usage instructions, and any design choices.
     - Conduct code reviews to improve the quality and readability of your code.
+   
+p.s. thanks eljommys for minishell.png!
