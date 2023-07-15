@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                    *._           _.*   @   */
-/*   minishell.h                                        |\  \\_//  /|     #   */
+/*   prompt.c                                           |\  \\_//  /|     #   */
 /*                                                      \/         \/     $   */
 /*   By: olnytim <yearagotomorrow@gmail.com>           _|_    V  V  |_    %   */
 /*                                                  *=.    =  _*  =   .=* ^   */
-/*   Created: 2023/07/15 19:14:42 by olnytim           \= ___________=/   &   */
-/*   Updated: 2023/07/15 19:14:44 by olnytim                /     \       *   */
+/*   Created: 2023/07/15 21:08:34 by olnytim           \= ___________=/   &   */
+/*   Updated: 2023/07/15 21:08:35 by olnytim                /     \       *   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../hf/minishell.h"
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+void	ft_prompt(void)
+{
+	char	*cwd;
+	char	*hostname;
+	char	*username;
 
-# include "../libft/libft.h"
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <stdio.h>
-
-void	ft_prompt(void);
-
-#endif
+	getcwd(cwd, sizeof(cwd));
+	gethostname(hostname, sizeof(hostname));
+	getlogin_r(username, sizeof(username));
+	printf("%s@%s:%s$ ", username, hostname, cwd);
+}
