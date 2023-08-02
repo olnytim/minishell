@@ -3,10 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 19:14:42 by olnytim           #+#    #+#             */
+<<<<<<< Updated upstream
 /*   Updated: 2023/08/02 14:32:16 by apiloian         ###   ########.fr       */
+=======
+<<<<<<< Updated upstream
+/*   Updated: 2023/08/02 14:32:16 by apiloian         ###   ########.fr       */
+=======
+/*   Updated: 2023/08/02 14:40:36 by timelkon         ###   ########.fr       */
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +46,18 @@ typedef struct s_env
 
 typedef struct s_parse
 {
+<<<<<<< Updated upstream
 	char	**cmd;
 	char	*operator;
+=======
+<<<<<<< Updated upstream
+	char	**cmd;
+	char	*operator;
+=======
+	char			**cmd;
+	char			*operator;
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 	struct s_parse	*next;
 	struct s_parse	*prev;
 }	t_parse;
