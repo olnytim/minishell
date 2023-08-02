@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:04:30 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/01 19:30:53 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/02 16:05:53 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,17 @@ void	scan_env(char **envp, t_data *data)
 		envp++;
 	}
 	data->env = head;
+}
+
+void	printLinkedList(t_env *head)
+{
+	t_env *current = head;
+
+	while (current != NULL)
+	{
+		printf("Key: %s, Val: %s\n", current->key, current->val);
+		current = current->next;
+	}
 }
 
 // char	**create_2d(t_data *data)

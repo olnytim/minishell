@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 19:14:42 by olnytim           #+#    #+#             */
-/*   Updated: 2023/08/02 14:32:16 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/02 16:06:04 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,11 @@ char	*find_path(char **env);
 
 char	*x_path(t_data *data, char *argv);
 
+void	scan_env(char **envp, t_data *data);
+
 int		check_builtin(char **args);
+
+void	printLinkedList(t_env *head);
 
 //			BUILTINS		//
 void	echo(char **args);
