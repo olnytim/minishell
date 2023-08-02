@@ -5,19 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/15 19:14:42 by olnytim           #+#    #+#             */
-<<<<<<< Updated upstream
-/*   Updated: 2023/08/02 14:32:16 by apiloian         ###   ########.fr       */
-=======
-<<<<<<< Updated upstream
-/*   Updated: 2023/08/02 14:32:16 by apiloian         ###   ########.fr       */
-=======
-/*   Updated: 2023/08/02 14:40:36 by timelkon         ###   ########.fr       */
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+/*   Created: 2023/08/02 16:34:15 by timelkon          #+#    #+#             */
+/*   Updated: 2023/08/02 16:46:27 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -46,18 +37,8 @@ typedef struct s_env
 
 typedef struct s_parse
 {
-<<<<<<< Updated upstream
-	char	**cmd;
-	char	*operator;
-=======
-<<<<<<< Updated upstream
-	char	**cmd;
-	char	*operator;
-=======
 	char			**cmd;
 	char			*operator;
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 	struct s_parse	*next;
 	struct s_parse	*prev;
 }	t_parse;
@@ -79,6 +60,8 @@ char	*find_path(char **env);
 char	*x_path(t_data *data, char *argv);
 
 int		check_builtin(char **args);
+
+int		parsing(char *line);
 
 //			BUILTINS		//
 void	echo(char **args);
