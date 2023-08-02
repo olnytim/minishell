@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 19:14:42 by olnytim           #+#    #+#             */
-/*   Updated: 2023/08/01 19:34:39 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/02 14:32:16 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@
 # include <stdlib.h>
 # include <string.h>
 # include <fcntl.h>
-# include <readline/readline.h>
-# include <readline/history.h>
 # include <sys/time.h>
 # include <limits.h>
 
@@ -37,6 +35,14 @@ typedef struct s_env
 	char			*val;
 	struct s_env	*next;
 }	t_env;
+
+typedef struct s_parse
+{
+	char	**cmd;
+	char	*operator;
+	struct s_parse	*next;
+	struct s_parse	*prev;
+}	t_parse;
 
 typedef struct s_data
 {
