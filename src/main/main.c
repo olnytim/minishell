@@ -6,7 +6,11 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 16:16:49 by apiloian          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/08/02 16:56:01 by timelkon         ###   ########.fr       */
+=======
+/*   Updated: 2023/08/03 18:03:17 by apiloian         ###   ########.fr       */
+>>>>>>> crrips
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +24,14 @@ int	main(/*int ac, char **av, char **envp*/)
 	// (void)ac;
 	// (void)av;
 
+<<<<<<< HEAD
 	// // scan_env(envp, &data);
 	// // exit(EXIT_SUCCESS);
 	// init(envp, &data);
+=======
+	scan_env(envp, &data);
+	init(&data);
+>>>>>>> crrips
 	return (0);
 }
 

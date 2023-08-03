@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:04:30 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/01 19:30:53 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/03 18:11:42 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,31 +69,82 @@ int	check_builtin(char **args)
 	return (0);
 }
 
+
+int	ft_env_size(t_env *lst)
+{
+	size_t	counter;
+
+	counter = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		++counter;
+	}
+	return (counter);
+}
+
+char	**join_key_and_val(t_env *lst)
+{
+	char	**arr;
+	size_t	size;
+	size_t	i;
+
+	size = ft_env_size(lst);
+	arr = malloc(sizeof(char *) * (size + 1));
+	if (!arr)
+		return (NULL);
+	i = 0;
+	while (lst)
+	{
+		arr[i] = ft_strjoin(lst->key, "=");
+		arr[i] = ft_strjoin(arr[i], lst->val);
+		lst = lst->next;
+		++i;
+	}
+	arr[i] = NULL;
+	return (arr);
+}
+
 void	scan_env(char **envp, t_data *data)
 {
 	char	*str;
 	char	**key_val;
 	t_env	*head;
+	t_env	*env;
 
-	data->env = malloc(sizeof(t_env));
-	head = data->env;
+	env = malloc(sizeof(t_env));
+	head = env;
 	while (*envp)
 	{
 		str = *envp;
-		data->env->next = malloc(sizeof(t_env));
+		env->next = malloc(sizeof(t_env));
 		key_val = ft_split(str, '=');
-		data->env->key = key_val[0];
-		data->env->val = key_val[1];
-		free(key_val);
-		data->env = data->env->next;
+		env->key = key_val[0];
+		env->val = key_val[1];
+		env = env->next;
 		envp++;
 	}
-	data->env = head;
+	env = head;
+	data->env = join_key_and_val(env);
 }
 
-// char	**create_2d(t_data *data)
-// {
-// 	char	**env;
+void	printLinkedList(t_env *head)
+{
+	t_env *current = head;
 
-// 	return (env);
-// }
+	while (current != NULL)
+	{
+		printf("Key: %s, Val: %s\n", current->key, current->val);
+		current = current->next;
+	}
+}
+
+void	print2d(char **arr)
+{
+	int i = 0;
+	while (arr[i])
+	{
+		printf("%s\n", arr[i]);
+		i++;
+	}
+}

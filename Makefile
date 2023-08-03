@@ -9,7 +9,7 @@ LIBS_DIR = hf
 # Compiled directories
 SRC = src
 OBJ = obj
-SUBDIRS = main prompt utils builtin parsing
+SUBDIRS = main prompt utils builtin parsing pipe
 
 # Folder directions
 SRC_DIR = $(foreach dir, $(SUBDIRS), $(addprefix $(SRC)/, $(dir)))
