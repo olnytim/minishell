@@ -6,10 +6,9 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 19:14:42 by olnytim           #+#    #+#             */
-/*   Updated: 2023/08/02 16:06:04 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/03 18:03:15 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -38,15 +37,15 @@ typedef struct s_env
 
 typedef struct s_parse
 {
-	char	**cmd;
-	char	*operator;
+	char			*cmd;
+	char			*operator;
 	struct s_parse	*next;
 	struct s_parse	*prev;
 }	t_parse;
 
 typedef struct s_data
 {
-	t_env	*env;
+	char	**env;
 	char	*path;
 	char	*join_path;
 	char	**cmd_path;
@@ -54,7 +53,7 @@ typedef struct s_data
 
 void	ft_prompt(void);
 
-void	init(char **envp, t_data *data);
+void	init(t_data *data);
 
 char	*find_path(char **env);
 
@@ -65,6 +64,10 @@ void	scan_env(char **envp, t_data *data);
 int		check_builtin(char **args);
 
 void	printLinkedList(t_env *head);
+
+void	ft_pipe(int argc, char **argv, char **env);
+
+void	print2d(char **arr);
 
 //			BUILTINS		//
 void	echo(char **args);
