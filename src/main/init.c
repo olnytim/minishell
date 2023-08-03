@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/03 18:12:58 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/03 19:55:08 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	init(t_data *data)
 		str = readline(MINISHELL);
 		if (!str)
 			exit(EXIT_SUCCESS);
+		parsing(str);
 		args = ft_split(str, ' ');
 		if (*str)
 		{

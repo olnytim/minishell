@@ -5,33 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/22 16:16:49 by apiloian          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/08/02 16:56:01 by timelkon         ###   ########.fr       */
-=======
-/*   Updated: 2023/08/03 18:03:17 by apiloian         ###   ########.fr       */
->>>>>>> crrips
+/*   Created: 2023/08/03 18:33:47 by timelkon          #+#    #+#             */
+/*   Updated: 2023/08/03 19:50:47 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "../includes/minishell.h"
 
-int	main(/*int ac, char **av, char **envp*/)
+int	main(int ac, char **av, char **envp)
 {
-	char str[] = "HELLO";
-	parsing(str);
-	// t_data	data;
-	// (void)ac;
-	// (void)av;
+	t_data	data;
+	(void)ac;
+	(void)av;
 
-<<<<<<< HEAD
-	// // scan_env(envp, &data);
-	// // exit(EXIT_SUCCESS);
-	// init(envp, &data);
-=======
 	scan_env(envp, &data);
 	init(&data);
->>>>>>> crrips
 	return (0);
 }
 
