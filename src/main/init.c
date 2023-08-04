@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/03 19:55:08 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/04 18:01:36 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,24 +74,26 @@ void	init(t_data *data)
 		str = readline(MINISHELL);
 		if (!str)
 			exit(EXIT_SUCCESS);
-		parsing(str);
-		args = ft_split(str, ' ');
-		if (*str)
+		if (parsing(str))
 		{
-			if (check_builtin(args) == 1)
+			args = ft_split(str, ' ');
+			if (*str)
 			{
+				if (check_builtin(args) == 1)
+				{
+				}
+				else if (fork() == 0)
+				{
+					data->join_path = x_path(data, args[0]);
+					execve(data->join_path, args, data->env);
+				}
+				while (wait(NULL) != -1)
+					;
+				data->join_path = NULL;
+				args = NULL;
+				add_history(str);
+				free(str);
 			}
-			else if (fork() == 0)
-			{
-				data->join_path = x_path(data, args[0]);
-				execve(data->join_path, args, data->env);
-			}
-			while (wait(NULL) != -1)
-				;
-			data->join_path = NULL;
-			args = NULL;
-			add_history(str);
-			free(str);
 		}
 	}
 }

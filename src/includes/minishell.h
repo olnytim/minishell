@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:34:15 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/03 19:46:42 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/04 18:04:55 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	scan_env(char **envp, t_data *data);
 
 int		check_builtin(char **args);
 
-int		parsing(char *line);
+char	*parsing(char *line);
 
 void	error_parsing(void);
 

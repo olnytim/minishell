@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 18:33:47 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/03 19:50:47 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/04 22:24:06 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	main(int ac, char **av, char **envp)
 	(void)av;
 
 	scan_env(envp, &data);
-	init(&data);
+	parsing("  'bro          Im'     feeling    'a      b-'      bit    woozy   ~");
+	// init(&data);
 	return (0);
 }
 
