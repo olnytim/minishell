@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 19:14:42 by olnytim           #+#    #+#             */
-/*   Updated: 2023/08/03 18:03:15 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/04 20:02:01 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_parse
 {
 	char			*cmd;
 	char			*operator;
+	char			*file;
 	struct s_parse	*next;
 	struct s_parse	*prev;
 }	t_parse;
@@ -63,9 +64,11 @@ void	scan_env(char **envp, t_data *data);
 
 int		check_builtin(char **args);
 
-void	printLinkedList(t_env *head);
-
 void	ft_pipe(int argc, char **argv, char **env);
+
+void	ft_redirect(t_parse *lst);
+
+void	printlinkedlist(t_env *head);
 
 void	print2d(char **arr);
 

@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/03 18:12:58 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/04 19:56:58 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	init(t_data *data)
 	char	*str;
 	// t_parse	ls;
 	// t_parse	wc;
-	// (void)envp;
+	t_parse	echo;
 
 	data->path = find_path(data->env);
 	while (1)
@@ -70,6 +70,11 @@ void	init(t_data *data)
 		// char **argv = struct_to2arr(&ls);
 		// ft_pipe(size + 3, argv, data->env);
 		// exit(0);
+
+		echo.cmd = "echo hello";
+		echo.operator = ">";
+		echo.file = "test.txt";
+		echo.next = NULL;
 		
 		str = readline(MINISHELL);
 		if (!str)
