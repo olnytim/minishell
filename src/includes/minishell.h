@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 19:14:42 by olnytim           #+#    #+#             */
-/*   Updated: 2023/08/04 20:02:01 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/05 16:30:56 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_parse
 	char			*cmd;
 	char			*operator;
 	char			*file;
+	int				fd;
 	struct s_parse	*next;
 	struct s_parse	*prev;
 }	t_parse;
@@ -62,7 +63,7 @@ char	*x_path(t_data *data, char *argv);
 
 void	scan_env(char **envp, t_data *data);
 
-int		check_builtin(char **args);
+int	check_builtin(t_parse *lst);
 
 void	ft_pipe(int argc, char **argv, char **env);
 

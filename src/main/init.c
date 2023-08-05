@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/04 19:56:58 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/05 17:27:40 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,24 +71,27 @@ void	init(t_data *data)
 		// ft_pipe(size + 3, argv, data->env);
 		// exit(0);
 
-		echo.cmd = "echo hello";
-		echo.operator = ">";
-		echo.file = "test.txt";
+		echo.cmd = "wc";
+		echo.operator = "<";
+		echo.file = "file1";
 		echo.next = NULL;
 		
 		str = readline(MINISHELL);
 		if (!str)
 			exit(EXIT_SUCCESS);
-		args = ft_split(str, ' ');
+		args = ft_split(echo.cmd, ' ');
 		if (*str)
 		{
-			if (check_builtin(args) == 1)
+			if (fork() == 0)
 			{
-			}
-			else if (fork() == 0)
-			{
-				data->join_path = x_path(data, args[0]);
-				execve(data->join_path, args, data->env);
+				ft_redirect(&echo);
+				if (check_builtin(&echo) == 1)
+					exit(EXIT_SUCCESS);
+				else
+				{
+					data->join_path = x_path(data, args[0]);
+					execve(data->join_path, args, data->env);
+				}
 			}
 			while (wait(NULL) != -1)
 				;

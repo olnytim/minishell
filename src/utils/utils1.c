@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:04:30 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/04 18:24:45 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/05 17:13:40 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,17 @@ char	*x_path(t_data *data, char *argv)
 	exit(EXIT_FAILURE);
 }
 
-int	check_builtin(char **args)
+int	check_builtin(t_parse *lst)
 {
+	char	**args;
+
+	args = ft_split(lst->cmd, ' ');
+	ft_redirect(lst);
 	if (ft_strncmp(args[0], "pwd", 3) == 0)
-		return (pwd(), 1);
+		return (pwd(), close(lst->fd), 1);
 	else if (ft_strncmp(args[0], "echo", 4) == 0)
-		return (echo(args), 1);
+		return (echo(args), close(lst->fd), 1);
 	// else if (ft_strncmp(args[0], "cd", 2) == 0)
-	// 	return (cd(args), 1);
+	// 	return (cd(args), close(lst->fd), 1);
 	return (0);
 }
