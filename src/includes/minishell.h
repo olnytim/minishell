@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 19:14:42 by olnytim           #+#    #+#             */
-/*   Updated: 2023/08/05 16:30:56 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/07 19:07:26 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_parse
 	char			*cmd;
 	char			*operator;
 	char			*file;
+	char			*lim;
 	int				fd;
 	struct s_parse	*next;
 	struct s_parse	*prev;

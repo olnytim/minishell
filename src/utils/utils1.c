@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:04:30 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/05 17:13:40 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/07 20:23:50 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int	check_builtin(t_parse *lst)
 	char	**args;
 
 	args = ft_split(lst->cmd, ' ');
-	ft_redirect(lst);
 	if (ft_strncmp(args[0], "pwd", 3) == 0)
 		return (pwd(), close(lst->fd), 1);
 	else if (ft_strncmp(args[0], "echo", 4) == 0)

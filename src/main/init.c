@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/05 17:27:40 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/07 20:24:29 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ void	init(t_data *data)
 		// exit(0);
 
 		echo.cmd = "wc";
-		echo.operator = "<";
+		echo.operator = "<<";
+		echo.lim = "lim";
 		echo.file = "file1";
 		echo.next = NULL;
 		
@@ -94,7 +95,8 @@ void	init(t_data *data)
 				}
 			}
 			while (wait(NULL) != -1)
-				;
+				;	
+			unlink("heredoc");
 			data->join_path = NULL;
 			args = NULL;
 			add_history(str);
