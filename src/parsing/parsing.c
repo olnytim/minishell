@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 14:41:14 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/04 22:23:46 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/08 15:37:36 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	write_quotes(char *line, char *new, int *i, int *j)
 	char	q;
 
 	q = line[*i];
-	new[*j] = line[*i];
+	// new[*j] = line[*i];
 	*i += 1;
-	*j += 1;
+	// *j += 1;
 	while (line[*i] != q)
 	{
 		new[*j] = line[*i];
@@ -44,6 +44,7 @@ void	write_quotes(char *line, char *new, int *i, int *j)
 	}
 	if (line[*i + 1] == 34 || line[*i + 1] == 39)
 		write_quotes(line, new, i, j);
+	*i += 1;
 	return ;
 }
 
@@ -53,7 +54,7 @@ char	*epur_str(char *line, int j)
 	int		flag;
 	char	*new;
 
-	new = malloc (ft_strlen(line) * (char) + 1);
+	new = malloc(ft_strlen(line) * (char) + 1);
 	i = 0;
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
@@ -64,7 +65,7 @@ char	*epur_str(char *line, int j)
 		if (line[i] != ' ' && line[i] != '\t')
 		{
 			if (flag == 1)
-				new[j++] = ' ';
+				new[j++] = '_';
 			flag = 0;
 			if (line[i] == 34 || line[i] == 39)
 				write_quotes(line, new, &i, &j);
@@ -74,7 +75,6 @@ char	*epur_str(char *line, int j)
 		i++;
 	}
 	new[i] = '\0';
-	// free(line);
 	return (new);
 }
 

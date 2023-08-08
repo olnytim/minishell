@@ -1,109 +1,52 @@
-// /* ************************************************************************** */
-// /*                                                                            */
-// /*                                                        :::      ::::::::   */
-// /*   smart_split.c                                      :+:      :+:    :+:   */
-// /*                                                    +:+ +:+         +:+     */
-// /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
-// /*                                                +#+#+#+#+#+   +#+           */
-// /*   Created: 2023/08/03 16:12:37 by timelkon          #+#    #+#             */
-// /*   Updated: 2023/08/03 18:36:02 by timelkon         ###   ########.fr       */
-// /*                                                                            */
-// /* ************************************************************************** */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   smart_split.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/08 13:33:57 by timelkon          #+#    #+#             */
+/*   Updated: 2023/08/08 15:44:24 by timelkon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// #include "../includes/minishell.h"
+#include "../includes/minishell.h"
 
-// void	ft_free(char **s, int i)
+int	count_struct(char *line, int i, int w)
+{
+	while (line[i])
+	{
+		if (line[i] == '|')
+			w++;
+		i++;
+	}
+	return (w);
+}
 
-// {
-// 	while (i--)
-// 		free(s[i]);
-// 	free(s);
-// }
+t_parse	*devider(char *line, t_parse *split, int i, int j)
+{
+	int		start;
+	t_parse	*temp;
+	int		count;
 
-// int	quote_check(char *s, int i)
-// {
-// 	if (s[i++] == 34)
-// 	{
-// 		while (s[i] != 34)
-// 			i++;
-// 	}
-// 	else
-// 	{
-// 		while (s[i++] != 39)
-// 			i++;
-// 	}
-// 	return (i + 1);
-// }
+	count = count_struct(line, 0, 0) + 1;
+	while (--count)
+	{
+		temp = malloc(sizeof(t_parse));
+		if (!temp)
+			return (NULL);
+		temp->next = NULL;
+		temp->prev = NULL;
+		args_split(line, temp);
+		ft_lstadd_back_shell(&split, temp);
+	}
+}
 
-// int	countsplit(int i, int w, char *s)
-// {
-// 	while (s[i] != '\0')
-// 	{
-// 		if (s[i] == '<' || s[i] == '>' || s[i] == '|' || s[i] == 34 || s[i] == 39)
-// 		{
-// 			if (s[i] == '<')
-// 			{
-// 				if (s[i + 1] == '<')
-// 					i++;
-// 				i++;
-// 			}
-// 			else if (s[i] == '>')
-// 			{
-// 				if (s[i + 1] == '>')
-// 					i++;
-// 				i++;
-// 			}
-// 			else if (s[i] == '|')
-// 				i++;
-// 			else if	(s[i] == 34 || s[i] == 39)
-// 				i = quotes_check(s, i);
-// 		}
-// 		else
-// 			while (s[i] != '<' && s[i] != '>' && s[i] != '|' && s[i] != 34 && s[i] != 39)
-// 				i++;
-// 		w++;
-// 	}
-// 	return (w);
-// }
+t_parse	smart_split(char *line)
+{
+	t_parse	split;
 
-// char	**delai(int i, int e, char *s)
-// {
-// 	int		start;
-// 	char	**split;
-
-// 	split = malloc ((countsplit(0, 0, s) + 1) * sizeof (char *));
-// 	if (!split)
-// 		return (NULL);
-// 	while (s[i])
-// 	{
-// 		while (s[i] == c)
-// 			i++;
-// 		if (s[i] != c && s[i] != '\0')
-// 		{
-// 			start = i;
-// 			while (s[i] != c && s[i] != '\0')
-// 				i++;
-// 			split[e] = ft_substr(s, start, (i - start));
-// 			if (split[e] == NULL)
-// 			{
-// 				ft_free (split, e);
-// 				return (0);
-// 			}
-// 		}
-// 		e++;
-// 	}
-// 	return (split);
-// }
-
-// char	**smart_split(char *line)
-// {
-// 	char	**split;
-
-// 	if (!line)
-// 		return (NULL);
-// 	split = delai(0, 0, line);
-// 	if (!split)
-// 		return (NULL);
-// 	split[countsplit(0, 0, s, c)] = 0;
-// 	return (split);
-// }
+	if (!line)
+		return ;
+	devider(line, &split, 0, 0);
+}

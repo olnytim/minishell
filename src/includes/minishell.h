@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:34:15 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/04 18:04:55 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/08 15:21:06 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,11 @@ typedef struct s_env
 
 typedef struct s_parse
 {
-	char			*cmd;
-	char			*operator;
+	char			**cmd;
+	char			**operator;
+	char			**file;
+	char			**lim;
+	int				fd;
 	struct s_parse	*next;
 	struct s_parse	*prev;
 }	t_parse;
@@ -64,6 +67,8 @@ void	scan_env(char **envp, t_data *data);
 int		check_builtin(char **args);
 
 char	*parsing(char *line);
+
+void	ft_lstadd_back_shell(t_parse **lst, t_parse *new);
 
 void	error_parsing(void);
 
