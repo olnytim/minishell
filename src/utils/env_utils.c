@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:23:18 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/04 18:26:59 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/08 14:30:11 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,14 @@ int	ft_env_size(t_env *lst)
 	return (counter);
 }
 
-char	**join_key_and_val(t_env *lst)
+char	**join_key_and_val(t_env *head)
 {
 	char	**arr;
+	t_env	*lst;
 	size_t	size;
 	size_t	i;
 
+	lst = head;
 	size = ft_env_size(lst);
 	arr = malloc(sizeof(char *) * (size + 1));
 	if (!arr)
@@ -67,7 +69,11 @@ void	scan_env(char **envp, t_data *data)
 		envp++;
 	}
 	env = head;
+	data->env_lst = env;
+	// printlinkedlist(data->env_lst);
 	data->env = join_key_and_val(env);
+	// print2d(data->env);
+	// exit(0);
 }
 
 void	printlinkedlist(t_env *head)

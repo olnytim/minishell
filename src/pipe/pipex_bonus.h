@@ -33,8 +33,8 @@ typedef struct s_pipex
 
 typedef struct s_parse
 {
-	char	*cmd;
-	char	*operator;
+	char			*cmd;
+	char			*operator;
 	struct s_parse	*next;
 	struct s_parse	*prev;
 }	t_parse;

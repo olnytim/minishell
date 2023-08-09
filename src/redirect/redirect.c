@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:41:18 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/07 20:13:04 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:06:25 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ void	ft_redirect_heredoc(t_parse *lst)
 {
 	char	*str;
 	char	*lim;
-	
+
 	lim = lst->lim;
 	lst->fd = open("heredoc", O_RDWR | O_CREAT, 0644);
 	while (1)
 	{
-		write(1, "heredoc> ", 10);
+		write(1, "> ", 2);
 		str = get_next_line(0);
 		if (ft_strncmp(lim, str, ft_strlen(str) - 1) == 0
 			&& ft_strncmp(lim, str, ft_strlen(lim)) == 0)

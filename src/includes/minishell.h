@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/15 19:14:42 by olnytim           #+#    #+#             */
-/*   Updated: 2023/08/07 19:07:26 by apiloian         ###   ########.fr       */
+/*   Created: 2023/08/08 15:31:13 by apiloian          #+#    #+#             */
+/*   Updated: 2023/08/09 14:38:02 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_env
 
 typedef struct s_parse
 {
-	char			*cmd;
+	char			**cmd;
 	char			*operator;
 	char			*file;
 	char			*lim;
@@ -52,6 +52,7 @@ typedef struct s_data
 	char	*path;
 	char	*join_path;
 	char	**cmd_path;
+	t_env	*env_lst;
 }	t_data;
 
 void	ft_prompt(void);
@@ -64,9 +65,17 @@ char	*x_path(t_data *data, char *argv);
 
 void	scan_env(char **envp, t_data *data);
 
-int	check_builtin(t_parse *lst);
+int		check_builtin(t_parse *lst, t_data *data);
+
+char	**join_key_and_val(t_env *head);
 
 void	ft_pipe(int argc, char **argv, char **env);
+
+int		ft_parse_size(t_parse *lst);
+
+char	*join_2d_arr(char **arr);
+
+char	**struct_to2arr(t_parse *lst);
 
 void	ft_redirect(t_parse *lst);
 
@@ -78,6 +87,7 @@ void	print2d(char **arr);
 void	echo(char **args);
 // void	cd(char **args);
 void	pwd(void);
+void	env(t_data *data);
 //							//
 
 #endif

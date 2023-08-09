@@ -70,5 +70,5 @@ void	ft_pipe(int argc, char **argv, char **env)
 		piping(&pipex, argv, env, i++);
 	closing(&pipex);
 	while (wait(NULL) != -1)
-		;	
+		;
 }
