@@ -6,8 +6,18 @@
         "bitset": "c",
         "locale": "c",
         "pipex_bonus.h": "c",
+<<<<<<< HEAD
         "stdio.h": "c",
         "fcntl.h": "c",
         "sstream": "c"
+=======
+        "time.h": "c",
+        "limits.h": "c",
+        "unistd.h": "c",
+        "stdio.h": "c",
+        "fcntl.h": "c",
+        "readline.h": "c",
+        "libft.h": "c"
+>>>>>>> Lera
     }
 }

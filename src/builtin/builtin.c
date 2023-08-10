@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:56:32 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/08 15:40:50 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/10 18:01:16 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,32 @@ void	pwd(void)
 	getcwd(dir, PATH_MAX);
 	printf("%s\n", dir);
 }
+void	unset(t_data *data, char **argv)
+{
+	// (void)argv;
+	// (void)data;
+	// int	cnt;
+	t_env	*lst;
+
+	lst = data->env_lst;
+	while (lst->next && ft_strncmp(lst->key, argv[1], ft_strlen(argv[1]))!= 0)
+	{
+		if (lst->next->next && ft_strncmp(lst->next->key, argv[1], ft_strlen(argv[1]))== 0)
+		{
+			lst->next = lst->next->next;
+			break ;
+		}
+		lst = lst->next;
+	}
+	data->env = join_key_and_val(data->env_lst);
+	// print2d(data->env);
+	// printlinkedlist(data->env_lst);
+}
 
 // void	cd(char **args)
 // {
-// 	// if (!args[1])
-// 	while (*args[1] == '.' && *(args[1] + 1) == '.')
-// 	{
-// 		chdir("..");
-// 		args[1]++;
-// 	}
-// 		chdir(args[1]);
+	
+	
 // }
 
 void	echo(char **args)

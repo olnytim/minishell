@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
 /*   Updated: 2023/08/10 18:01:53 by apiloian         ###   ########.fr       */
@@ -40,21 +40,15 @@ void	init(t_data *data)
 		cmd1.cmd = ft_split(str, ' ');
 		if (*str)
 		{
-			if (fork() == 0)
+			if (check_builtin(&cmd1, data) == 1)
 			{
-				if (*cmd1.operator[0] == '|')
-					ft_pipe(ft_parse_size(&cmd1) + 3, struct_to2arr(&cmd1), data->env, &cmd1);
-				else
-				{
-					if (check_builtin(&cmd1, data) == 1)
-						exit(EXIT_SUCCESS);
-					else
-					{
-						ft_redirect(&cmd1);
-						data->join_path = x_path(data, cmd1.cmd[0]);
-						execve(data->join_path, cmd1.cmd, data->env);
-					}
-				}
+			}
+			else if (fork() == 0)
+			{
+				// ft_pipe(ft_parse_size(&cmd1) + 3, struct_to2arr(&cmd1), data->env);
+				// ft_redirect(&cmd2);
+				data->join_path = x_path(data, cmd1.cmd[0]);
+				execve(data->join_path, cmd1.cmd, data->env);
 			}
 			while (wait(NULL) != -1)
 				;
