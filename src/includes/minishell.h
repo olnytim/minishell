@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:31:13 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/09 14:38:02 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/10 11:30:19 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int		check_builtin(t_parse *lst, t_data *data);
 
 char	**join_key_and_val(t_env *head);
 
-void	ft_pipe(int argc, char **argv, char **env);
+void	ft_pipe(int argc, char **argv, char **env, t_parse *cmd);
 
 int		ft_parse_size(t_parse *lst);
 

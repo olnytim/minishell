@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/09 18:28:11 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/10 13:26:02 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,19 @@ void	init(t_data *data)
 	data->path = find_path(data->env);
 	while (1)
 	{
-		cmd1.operator = "|";
+		cmd1.operator = "";
 		cmd1.lim = "";
 		cmd1.file = "";
-		cmd1.next = &cmd2;
-		
+		// cmd1.next = &cmd2;
+		cmd1.next = NULL;
+
 		str = "cat";
 		cmd2.cmd = ft_split(str, ' ');
 		cmd2.operator = ">";
-		cmd2.file = "file1";	
+		cmd2.file = "file1";
 		cmd2.next = NULL;
 
-		str = readline(MINISHELL); 
+		str = readline(MINISHELL);
 		if (!str)
 			exit(EXIT_SUCCESS);
 		cmd1.cmd = ft_split(str, ' ');
@@ -41,15 +42,18 @@ void	init(t_data *data)
 		{
 			if (fork() == 0)
 			{
-				ft_pipe(ft_parse_size(&cmd1) + 3, struct_to2arr(&cmd1), data->env);
-				// ft_redirect(&cmd2);
-				if (check_builtin(&cmd1, data) == 1)
-					exit(EXIT_SUCCESS);
+				if (cmd1.operator[0] == '|')
+					ft_pipe(ft_parse_size(&cmd1) + 3, struct_to2arr(&cmd1), data->env, &cmd1);
 				else
 				{
-					dprintf(2, "here\n");
-					data->join_path = x_path(data, cmd1.cmd[0]);
-					execve(data->join_path, cmd1.cmd, data->env);
+					if (check_builtin(&cmd1, data) == 1)
+						exit(EXIT_SUCCESS);
+					else
+					{
+						ft_redirect(&cmd1);
+						data->join_path = x_path(data, cmd1.cmd[0]);
+						execve(data->join_path, cmd1.cmd, data->env);
+					}
 				}
 			}
 			while (wait(NULL) != -1)

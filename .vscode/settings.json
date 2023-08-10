@@ -5,6 +5,9 @@
         "stdlib.h": "c",
         "bitset": "c",
         "locale": "c",
-        "pipex_bonus.h": "c"
+        "pipex_bonus.h": "c",
+        "stdio.h": "c",
+        "fcntl.h": "c",
+        "sstream": "c"
     }
 }

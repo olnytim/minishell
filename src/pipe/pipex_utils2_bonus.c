@@ -23,7 +23,7 @@ char	*search_path(char **env)
 	{
 		if (*env[i] == 'P')
 		{
-			if (!(ft_strncmp(path, env[i], 5)))
+			if (!(ft_strncmp_p(path, env[i], 5)))
 			{
 				path = env[i];
 				while (*path != '/')
@@ -43,11 +43,11 @@ char	*xx_path(t_pipex *pipex, char *argv, char **env)
 
 	i = 0;
 	pipex->path = search_path(env);
-	pipex->cmd_path = ft_split(pipex->path, ':');
+	pipex->cmd_path = ft_split_p(pipex->path, ':');
 	while (pipex->cmd_path[i])
 	{
-		pipex->cmd_path[i] = ft_strjoin(pipex->cmd_path[i], "/");
-		pipex->cmd_path[i] = ft_strjoin(pipex->cmd_path[i], argv);
+		pipex->cmd_path[i] = ft_strjoin_p(pipex->cmd_path[i], "/");
+		pipex->cmd_path[i] = ft_strjoin_p(pipex->cmd_path[i], argv);
 		if (access(pipex->cmd_path[i], X_OK) == 0)
 		{
 			path = pipex->cmd_path[i];
