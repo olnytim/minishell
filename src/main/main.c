@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 16:16:49 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/01 19:27:31 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/04 19:41:17 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,11 @@
 int	main(int ac, char **av, char **envp)
 {
 	t_data	data;
+
 	(void)ac;
 	(void)av;
-
-	// scan_env(envp, &data);
-	// exit(EXIT_SUCCESS);
-	init(envp, &data);
+	scan_env(envp, &data);
+	init(&data);
 	return (0);
 }
 

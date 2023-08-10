@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:56:32 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/01 21:01:42 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/08 15:40:50 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	pwd(void)
 {
 	char	dir[PATH_MAX];
 
-	getcwd(dir, PATH_MAX); 
+	getcwd(dir, PATH_MAX);
 	printf("%s\n", dir);
 }
 
@@ -54,7 +54,7 @@ void	echo(char **args)
 		printf("\n");
 }
 
-// void	env(t_data *data)
-// {
-	
-// }
+void	env(t_data *data)
+{
+	print2d(data->env);
+}

@@ -1,5 +1,10 @@
 {
     "files.associations": {
-        "minishell.h": "c"
+        "minishell.h": "c",
+        "string.h": "c",
+        "stdlib.h": "c",
+        "bitset": "c",
+        "locale": "c",
+        "pipex_bonus.h": "c"
     }
 }
