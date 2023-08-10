@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/10 13:26:02 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/10 18:01:53 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ void	init(t_data *data)
 	data->path = find_path(data->env);
 	while (1)
 	{
-		cmd1.operator = "";
-		cmd1.lim = "";
-		cmd1.file = "";
+		// cmd1.operator[0] = "";
+		// cmd1.lim[0] = "";
+		// cmd1.file[0] = "";
 		// cmd1.next = &cmd2;
 		cmd1.next = NULL;
 
 		str = "cat";
 		cmd2.cmd = ft_split(str, ' ');
-		cmd2.operator = ">";
-		cmd2.file = "file1";
+		// cmd2.operator[0] = ">";
+		// cmd2.file[0] = "file1";
 		cmd2.next = NULL;
 
 		str = readline(MINISHELL);
@@ -42,7 +42,7 @@ void	init(t_data *data)
 		{
 			if (fork() == 0)
 			{
-				if (cmd1.operator[0] == '|')
+				if (*cmd1.operator[0] == '|')
 					ft_pipe(ft_parse_size(&cmd1) + 3, struct_to2arr(&cmd1), data->env, &cmd1);
 				else
 				{

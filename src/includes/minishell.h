@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:31:13 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/10 11:30:19 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/10 18:21:31 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ typedef struct s_env
 typedef struct s_parse
 {
 	char			**cmd;
-	char			*operator;
-	char			*file;
-	char			*lim;
+	char			**operator;
+	char			**file;
+	char			**lim;
 	int				fd;
 	struct s_parse	*next;
 	struct s_parse	*prev;
