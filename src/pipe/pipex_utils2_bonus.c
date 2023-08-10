@@ -46,8 +46,8 @@ char	*xx_path(t_pipex *pipex, char *argv, char **env)
 	pipex->cmd_path = ft_split(pipex->path, ':');
 	while (pipex->cmd_path[i])
 	{
-		pipex->cmd_path[i] = ft_strjoin(pipex->cmd_path[i], "/");
-		pipex->cmd_path[i] = ft_strjoin(pipex->cmd_path[i], argv);
+		pipex->cmd_path[i] = ft_strjoin_p(pipex->cmd_path[i], "/");
+		pipex->cmd_path[i] = ft_strjoin_p(pipex->cmd_path[i], argv);
 		if (access(pipex->cmd_path[i], X_OK) == 0)
 		{
 			path = pipex->cmd_path[i];

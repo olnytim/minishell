@@ -66,7 +66,7 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 	return (ft_strlen(src));
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin_p(char *s1, char *s2)
 {
 	char	*new_str;
 	int		i;

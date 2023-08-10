@@ -5,6 +5,13 @@
         "stdlib.h": "c",
         "bitset": "c",
         "locale": "c",
-        "pipex_bonus.h": "c"
+        "pipex_bonus.h": "c",
+        "time.h": "c",
+        "limits.h": "c",
+        "unistd.h": "c",
+        "stdio.h": "c",
+        "fcntl.h": "c",
+        "readline.h": "c",
+        "libft.h": "c"
     }
 }
