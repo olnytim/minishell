@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/04 18:01:36 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/09 15:47:27 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	**struct_to2arr(t_parse *lst)
 	arr[i++] = ft_strdup("/dev/stdin");
 	while (lst)
 	{
-		arr[i] = ft_strdup(lst->cmd);
+		arr[i] = ft_strdup(*lst->cmd);
 		lst = lst->next;
 		++i;
 	}
