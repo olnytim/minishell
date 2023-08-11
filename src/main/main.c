@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 18:33:47 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/08 13:26:02 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/11 19:25:41 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int ac, char **av, char **envp)
 	(void)av;
 
 	scan_env(envp, &data);
-	parsing("Hel   lo     , m  y         na me 'is        Narek'");
+	parsing("'echo >123'");
 	// init(&data);
 	return (0);
 }

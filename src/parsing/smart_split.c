@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   smart_split.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/08 13:33:57 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/09 16:40:13 by mac              ###   ########.fr       */
+/*   Created: 2023/08/11 17:38:59 by timelkon          #+#    #+#             */
+/*   Updated: 2023/08/11 19:15:08 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	count_struct(char *line, int i, int w)
+int count_struct(char *line, int i, int w)
 {
 	while (line[i])
 	{
@@ -23,30 +23,38 @@ int	count_struct(char *line, int i, int w)
 	return (w);
 }
 
-t_parse	*devider(char *line, t_parse *split, int i, int j)
+t_parse *devider(char *line, t_parse *split)
 {
-	int		start;
-	t_parse	*temp;
-	int		count;
+	t_parse *temp;
+	int count;
+	int	i;
 
+	i = 0;
+	split = malloc(sizeof(t_parse));
 	count = count_struct(line, 0, 0) + 1;
-	while (--count)
+	while (count)
 	{
 		temp = malloc(sizeof(t_parse));
+		temp->t_tig = malloc(sizeof(t_tig));
+		temp->t_tig->i_fl = 0;
+		temp->t_tig->i_lm = 0;
+		temp->t_tig->i_op = 0;
 		if (!temp)
 			return (NULL);
 		temp->next = NULL;
 		temp->prev = NULL;
-		args_split(line, temp, 0, 0);
+		i = args_split(&line[i], temp, 0, 0);
 		ft_lstadd_back_shell(&split, temp);
+		count--;
 	}
+	return (split);
 }
 
-t_parse	smart_split(char *line)
+t_parse *smart_split(char *line)
 {
-	t_parse	split;
+	t_parse split;
 
 	if (!line)
-		return ;
-	devider(line, &split, 0, 0);
+		return (NULL);
+	return (devider(line, &split));
 }

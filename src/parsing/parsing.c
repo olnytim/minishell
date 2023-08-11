@@ -5,32 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/02 14:41:14 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/08 15:37:36 by timelkon         ###   ########.fr       */
+/*   Created: 2023/08/11 17:35:56 by timelkon          #+#    #+#             */
+/*   Updated: 2023/08/11 19:54:27 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-
-
-
-
-// void	lower_input(char *line)
+// void lower_input(char *line)
 // {
-// 	int i;
-	
-// 	i = 0;
-// 	while (line[i] != '\0')
-// 	{
-// 		line[i] = (char)ft_tolower(line[i]);
-// 		i++;
-// 	}
+//  int i;
+
+//  i = 0;
+//  while (line[i] != '\0')
+//  {
+//   line[i] = (char)ft_tolower(line[i]);
+//   i++;
+//  }
 // }
 
-void	write_quotes(char *line, char *new, int *i, int *j)
+void write_quotes(char *line, char *new, int *i, int *j)
 {
-	char	q;
+	char q;
 
 	q = line[*i];
 	// new[*j] = line[*i];
@@ -45,16 +41,16 @@ void	write_quotes(char *line, char *new, int *i, int *j)
 	if (line[*i + 1] == 34 || line[*i + 1] == 39)
 		write_quotes(line, new, i, j);
 	*i += 1;
-	return ;
+	return;
 }
 
-char	*epur_str(char *line, int j)
+char *epur_str(char *line, int j)
 {
-	int		i;
-	int		flag;
-	char	*new;
+	int i;
+	int flag;
+	char *new;
 
-	new = malloc(ft_strlen(line) * (char) + 1);
+	new = malloc(ft_strlen(line) * (char)+1);
 	i = 0;
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
@@ -78,10 +74,10 @@ char	*epur_str(char *line, int j)
 	return (new);
 }
 
-int	check_quotes(char *line)
+int check_quotes(char *line)
 {
-	int		i;
-	char	q;
+	int i;
+	char q;
 
 	i = 0;
 	if (!strchr(line, 34) && !strchr(line, 39))
@@ -101,19 +97,45 @@ int	check_quotes(char *line)
 	return (1);
 }
 
-char	*parsing(char *line)
+t_parse *parsing(char *line)
 {
-	int		i;
-	char	*spaced_line;
+	int i;
+	char *spaced_line;
+	t_parse *splited;
 
 	i = 0;
 	// lower_input(line);
 	if (!check_quotes(line))
 	{
-		write (2, "Error: please close the brackets\n", 33);
+		write(2, "Error: please close the brackets\n", 33);
 		return (0);
 	}
 	spaced_line = epur_str(line, 0);
 	printf("%s\n", spaced_line);
-	return (spaced_line);
+	splited = smart_split(spaced_line);
+	int a = 1;
+	while (splited)
+	{
+		printf("\nnode #%i\n", a);
+		i = 0;
+		printf("cmd ==\n\n");
+		while (splited->cmd[i])
+			printf("%s\n", splited->cmd[i++]);
+		i = 0;
+		printf("\noperator ==\n");
+		while (splited->operator[i])
+			printf("%s\n", splited->operator[i++]);
+		i = 0;
+		printf("\nfile ==\n");
+		while (splited->file[i])
+			printf("%s\n", splited->file[i++]);
+		i = 0;
+		printf("\nlimiter ==\n");
+		while (splited->lim[i])
+			printf("%s\n", splited->lim[i++]);
+		printf("\n-------\n");
+		splited = splited->next;
+		a++;
+	}
+	return (splited);
 }
