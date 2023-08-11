@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:41:18 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/10 16:50:30 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/11 18:30:15 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,31 @@
 
 void	ft_redirect_out(t_parse *lst)
 {
-	lst->fd = open(*lst->file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	int	i;
+
+	i = 0;
+	while (lst->file[i])
+		lst->fd = open(lst->file[i++], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	dup2(lst->fd, STDOUT_FILENO);
 }
 
 void	ft_redirect_out_append(t_parse *lst)
 {
-	lst->fd = open(*lst->file, O_WRONLY | O_CREAT | O_APPEND, 0644);
+	int	i;
+
+	i = 0;
+	while (lst->file[i])
+		lst->fd = open(lst->file[i++], O_WRONLY | O_CREAT | O_APPEND, 0644);
 	dup2(lst->fd, STDOUT_FILENO);
 }
 
 void	ft_redirect_in(t_parse *lst)
 {
-	lst->fd = open(*lst->file, O_RDONLY);
+	int	i;
+
+	i = 0;
+	while (lst->file[i])
+		lst->fd = open(lst->file[i++], O_RDONLY);
 	dup2(lst->fd, STDIN_FILENO);
 }
 

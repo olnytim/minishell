@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:31:13 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/10 18:21:31 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/11 17:11:57 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# define MINISHELL  "\e[1;31mminishell\033[0m "
+# define MINISHELL  "\e[1;31mebash\033[0m "
 # define NO_CMD     "command not found: %s\n"
 
 # include <unistd.h>
@@ -55,8 +55,6 @@ typedef struct s_data
 	t_env	*env_lst;
 }	t_data;
 
-void	ft_prompt(void);
-
 void	init(t_data *data);
 
 char	*find_path(char **env);
@@ -65,11 +63,15 @@ char	*x_path(t_data *data, char *argv);
 
 void	scan_env(char **envp, t_data *data);
 
-int		check_builtin(t_parse *lst, t_data *data);
+int		check_builtin(t_parse *cmd, t_data *data);
+
+int		check_builtin_with_redirect(t_parse *cmd, t_data *data);
+
+int		builtin_cmp(t_parse *cmd);
 
 char	**join_key_and_val(t_env *head);
 
-void	ft_pipe(int argc, char **argv, char **env, t_parse *cmd);
+void	ft_pipe(char **argv, char **env, t_parse *cmd, t_data *data);
 
 int		ft_parse_size(t_parse *lst);
 

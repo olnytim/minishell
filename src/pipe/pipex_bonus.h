@@ -20,6 +20,8 @@
 # include <string.h>
 # include <fcntl.h>
 
+# include "../includes/minishell.h"
+
 typedef struct s_pipex
 {
 	pid_t	pid1;
@@ -30,6 +32,7 @@ typedef struct s_pipex
 	char	*path;
 	char	**cmd_path;
 	char	**argv;
+	t_data	*data;
 }		t_pipex;
 
 size_t	ft_strlen_p(const char *str);

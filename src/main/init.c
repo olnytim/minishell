@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/10 18:01:53 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/11 17:54:09 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,20 @@ void	init(t_data *data)
 	data->path = find_path(data->env);
 	while (1)
 	{
-		// cmd1.operator[0] = "";
+		str = "> >";
+		cmd1.operator = ft_split(str, ' ');
 		// cmd1.lim[0] = "";
-		// cmd1.file[0] = "";
+		str = "file1 file2";
+		cmd1.file = ft_split(str, ' ');
 		// cmd1.next = &cmd2;
 		cmd1.next = NULL;
 
-		str = "cat";
+		str = "env";
 		cmd2.cmd = ft_split(str, ' ');
-		// cmd2.operator[0] = ">";
-		// cmd2.file[0] = "file1";
+		str = ">";
+		cmd2.operator = ft_split(str, ' ');
+		str = "file1";
+		cmd2.file = ft_split(str, ' ');
 		cmd2.next = NULL;
 
 		str = readline(MINISHELL);
@@ -40,13 +44,14 @@ void	init(t_data *data)
 		cmd1.cmd = ft_split(str, ' ');
 		if (*str)
 		{
-			if (check_builtin(&cmd1, data) == 1)
+			if (cmd1.operator[0][0] == '|')
+				ft_pipe(struct_to2arr(&cmd1), data->env, &cmd1, data);
+			else if (check_builtin_with_redirect(&cmd1, data) == 1)
 			{
 			}
 			else if (fork() == 0)
-			{
-				// ft_pipe(ft_parse_size(&cmd1) + 3, struct_to2arr(&cmd1), data->env);
-				// ft_redirect(&cmd2);
+			{			
+				ft_redirect(&cmd1);
 				data->join_path = x_path(data, cmd1.cmd[0]);
 				execve(data->join_path, cmd1.cmd, data->env);
 			}

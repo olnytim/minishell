@@ -42,6 +42,17 @@ char	*xx_path(t_pipex *pipex, char *argv, char **env)
 	char	*path;
 
 	i = 0;
+	if (ft_strncmp(argv, "unset", 5) == 0
+		&& ft_strncmp(argv, "unset", ft_strlen(argv)) == 0)
+		return (argv);
+	if (ft_strncmp(argv, "export", 6) == 0
+		&& ft_strncmp(argv, "export", ft_strlen(argv)) == 0)
+		return (argv);
+	if (ft_strncmp(argv, "exit", 4) == 0
+		&& ft_strncmp(argv, "exit", ft_strlen(argv)) == 0)
+		return (argv);
+	if (access(argv, X_OK) == 0)
+		return (argv);
 	pipex->path = search_path(env);
 	pipex->cmd_path = ft_split_p(pipex->path, ':');
 	while (pipex->cmd_path[i])

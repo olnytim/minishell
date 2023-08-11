@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
-#include "../includes/minishell.h"
 
 void	check_i(t_pipex *pipex, int i)
 {
@@ -46,6 +45,8 @@ void	piping(t_pipex *pipex, char **env, int i, t_parse *cmd)
 		path = xx_path(pipex, args[0], env);
 		check_i(pipex, i);
 		closing(pipex);
+		if (check_builtin(cmd, pipex->data) == 1)
+			exit(EXIT_SUCCESS);
 		ft_redirect(cmd);
 		execve(path, args, env);
 	}
@@ -60,12 +61,15 @@ void	pip(t_pipex *pipex)
 		pipe(pipex->fd[i++]);
 }
 
-void	ft_pipe(int argc, char **argv, char **env, t_parse *cmd)
+void	ft_pipe(char **argv, char **env, t_parse *cmd, t_data *data)
 {
+	int		argc;
 	t_pipex	pipex;
 	int		i;
 
+	argc = ft_parse_size(cmd) + 3;
 	pipex.argv = argv;
+	pipex.data = data;
 	i = 2;
 	pipex.cmds = argc - 1;
 	pip(&pipex);
