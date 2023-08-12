@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
 /*   Updated: 2023/08/11 17:54:09 by apiloian         ###   ########.fr       */
@@ -48,6 +48,20 @@ void	init(t_data *data)
 				ft_pipe(struct_to2arr(&cmd1), data->env, &cmd1, data);
 			else if (check_builtin_with_redirect(&cmd1, data) == 1)
 			{
+				if (check_builtin(args) == 1)
+				{
+				}
+				else if (fork() == 0)
+				{
+					data->join_path = x_path(data, args[0]);
+					execve(data->join_path, args, data->env);
+				}
+				while (wait(NULL) != -1)
+					;
+				data->join_path = NULL;
+				args = NULL;
+				add_history(str);
+				free(str);
 			}
 			else if (fork() == 0)
 			{			
