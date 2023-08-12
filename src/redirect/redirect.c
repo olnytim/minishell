@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:41:18 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/11 18:30:15 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/12 16:37:30 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void	ft_redirect_heredoc(t_parse *lst)
 
 void	ft_redirect(t_parse *lst)
 {
+	if (!*lst->operator)
+		return ;
 	if (ft_strncmp(*lst->operator, ">", ft_strlen(*lst->operator)) == 0
 		&& ft_strncmp(*lst->operator, ">", 1) == 0)
 		ft_redirect_out(lst);

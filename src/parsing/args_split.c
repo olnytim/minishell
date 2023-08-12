@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args_split.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:37:50 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/11 19:52:44 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/12 17:14:47 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,6 @@ int args_split(char *line, t_parse *split, int i, int e)
 	split->file[split->t_tig->i_fl] = NULL;
 	split->lim[split->t_tig->i_lm] = NULL;
 	split->cmd[e] = NULL;
+	split->fd = -1;
 	return (i);
 }

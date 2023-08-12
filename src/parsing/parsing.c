@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:56 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/11 19:54:27 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/12 15:08:30 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,31 +111,31 @@ t_parse *parsing(char *line)
 		return (0);
 	}
 	spaced_line = epur_str(line, 0);
-	printf("%s\n", spaced_line);
+	// printf("%s\n", spaced_line);
 	splited = smart_split(spaced_line);
-	int a = 1;
-	while (splited)
-	{
-		printf("\nnode #%i\n", a);
-		i = 0;
-		printf("cmd ==\n\n");
-		while (splited->cmd[i])
-			printf("%s\n", splited->cmd[i++]);
-		i = 0;
-		printf("\noperator ==\n");
-		while (splited->operator[i])
-			printf("%s\n", splited->operator[i++]);
-		i = 0;
-		printf("\nfile ==\n");
-		while (splited->file[i])
-			printf("%s\n", splited->file[i++]);
-		i = 0;
-		printf("\nlimiter ==\n");
-		while (splited->lim[i])
-			printf("%s\n", splited->lim[i++]);
-		printf("\n-------\n");
-		splited = splited->next;
-		a++;
-	}
+	// int a = 1;
+	// while (splited)
+	// {
+	// 	printf("\nnode #%i\n", a);
+	// 	i = 0;
+	// 	printf("cmd ==\n\n");
+	// 	while (splited->cmd[i])
+	// 		printf("%s\n", splited->cmd[i++]);
+	// 	i = 0;
+	// 	printf("\noperator ==\n");
+	// 	while (splited->operator[i])
+	// 		printf("%s\n", splited->operator[i++]);
+	// 	i = 0;
+	// 	printf("\nfile ==\n");
+	// 	while (splited->file[i])
+	// 		printf("%s\n", splited->file[i++]);
+	// 	i = 0;
+	// 	printf("\nlimiter ==\n");
+	// 	while (splited->lim[i])
+	// 		printf("%s\n", splited->lim[i++]);
+	// 	printf("\n-------\n");
+	// 	splited = splited->next;
+	// 	a++;
+	// }
 	return (splited);
 }

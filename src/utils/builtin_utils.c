@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:24:02 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/11 17:11:40 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/12 17:06:08 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	check_builtin_with_redirect(t_parse *cmd, t_data *data)
 {
 	int	child;
 	
-	if (cmd->operator[0][0] == '>' || cmd->operator[0][0] == '<')
+	if (*cmd->operator && (cmd->operator[0][0] == '>' || cmd->operator[0][0] == '<'))
 	{
 		child = fork();
 		if (child == 0)
