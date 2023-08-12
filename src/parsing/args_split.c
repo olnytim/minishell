@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:37:50 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/12 17:14:47 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/12 20:47:08 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ void ops_file_lim_split(char *line, t_parse *split, int *i)
 		else
 			split->file[split->t_tig->i_fl++] = ft_substr(line, start, (*i - start));
 	}
-	else if (line[*i] == '|')
-		split->operator[split->t_tig->i_op++] = ft_strdup("|");
+	// else if (line[*i] == '|')
+	// 	split->operator[split->t_tig->i_op++] = ft_strdup("|");
 }
 
 int args_split(char *line, t_parse *split, int i, int e)
@@ -120,7 +120,10 @@ int args_split(char *line, t_parse *split, int i, int e)
 			ops_file_lim_split(line, split, &i);
 	}
 	if (line[i] == '|')
+	{
+		split->operator[split->t_tig->i_op++] = ft_strdup("|");
 		i++;
+	}
 	split->operator[split->t_tig->i_op] = NULL;
 	split->file[split->t_tig->i_fl] = NULL;
 	split->lim[split->t_tig->i_lm] = NULL;

@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:24:02 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/12 17:06:08 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/12 18:52:05 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	builtin_cmp(t_parse *cmd)
 {
+	if (!*cmd->cmd)
+		return (0);
 	if (ft_strncmp(cmd->cmd[0], "pwd", 3) == 0
 		&& ft_strncmp(cmd->cmd[0], "pwd", ft_strlen(cmd->cmd[0])) == 0)
 		return (1);
@@ -40,6 +42,8 @@ int	builtin_cmp(t_parse *cmd)
 
 int	check_builtin(t_parse *cmd, t_data *data)
 {
+	if (!*cmd->cmd)
+		return (0);
 	if (ft_strncmp(cmd->cmd[0], "pwd", 3) == 0
 		&& ft_strncmp(cmd->cmd[0], "pwd", ft_strlen(cmd->cmd[0])) == 0)
 		return (pwd(), close(cmd->fd), 1);

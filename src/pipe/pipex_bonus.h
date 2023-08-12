@@ -31,6 +31,7 @@ typedef struct s_pipex
 	int		cmds;
 	char	*path;
 	char	**cmd_path;
+	int		argc;
 	char	**argv;
 	t_data	*data;
 }		t_pipex;

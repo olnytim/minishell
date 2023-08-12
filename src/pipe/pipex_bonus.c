@@ -40,7 +40,7 @@ void	piping(t_pipex *pipex, char **env, int i, t_parse *cmd)
 	pipex->pid1 = fork();
 	if (pipex->pid1 == 0)
 	{
-		opening(pipex, 5, pipex->argv);
+		opening(pipex, pipex->argc, pipex->argv);
 		args = ft_split_p(pipex->argv[i], ' ');
 		path = xx_path(pipex, args[0], env);
 		check_i(pipex, i);
@@ -63,15 +63,14 @@ void	pip(t_pipex *pipex)
 
 void	ft_pipe(char **argv, char **env, t_parse *cmd, t_data *data)
 {
-	int		argc;
 	t_pipex	pipex;
 	int		i;
 
-	argc = ft_parse_size(cmd) + 3;
+	pipex.argc = ft_parse_size(cmd) + 3;
 	pipex.argv = argv;
 	pipex.data = data;
 	i = 2;
-	pipex.cmds = argc - 1;
+	pipex.cmds = pipex.argc - 1;
 	pip(&pipex);
 	while (i < pipex.cmds)
 	{
