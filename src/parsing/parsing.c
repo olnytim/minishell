@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:56 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/11 19:54:27 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/12 19:46:21 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void write_quotes(char *line, char *new, int *i, int *j)
 
 	q = line[*i];
 	// new[*j] = line[*i];
-	*i += 1;
+	while (line[*i] == 34 || line[*i] == 39)
+		*i += 1;
 	// *j += 1;
 	while (line[*i] != q)
 	{
@@ -40,11 +41,13 @@ void write_quotes(char *line, char *new, int *i, int *j)
 	}
 	if (line[*i + 1] == 34 || line[*i + 1] == 39)
 		write_quotes(line, new, i, j);
-	*i += 1;
-	return;
+	else
+		*j -= 1;
+	// *i += 1;
+	return ;
 }
 
-char *epur_str(char *line, int j)
+char *epur_str(char *line, int j, int **op_ocur)
 {
 	int i;
 	int flag;
@@ -65,7 +68,8 @@ char *epur_str(char *line, int j)
 			flag = 0;
 			if (line[i] == 34 || line[i] == 39)
 				write_quotes(line, new, &i, &j);
-			new[j] = line[i];
+			if (line[i] != 34 && line[i] != 39 && line[i] != ' ')
+				new[j] = line[i];
 			j++;
 		}
 		i++;
@@ -99,9 +103,10 @@ int check_quotes(char *line)
 
 t_parse *parsing(char *line)
 {
-	int i;
-	char *spaced_line;
-	t_parse *splited;
+	int		i;
+	char	*spaced_line;
+	t_parse	*splited;
+	int		*op_ocur;
 
 	i = 0;
 	// lower_input(line);
@@ -110,7 +115,7 @@ t_parse *parsing(char *line)
 		write(2, "Error: please close the brackets\n", 33);
 		return (0);
 	}
-	spaced_line = epur_str(line, 0);
+	spaced_line = epur_str(line, 0, &op_ocur);
 	printf("%s\n", spaced_line);
 	splited = smart_split(spaced_line);
 	int a = 1;

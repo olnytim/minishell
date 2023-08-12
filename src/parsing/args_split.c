@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:37:50 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/11 19:52:44 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/12 19:29:35 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,14 +96,18 @@ void ops_file_lim_split(char *line, t_parse *split, int *i)
 		split->operator[split->t_tig->i_op++] = ft_strdup("|");
 }
 
+
+
 int args_split(char *line, t_parse *split, int i, int e)
 {
-	int start;
+	int 	start;
+	char	*buf;
 
 	split->cmd = malloc((count_cmd(0, 0, line) + 1) * sizeof(char *));
 	split->file = malloc((count_file(0, 0, line) + 1) * sizeof(char *));
 	split->lim = malloc((count_lim(0, 0, line) + 1) * sizeof(char *));
 	split->operator = malloc((count_oper(0, 0, line) + 1) * sizeof(char *));
+	buf = malloc((count_buf(0, line) + 1) * sizeof(char));
 	while (line[i] && line[i] != '|')
 	{
 		while (line[i] == '_')
