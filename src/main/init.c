@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/12 19:19:53 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/13 18:51:49 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ void	init(t_data *data)
 				if (!*input->cmd)
 					exit(EXIT_SUCCESS);
 				ft_redirect(input);
+				if (!data->path)
+				{
+					printf("ebash: %s: No such file or directory\n", input->cmd[0]);
+					exit(EXIT_SUCCESS);
+				}
 				data->join_path = x_path(data, input->cmd[0]);
 				execve(data->join_path, input->cmd, data->env);
 			}
