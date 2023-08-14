@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:56 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/12 15:08:30 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/14 15:07:58 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,5 +137,6 @@ t_parse *parsing(char *line)
 	// 	splited = splited->next;
 	// 	a++;
 	// }
+	// exit(0);
 	return (splited);
 }

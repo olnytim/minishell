@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/13 18:51:49 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/14 14:34:28 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,11 @@ void	init(t_data *data)
 		data->path = find_path(data->env);
 		if (input)
 		{
-			if (*input->operator && input->operator[0][0] == '|')
+			if (*input->operator && *input->operator[0] == '|')
+			{
+				input->operator++;
 				ft_pipe(struct_to2arr(input), data->env, input, data);
+			}
 			else if (check_builtin_with_redirect(input, data) == 1)
 			{
 			}
