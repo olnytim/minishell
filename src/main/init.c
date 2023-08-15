@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/14 14:34:28 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/15 20:19:11 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	init(t_data *data)
 	char	*str;
 	t_parse	*input;
 
+	sig_event_loop();
 	while (1)
 	{
 		str = readline(MINISHELL);
