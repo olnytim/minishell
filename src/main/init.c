@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/10 17:36:40 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/08/16 19:07:27 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,13 @@ void	init(t_data *data)
 		if (!str)
 			exit(EXIT_SUCCESS);
 		cmd1.cmd = ft_split(str, ' ');
+		data->env = join_key_and_val(data->env_lst);
+		data->path = find_path(data->env);
 		if (*str)
 		{
 			if (check_builtin(&cmd1, data) == 1)
 			{
+				
 			}
 			else if (fork() == 0)
 			{

@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:31:13 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/10 13:00:03 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/08/11 12:54:21 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ void	print2d(char **arr);
 
 //			BUILTINS		//
 void	echo(char **args);
-void	unset(t_data *data, char **argv);
+void	unset(t_data *data, t_parse *pars);
+void	export(t_data *data, t_parse *pars);
 // void	cd(char **args);
 void	pwd(void);
 void	env(t_data *data);

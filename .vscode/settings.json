@@ -12,6 +12,11 @@
         "stdio.h": "c",
         "fcntl.h": "c",
         "readline.h": "c",
-        "libft.h": "c"
+        "libft.h": "c",
+        "array": "c",
+        "iterator": "c",
+        "string": "c",
+        "string_view": "c",
+        "vector": "c"
     }
 }

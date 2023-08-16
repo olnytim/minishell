@@ -6,18 +6,26 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 16:16:49 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/10 17:06:14 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/08/11 11:55:05 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+// void ctrl_c_handleing(int signal)
+// {
+//     (void)signal;
+//     rl_replace_line("\nminishell armgevor$ ", 0);
+//     rl_redisplay();
+// }
 
 int	main(int ac, char **av, char **envp)
 {
 	t_data	data;
 	
 	(void)ac;
-	(void)av;  
+	(void)av;
+  // signal(SIGINT, ctrl_c_handleing);
 	scan_env(envp, &data);
 	init(&data);
 	return (0);
