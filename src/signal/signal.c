@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 20:10:57 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/15 20:17:47 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/16 19:26:23 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ void	ft_next_line(int sig)
 {
 	(void)sig;
 	printf("\n");
-	printf(MINISHELL);
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
 }
 
 void	ft_nothing(int sig)

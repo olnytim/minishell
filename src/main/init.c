@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/15 20:19:11 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/16 19:27:38 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ void	init(t_data *data)
 	{
 		str = readline(MINISHELL);
 		if (!str)
+		{
+			printf("\033[1A\033[6Cexit\n");
 			exit(EXIT_SUCCESS);
+		}
 		input = parsing(str);
 		data->env = join_key_and_val(data->env_lst);
 		data->path = find_path(data->env);
