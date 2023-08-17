@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   smart_split.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:38:59 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/12 18:33:43 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/16 18:02:39 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_parse *devider(char *line, t_parse *split)
 		temp->t_tig->i_fl = 0;
 		temp->t_tig->i_lm = 0;
 		temp->t_tig->i_op = 0;
+		temp->t_tig->i_cmd = 0;
 		if (!temp)
 			return (NULL);
 		temp->next = NULL;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:56 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/12 19:46:21 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/16 18:10:33 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void write_quotes(char *line, char *new, int *i, int *j)
 	return ;
 }
 
-char *epur_str(char *line, int j, int **op_ocur)
+char *epur_str(char *line, int j)
 {
 	int i;
 	int flag;
@@ -104,9 +104,9 @@ int check_quotes(char *line)
 t_parse *parsing(char *line)
 {
 	int		i;
-	char	*spaced_line;
+	// char	*spaced_line;
 	t_parse	*splited;
-	int		*op_ocur;
+	// int		*op_ocur;
 
 	i = 0;
 	// lower_input(line);
@@ -115,15 +115,15 @@ t_parse *parsing(char *line)
 		write(2, "Error: please close the brackets\n", 33);
 		return (0);
 	}
-	spaced_line = epur_str(line, 0, &op_ocur);
-	printf("%s\n", spaced_line);
-	splited = smart_split(spaced_line);
+	// spaced_line = epur_str(line, 0);
+	printf("%s\n", line);
+	splited = smart_split(line);
 	int a = 1;
 	while (splited)
 	{
 		printf("\nnode #%i\n", a);
 		i = 0;
-		printf("cmd ==\n\n");
+		printf("cmd ==\n");
 		while (splited->cmd[i])
 			printf("%s\n", splited->cmd[i++]);
 		i = 0;
