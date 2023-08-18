@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:31:13 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/15 20:11:36 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/17 18:18:06 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int		check_builtin(t_parse *cmd, t_data *data);
 
 int		check_builtin_with_redirect(t_parse *cmd, t_data *data);
 
-int		builtin_cmp(t_parse *cmd);
+int		builtin_cmp(char *cmd);
 
 int		args_split(char *line, t_parse *split, int i, int e);
 
@@ -94,7 +94,7 @@ char	*join_2d_arr(char **arr);
 
 char	**struct_to2arr(t_parse *lst);
 
-void	ft_redirect(t_parse *lst);
+int		ft_redirect(t_parse *lst);
 
 void	printlinkedlist(t_env *head);
 

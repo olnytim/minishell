@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 14:36:58 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/12 16:33:23 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/17 18:06:03 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ char	**struct_to2arr(t_parse *lst)
 	arr[i++] = ft_strdup("/dev/stdin");
 	while (lst)
 	{
-		// dprintf(2, "cmd: %s\n", join_2d_arr(lst->cmd));
 		arr[i] = ft_strdup(join_2d_arr(lst->cmd));
 		lst = lst->next;
 		++i;
