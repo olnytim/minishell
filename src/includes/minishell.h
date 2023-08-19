@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:23 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/16 18:02:21 by mac              ###   ########.fr       */
+/*   Updated: 2023/08/18 16:49:04 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int check_builtin(char **args);
 t_parse *parsing(char *line);
 
 int args_split(char *line, t_parse *split, int i, int e);
+
+t_parse	*error(int e);
 
 t_parse *smart_split(char *line);
 

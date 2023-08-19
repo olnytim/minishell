@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   smart_split.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:38:59 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/16 18:02:39 by mac              ###   ########.fr       */
+/*   Updated: 2023/08/18 16:16:21 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,16 @@
 
 int count_struct(char *line, int i, int w)
 {
+	char	q;
+
 	while (line[i])
 	{
+		if (line[i] == 34 || line[i] == 39)
+		{
+			q = line[i++];
+			while (line[i] != q)
+				i++;
+		}
 		if (line[i] == '|')
 			w++;
 		i++;

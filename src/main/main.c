@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 18:33:47 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/17 16:57:19 by mac              ###   ########.fr       */
+/*   Updated: 2023/08/19 20:32:22 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int ac, char **av, char **envp)
 	(void)av;
 
 	scan_env(envp, &data);
-	parsing("ls -la | wc > file");
+	parsing("ec'ho'     123     '>>'     f1");
 	// init(&data);
 	return (0);
 }
