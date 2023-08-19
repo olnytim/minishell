@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args_split.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:37:50 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/19 20:34:51 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/19 21:27:19 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,8 @@ int args_split(char *line, t_parse *split, int i, int j)
 	split->lim = malloc((count_lim(0, 0, line) + 1) * sizeof(char *));
 	split->operator = malloc((count_oper(0, 0, line) + 1) * sizeof(char *));
 	buf_ind = malloc((count_buf(0, 0, line) + 1) * sizeof(char));
+	if (!split->cmd || !split->file || !split->lim || !split->operator || !buf_ind)
+		return (0);
 	buf = buf_ind;
 	while (line[i] && line[i] != '|')
 	{

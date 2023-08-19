@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:23 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/18 16:49:04 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/19 20:42:01 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ int		builtin_cmp(char *cmd);
 int		args_split(char *line, t_parse *split, int i, int e);
 
 t_parse	*error(int e);
+
+t_parse *parsing(char *line);
 
 t_parse *smart_split(char *line);
 
