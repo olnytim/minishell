@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/10 23:36:26 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/08/10 13:42:03 by vfedorov         ###   ########.fr       */
+/*   Created: 2023/08/18 16:19:45 by timelkon          #+#    #+#             */
+/*   Updated: 2023/08/19 17:34:53 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/minishell.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+t_parse	*error(int e)
 {
-	while (n-- > 0)
-	{
-		if (*s1 != *s2)
-			return ((unsigned char)*s1 - (unsigned char)*s2);
-		else if (!*s1++ || !*s2++)
-			return (0);
-	}
+	if (e == 0)
+		write(2, "error: please close the quote\n", 31);
+	else if (e == 1)
+		write(2, "error: no command after '|'\n", 28);
+	else if (e == 2)
+		write(2, "syntax error near unexpected token\n", 37);
 	return (0);
 }
