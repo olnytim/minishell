@@ -20,6 +20,8 @@
 # include <string.h>
 # include <fcntl.h>
 
+# include "../includes/minishell.h"
+
 typedef struct s_pipex
 {
 	pid_t	pid1;
@@ -29,21 +31,16 @@ typedef struct s_pipex
 	int		cmds;
 	char	*path;
 	char	**cmd_path;
+	int		argc;
+	char	**argv;
+	t_data	*data;
 }		t_pipex;
 
-typedef struct s_parse
-{
-	char	*cmd;
-	char	*operator;
-	struct s_parse	*next;
-	struct s_parse	*prev;
-}	t_parse;
-
-size_t	ft_strlen(const char *str);
-size_t	ft_strlcpy(char *dest, const char *src, size_t size);
-int		ft_strncmp(const char *str1, const char *str2, size_t n);
-char	*ft_strjoin(char *s1, char *s2);
-char	**ft_split(char *s, char c);
+size_t	ft_strlen_p(const char *str);
+size_t	ft_strlcpy_p(char *dest, const char *src, size_t size);
+int		ft_strncmp_p(const char *str1, const char *str2, size_t n);
+char	*ft_strjoin_p(char *s1, char *s2);
+char	**ft_split_p(char *s, char c);
 
 char	*xx_path(t_pipex *pipex, char *argv, char **env);
 void	opening(t_pipex *pipex, int argc, char **argv);

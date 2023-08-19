@@ -1,74 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils1.c                                           :+:      :+:    :+:   */
+/*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/08 18:04:30 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/03 18:11:42 by apiloian         ###   ########.fr       */
+/*   Created: 2023/08/04 18:23:18 by apiloian          #+#    #+#             */
+/*   Updated: 2023/08/15 20:21:49 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-char	*find_path(char **env)
-{
-	char	*path;
-	int		i;
-
-	path = "PATH=";
-	i = 0;
-	while (env[i])
-	{
-		if (*env[i] == 'P')
-		{
-			if (!(ft_strncmp(path, env[i], 5)))
-			{
-				path = env[i];
-				while (*path != '/')
-					path++;
-				return (path);
-			}
-		}
-		i++;
-	}
-	return (0);
-}
-
-char	*x_path(t_data *data, char *argv)
-{
-	int		i;
-	char	*path;
-
-	i = 0;
-	data->cmd_path = ft_split(data->path, ':');
-	while (data->cmd_path[i])
-	{
-		data->cmd_path[i] = ft_strjoin(data->cmd_path[i], "/");
-		data->cmd_path[i] = ft_strjoin(data->cmd_path[i], argv);
-		if (access(data->cmd_path[i], X_OK) == 0)
-		{
-			path = data->cmd_path[i];
-			return (path);
-		}
-		i++;
-	}
-	printf(NO_CMD, argv);
-	exit(EXIT_FAILURE);
-}
-
-int	check_builtin(char **args)
-{
-	if (ft_strncmp(args[0], "pwd", 3) == 0)
-		return (pwd(), 1);
-	else if (ft_strncmp(args[0], "echo", 4) == 0)
-		return (echo(args), 1);
-	// else if (ft_strncmp(args[0], "cd", 2) == 0)
-	// 	return (cd(args), 1);
-	return (0);
-}
-
 
 int	ft_env_size(t_env *lst)
 {
@@ -83,12 +25,14 @@ int	ft_env_size(t_env *lst)
 	return (counter);
 }
 
-char	**join_key_and_val(t_env *lst)
+char	**join_key_and_val(t_env *head)
 {
 	char	**arr;
+	t_env	*lst;
 	size_t	size;
 	size_t	i;
 
+	lst = head;
 	size = ft_env_size(lst);
 	arr = malloc(sizeof(char *) * (size + 1));
 	if (!arr)
@@ -125,13 +69,15 @@ void	scan_env(char **envp, t_data *data)
 		envp++;
 	}
 	env = head;
+	data->env_lst = env;
 	data->env = join_key_and_val(env);
 }
 
-void	printLinkedList(t_env *head)
+void	printlinkedlist(t_env *head)
 {
-	t_env *current = head;
+	t_env	*current;
 
+	current = head;
 	while (current != NULL)
 	{
 		printf("Key: %s, Val: %s\n", current->key, current->val);
@@ -141,7 +87,9 @@ void	printLinkedList(t_env *head)
 
 void	print2d(char **arr)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (arr[i])
 	{
 		printf("%s\n", arr[i]);

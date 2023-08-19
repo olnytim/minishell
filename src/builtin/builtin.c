@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:56:32 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/01 21:01:42 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/17 18:25:01 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,27 @@ void	pwd(void)
 {
 	char	dir[PATH_MAX];
 
-	getcwd(dir, PATH_MAX); 
+	getcwd(dir, PATH_MAX);
 	printf("%s\n", dir);
 }
 
-// void	cd(char **args)
-// {
-// 	// if (!args[1])
-// 	while (*args[1] == '.' && *(args[1] + 1) == '.')
-// 	{
-// 		chdir("..");
-// 		args[1]++;
-// 	}
-// 		chdir(args[1]);
-// }
+void	unset(t_data *data, char **argv)
+{
+	t_env	*lst;
+
+	lst = data->env_lst;
+	while (lst->next && ft_strncmp(lst->key, argv[1], ft_strlen(argv[1])) != 0)
+	{
+		if (lst->next->next
+			&& ft_strncmp(lst->next->key, argv[1], ft_strlen(argv[1])) == 0)
+		{
+			lst->next = lst->next->next;
+			break ;
+		}
+		lst = lst->next;
+	}
+	data->env = join_key_and_val(data->env_lst);
+}
 
 void	echo(char **args)
 {
@@ -54,7 +61,7 @@ void	echo(char **args)
 		printf("\n");
 }
 
-// void	env(t_data *data)
-// {
-	
-// }
+void	env(t_data *data)
+{
+	print2d(data->env);
+}

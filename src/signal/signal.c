@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/15 21:08:34 by olnytim           #+#    #+#             */
-/*   Updated: 2023/07/25 16:41:17 by tgalyaut         ###   ########.fr       */
+/*   Created: 2023/08/15 20:10:57 by apiloian          #+#    #+#             */
+/*   Updated: 2023/08/16 19:26:23 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-// void	ft_prompt(void)
-// {
-// 	char	*cwd;
-// 	char	*hostname;
-// 	char	*username;
+void	ft_next_line(int sig)
+{
+	(void)sig;
+	printf("\n");
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
+}
 
-// 	getcwd(cwd, sizeof(cwd));
-// 	gethostname(hostname, sizeof(hostname));
-// 	getlogin_r(username, sizeof(username));
-// 	printf("%s@%s:%s$ ", username, hostname, cwd);
-// }
+void	ft_nothing(int sig)
+{
+	(void)sig;
+}
+
+void	sig_event_loop(void)
+{
+	rl_catch_signals = 0;
+	signal(SIGINT, ft_next_line);
+	signal(SIGQUIT, ft_nothing);
+}

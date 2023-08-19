@@ -3,97 +3,72 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/09 15:47:27 by mac              ###   ########.fr       */
+/*   Updated: 2023/08/17 18:14:23 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	ft_parse_size(t_parse *lst)
+void	child(t_parse *input, t_data *data)
 {
-	size_t	counter;
-
-	counter = 0;
-	while (lst)
+	if (!ft_redirect(input))
 	{
-		lst = lst->next;
-		++counter;
+		if (!*input->cmd)
+			exit(EXIT_SUCCESS);
+		if (!data->path)
+		{
+			printf("ebash: %s: No such file or directory\n", input->cmd[0]);
+			exit(EXIT_SUCCESS);
+		}
+		data->join_path = x_path(data, input->cmd[0]);
+		execve(data->join_path, input->cmd, data->env);
 	}
-	return (counter);
+	exit(EXIT_SUCCESS);
 }
 
-char	**struct_to2arr(t_parse *lst)
+void	conditions(t_parse *input, t_data *data)
 {
-	char	**arr;
-	size_t	size;
-	size_t	i;
-
-	size = ft_parse_size(lst);
-	arr = malloc(sizeof(char *) * (size + 1) + 3);
-	if (!arr)
-		return (NULL);
-	i = 0;
-	arr[i++] = ft_strdup("minishell");
-	arr[i++] = ft_strdup("/dev/stdin");
-	while (lst)
+	if (input)
 	{
-		arr[i] = ft_strdup(*lst->cmd);
-		lst = lst->next;
-		++i;
+		if (*input->operator && *input->operator[0] == '|')
+		{
+			input->operator++;
+			ft_pipe(struct_to2arr(input), data->env, input, data);
+		}
+		else if (check_builtin_with_redirect(input, data) == 1)
+		{
+		}
+		else if (fork() == 0)
+			child(input, data);
+		while (wait(NULL) != -1)
+			;
 	}
-	arr[i++] = ft_strdup("/dev/stdout");
-	arr[i] = NULL;
-	return (arr);
 }
 
 void	init(t_data *data)
 {
-	char	**args;
 	char	*str;
-	// t_parse	ls;
-	// t_parse	wc;
-	// (void)envp;
+	t_parse	*input;
 
-	data->path = find_path(data->env);
+	sig_event_loop();
 	while (1)
 	{
-		// ls.cmd = "ls -l";
-		// ls.operator = "|";
-		// ls.next = &wc;
-		// wc.cmd = "wc";
-		// wc.next = NULL;
-		// ls.operator = NULL;
-		// int size = ft_parse_size(&ls);
-		// char **argv = struct_to2arr(&ls);
-		// ft_pipe(size + 3, argv, data->env);
-		// exit(0);
-		
 		str = readline(MINISHELL);
 		if (!str)
-			exit(EXIT_SUCCESS);
-		if (parsing(str))
 		{
-			args = ft_split(str, ' ');
-			if (*str)
-			{
-				if (check_builtin(args) == 1)
-				{
-				}
-				else if (fork() == 0)
-				{
-					data->join_path = x_path(data, args[0]);
-					execve(data->join_path, args, data->env);
-				}
-				while (wait(NULL) != -1)
-					;
-				data->join_path = NULL;
-				args = NULL;
-				add_history(str);
-				free(str);
-			}
+			printf("\033[1A\033[6Cexit\n");
+			exit(EXIT_SUCCESS);
 		}
+		input = parsing(str);
+		data->env = join_key_and_val(data->env_lst);
+		data->path = find_path(data->env);
+		conditions(input, data);
+		unlink("heredoc");
+		data->join_path = NULL;
+		add_history(str);
+		free(str);
 	}
 }

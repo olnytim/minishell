@@ -12,7 +12,7 @@
 
 #include "pipex_bonus.h"
 
-int	ft_strncmp(const char *str1, const char *str2, size_t n)
+int	ft_strncmp_p(const char *str1, const char *str2, size_t n)
 {
 	size_t			counter;
 	unsigned char	*s1;
@@ -36,7 +36,7 @@ int	ft_strncmp(const char *str1, const char *str2, size_t n)
 	return (*s1 - *s2);
 }
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen_p(const char *str)
 {
 	size_t	i;
 
@@ -49,7 +49,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+size_t	ft_strlcpy_p(char *dest, const char *src, size_t size)
 {
 	unsigned int	i;
 
@@ -63,10 +63,10 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 		}
 		dest[i] = '\0';
 	}
-	return (ft_strlen(src));
+	return (ft_strlen_p(src));
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin_p(char *s1, char *s2)
 {
 	char	*new_str;
 	int		i;
@@ -75,7 +75,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	start = s1;
 	if (!s1 || !s2)
 		return (0);
-	new_str = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	new_str = malloc(ft_strlen_p(s1) + ft_strlen_p(s2) + 1);
 	i = 0;
 	while (*s1)
 	{

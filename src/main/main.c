@@ -3,25 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 18:33:47 by timelkon          #+#    #+#             */
 /*   Updated: 2023/08/19 20:32:22 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../includes/minishell.h"
 
 int	main(int ac, char **av, char **envp)
 {
 	t_data	data;
+
 	(void)ac;
 	(void)av;
-
 	scan_env(envp, &data);
-	parsing("ec'ho'     123     '>>'     f1");
-	// init(&data);
+	init(&data);
 	return (0);
 }
 

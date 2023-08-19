@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   args_split.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:37:50 by timelkon          #+#    #+#             */
 /*   Updated: 2023/08/19 20:34:51 by timelkon         ###   ########.fr       */
