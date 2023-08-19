@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/17 18:14:23 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/19 21:29:20 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ void	init(t_data *data)
 		conditions(input, data);
 		unlink("heredoc");
 		data->join_path = NULL;
-		add_history(str);
+		if (*str)
+			add_history(str);
 		free(str);
 	}
 }
