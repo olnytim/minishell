@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 15:27:59 by apiloian          #+#    #+#             */
-/*   Updated: 2023/04/08 14:12:34 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/10 12:31:24 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr_p(char const *s, unsigned int start, size_t len)
 {
 	char	*str;
 
 	if (!s)
 		return (0);
-	if (start > ft_strlen(s))
+	if (start > ft_strlen_p(s))
 		len = 0;
-	if (len > ft_strlen(s + start))
-		len = ft_strlen(s + start);
+	if (len > ft_strlen_p(s + start))
+		len = ft_strlen_p(s + start);
 	str = malloc(len + 1);
 	if (!str)
 		return (0);
-	ft_strlcpy(str, s + start, len + 1);
+	ft_strlcpy_p(str, s + start, len + 1);
 	return (str);
 }
 
@@ -67,7 +67,7 @@ char	**count_fill(int index, int i, char *s, char c)
 			start = i;
 			while (s[i] != c && s[i])
 				i++;
-			split[index] = ft_substr(s, start, i - start);
+			split[index] = ft_substr_p(s, start, i - start);
 			index++;
 		}
 	}
@@ -75,7 +75,7 @@ char	**count_fill(int index, int i, char *s, char c)
 	return (split);
 }
 
-char	**ft_split(char *s, char c)
+char	**ft_split_p(char *s, char c)
 {
 	char	**split;
 

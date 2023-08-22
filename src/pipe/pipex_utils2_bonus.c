@@ -23,7 +23,7 @@ char	*search_path(char **env)
 	{
 		if (*env[i] == 'P')
 		{
-			if (!(ft_strncmp(path, env[i], 5)))
+			if (!(ft_strncmp_p(path, env[i], 5)))
 			{
 				path = env[i];
 				while (*path != '/')
@@ -42,8 +42,12 @@ char	*xx_path(t_pipex *pipex, char *argv, char **env)
 	char	*path;
 
 	i = 0;
+	if (builtin_cmp(argv) == 1)
+		return (argv);
+	if (access(argv, X_OK) == 0)
+		return (argv);
 	pipex->path = search_path(env);
-	pipex->cmd_path = ft_split(pipex->path, ':');
+	pipex->cmd_path = ft_split_p(pipex->path, ':');
 	while (pipex->cmd_path[i])
 	{
 		pipex->cmd_path[i] = ft_strjoin_p(pipex->cmd_path[i], "/");
@@ -55,7 +59,8 @@ char	*xx_path(t_pipex *pipex, char *argv, char **env)
 		}
 		i++;
 	}
-	write(1, "command not found\n", 19);
+	write(1, "command not found", 18);
+	printf(": %s\n", argv);
 	exit(0);
 }
 

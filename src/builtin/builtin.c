@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:56:32 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/18 13:26:19 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/08/17 18:25:01 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ void	pwd(void)
 }
 void	unset(t_data *data, t_parse *pars)
 {
-	// (void)argv;
-	// (void)data;
-	// int	cnt;
 	t_env	*lst;
 	
 	if (pars->cmd == NULL)
@@ -39,8 +36,6 @@ void	unset(t_data *data, t_parse *pars)
 		lst = lst->next;
 	}
 	data->env = join_key_and_val(data->env_lst);
-	// print2d(data->env);
-	// printlinkedlist(data->env_lst);
 }
 
 

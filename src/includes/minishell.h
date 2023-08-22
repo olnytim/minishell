@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/08 15:31:13 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/22 00:34:58 by valeriafedo      ###   ########.fr       */
+/*   Created: 2023/08/11 17:35:23 by timelkon          #+#    #+#             */
+/*   Updated: 2023/08/19 20:42:01 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# define MINISHELL  "\e[1;31mminishell\033[0m "
+# define MINISHELL  "\e[1;31mebash\033[0m "
 # define NO_CMD     "command not found: %s\n"
 
 # include <unistd.h>
@@ -23,6 +23,7 @@
 # include <fcntl.h>
 # include <sys/time.h>
 # include <limits.h>
+# include <signal.h>
 
 # include "../../libft/libft.h"
 # include <readline/readline.h>
@@ -35,13 +36,23 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
+typedef struct s_tig
+{
+	int i_op;
+	int i_fl;
+	int i_lm;
+	int	i_cmd;
+	int	**q_op;
+} t_tig;
+
 typedef struct s_parse
 {
 	char			**cmd;
-	char			*operator;
-	char			*file;
-	char			*lim;
+	char			**operator;
+	char			**file;
+	char			**lim;
 	int				fd;
+	t_tig			*t_tig;
 	struct s_parse	*next;
 	struct s_parse	*prev;
 }	t_parse;
@@ -55,8 +66,6 @@ typedef struct s_data
 	t_env	*env_lst;
 }	t_data;
 
-void	ft_prompt(void);
-
 void	init(t_data *data);
 
 char	*find_path(char **env);
@@ -65,11 +74,25 @@ char	*x_path(t_data *data, char *argv);
 
 void	scan_env(char **envp, t_data *data);
 
-int		check_builtin(t_parse *lst, t_data *data);
+int		check_builtin(t_parse *cmd, t_data *data);
+
+int		check_builtin_with_redirect(t_parse *cmd, t_data *data);
+
+int		builtin_cmp(char *cmd);
+
+int		args_split(char *line, t_parse *split, int i, int e);
+
+t_parse	*error(int e);
+
+t_parse *parsing(char *line);
+
+t_parse *smart_split(char *line);
+
+t_parse	*smart_split(char *line);
 
 char	**join_key_and_val(t_env *head);
 
-void	ft_pipe(int argc, char **argv, char **env);
+void	ft_pipe(char **argv, char **env, t_parse *cmd, t_data *data);
 
 int		ft_parse_size(t_parse *lst);
 
@@ -77,11 +100,21 @@ char	*join_2d_arr(char **arr);
 
 char	**struct_to2arr(t_parse *lst);
 
-void	ft_redirect(t_parse *lst);
+int		ft_redirect(t_parse *lst);
 
 void	printlinkedlist(t_env *head);
 
 void	print2d(char **arr);
+
+void	ft_lstadd_back_shell(t_parse **lst, t_parse *new);
+
+void	error_parsing(void);
+
+void	printLinkedList(t_env *head);
+
+void	print2d(char **arr);
+
+void	sig_event_loop(void);
 
 //			BUILTINS		//
 void	echo(char **args);

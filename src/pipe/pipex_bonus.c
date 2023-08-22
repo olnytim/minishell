@@ -32,7 +32,7 @@ void	check_i(t_pipex *pipex, int i)
 	}
 }
 
-void	piping(t_pipex *pipex, char **argv, char **env, int i)
+void	piping(t_pipex *pipex, char **env, int i, t_parse *cmd)
 {
 	char	**args;
 	char	*path;
@@ -40,11 +40,14 @@ void	piping(t_pipex *pipex, char **argv, char **env, int i)
 	pipex->pid1 = fork();
 	if (pipex->pid1 == 0)
 	{
-		opening(pipex, 5, argv);
-		args = ft_split(argv[i], ' ');
+		opening(pipex, pipex->argc, pipex->argv);
+		args = ft_split_p(pipex->argv[i], ' ');
 		path = xx_path(pipex, args[0], env);
 		check_i(pipex, i);
 		closing(pipex);
+		if (check_builtin(cmd, pipex->data) == 1)
+			exit(EXIT_SUCCESS);
+		ft_redirect(cmd);
 		execve(path, args, env);
 	}
 }
@@ -58,16 +61,22 @@ void	pip(t_pipex *pipex)
 		pipe(pipex->fd[i++]);
 }
 
-void	ft_pipe(int argc, char **argv, char **env)
+void	ft_pipe(char **argv, char **env, t_parse *cmd, t_data *data)
 {
 	t_pipex	pipex;
 	int		i;
 
+	pipex.argc = ft_parse_size(cmd) + 3;
+	pipex.argv = argv;
+	pipex.data = data;
 	i = 2;
-	pipex.cmds = argc - 1;
+	pipex.cmds = pipex.argc - 1;
 	pip(&pipex);
 	while (i < pipex.cmds)
-		piping(&pipex, argv, env, i++);
+	{
+		piping(&pipex, env, i++, cmd);
+		cmd = cmd->next;
+	}
 	closing(&pipex);
 	while (wait(NULL) != -1)
 		;

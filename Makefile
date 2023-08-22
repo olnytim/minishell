@@ -9,7 +9,7 @@ LIBS_DIR = hf
 # Compiled directories
 SRC = src
 OBJ = obj
-SUBDIRS = main utils builtin pipe redirect
+SUBDIRS = main utils builtin pipe parsing redirect signal
 
 # Folder directions
 SRC_DIR = $(foreach dir, $(SUBDIRS), $(addprefix $(SRC)/, $(dir)))

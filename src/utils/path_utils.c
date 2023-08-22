@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:04:30 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/10 18:09:33 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/08/13 18:40:38 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,11 @@ char	*x_path(t_data *data, char *argv)
 	char	*path;
 
 	i = 0;
+	if (!*data->path)
+		return (NULL);
 	data->cmd_path = ft_split(data->path, ':');
+	if (access(argv, X_OK) == 0)
+		return (argv);
 	while (data->cmd_path[i])
 	{
 		data->cmd_path[i] = ft_strjoin(data->cmd_path[i], "/");
