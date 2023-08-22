@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:56:32 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/16 18:28:28 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/08/18 13:26:19 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,32 +43,6 @@ void	unset(t_data *data, t_parse *pars)
 	// printlinkedlist(data->env_lst);
 }
 
-void	export(t_data *data, t_parse *pars)
-{
-	t_env	*lst;
-	t_env	*new;
-	char	**str;
-	// int		i;
-
-	// i = 1;
-	if (pars->cmd == NULL)
-		return ;
-	lst = data->env_lst;
-	while (lst->next->next)
-		lst = lst->next;
-	puts(lst->next->key);
-	puts(lst->next->val);
-	new = (t_env *)malloc(sizeof(t_env));
-	if (!new)
-		return ;
-	str = ft_split(pars->cmd[1], '=');
-	new->key = str[0];
-	new->val = str[1];
-	new->next = NULL;
-	lst->next = new;
-	lst->next->next = NULL;
-	// data->env = join_key_and_val(data->env_lst);
-}
 
 
 // void	real_export(t_data *data, char *argv)

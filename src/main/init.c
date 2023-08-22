@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/16 19:07:27 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/08/18 13:25:53 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init(t_data *data)
 {
-	char	**args;
+	// char	**args;
 	char	*str;
 	t_parse	cmd1;
 	t_parse	cmd2;
@@ -57,7 +57,7 @@ void	init(t_data *data)
 			
 			unlink("heredoc");
 			data->join_path = NULL;
-			args = NULL;
+			// args = NULL;
 			add_history(str);
 			free(str);
 		}

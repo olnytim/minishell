@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:31:13 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/11 12:54:21 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/08/22 00:34:58 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	print2d(char **arr);
 void	echo(char **args);
 void	unset(t_data *data, t_parse *pars);
 void	export(t_data *data, t_parse *pars);
+int		check_export(t_data *data, t_parse *pars);
 // void	cd(char **args);
 void	pwd(void);
 void	env(t_data *data);
