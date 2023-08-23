@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 16:16:49 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/15 20:20:18 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/19 02:30:07 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ int	main(int ac, char **av, char **envp)
 {
 	t_data	data;
 
-	(void)ac;
 	(void)av;
+	if (ac > 1)
+		printf("bro why u sent argument(s) 💀💀💀\n");
 	scan_env(envp, &data);
 	init(&data);
 	return (0);

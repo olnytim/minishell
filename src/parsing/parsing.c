@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:56 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/17 13:28:16 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/18 15:25:26 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,11 @@ int check_quotes(char *line)
 
 t_parse *parsing(char *line)
 {
-	int i;
+	// int i;
 	char *spaced_line;
 	t_parse *splited;
 
-	i = 0;
+	// i = 0;
 	// lower_input(line);
 	if (!check_quotes(line))
 	{

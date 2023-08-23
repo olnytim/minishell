@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:41:18 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/17 18:06:19 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/19 02:22:03 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_redirect_out(t_parse *lst)
 {
 	if (!lst->file || !*lst->file || *lst->file[0] == 0)
 	{
-		printf("ebash: syntax error near unexpected token `newline'\n");
+		printf("ebash: syntax error near unexpected token\n");
 		return ;
 	}
 	lst->fd = open(*lst->file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
@@ -27,7 +27,7 @@ void	ft_redirect_out_append(t_parse *lst)
 {
 	if (!lst->file || !*lst->file || *lst->file[0] == 0)
 	{
-		printf("ebash: syntax error near unexpected token `newline'\n");
+		printf("ebash: syntax error near unexpected token\n");
 		return ;
 	}
 	lst->fd = open(*lst->file, O_WRONLY | O_CREAT | O_APPEND, 0644);
@@ -38,7 +38,7 @@ int	ft_redirect_in(t_parse *lst)
 {
 	if (!lst->file || !*lst->file || *lst->file[0] == 0)
 	{
-		printf("ebash: syntax error near unexpected token `newline'\n");
+		printf("ebash: syntax error near unexpected token\n");
 		return (1);
 	}
 	lst->fd = open(*lst->file, O_RDONLY);
@@ -60,7 +60,7 @@ void	ft_redirect_heredoc(t_parse *lst)
 	lim = *lst->lim;
 	if (!*lim)
 	{
-		printf("ebash: syntax error near unexpected token `newline'\n");
+		printf("ebash: syntax error near unexpected token\n");
 		return ;
 	}
 	lst->fd = open("heredoc", O_RDWR | O_CREAT, 0644);

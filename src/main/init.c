@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/17 18:14:23 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/21 15:07:11 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	child(t_parse *input, t_data *data)
 
 void	conditions(t_parse *input, t_data *data)
 {
+	char	*str;
+	
 	if (input)
 	{
 		if (*input->operator && *input->operator[0] == '|')
@@ -40,6 +42,27 @@ void	conditions(t_parse *input, t_data *data)
 		}
 		else if (check_builtin_with_redirect(input, data) == 1)
 		{
+		}
+		else if (!input->cmd || !*input->cmd)
+		{
+			if (fork() == 0)
+			{
+				ft_redirect(input);
+				if (input->fd == -1)
+					exit(EXIT_FAILURE);
+				while (1)
+				{
+					str = get_next_line(0);
+					if (!str || !*str)
+					{
+						close(input->fd);
+						break ;
+					}
+					ft_putstr_fd(str, input->fd);
+					free(str);
+				}
+				exit(EXIT_SUCCESS);
+			}
 		}
 		else if (fork() == 0)
 			child(input, data);
@@ -68,7 +91,8 @@ void	init(t_data *data)
 		conditions(input, data);
 		unlink("heredoc");
 		data->join_path = NULL;
-		add_history(str);
+		if (*str)
+			add_history(str);
 		free(str);
 	}
 }
