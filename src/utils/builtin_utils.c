@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:24:02 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/22 16:11:49 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/08/23 18:51:00 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int		check_builtin(t_parse *cmd, t_data *data)
         return (env(data), close(cmd->fd), 1);
 	else if (ft_strncmp(cmd->cmd[0], "exit", 4) == 0
 		&& ft_strncmp(cmd->cmd[0], "exit", ft_strlen(cmd->cmd[0])) == 0)
-		return (ft_exit(), close(cmd->fd), 1);
+		return (ft_exit(cmd), close(cmd->fd), 1);
     
     // else if (ft_strncmp(cmd->cmd[0], "cd", 2) == 0
     //  && ft_strncmp(cmd->cmd[0], "cd", ft_strlen(cmd->cmd[0])) == 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:23 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/22 16:29:25 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/08/23 19:08:01 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void	sig_event_loop(void);
 void	echo(char **args);
 void	unset(t_data *data, t_parse *pars);
 void	export(t_data *data, t_parse *pars);
-int		check_export(t_data *data, t_parse *pars);
+int		check_export(t_data *data, char *str);
 void	ft_exit(t_parse *input);
 // void	cd(char **args);
 void	pwd(void);

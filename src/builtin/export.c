@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 20:37:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/08/22 15:21:05 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/08/23 19:30:46 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,27 +53,30 @@ void	export(t_data *data, t_parse *pars)
 	t_env	*new;
 	char	**str;
 	
-	if (pars->cmd == NULL)
-		return ;
-	lst = data->env_lst;
-	while (lst && lst->next)
-		lst = lst->next;
 	new = (t_env *)malloc(sizeof(t_env));
 	if (!new)
 		return ;
+	lst = data->env_lst;
 	str = ft_split(pars->cmd[1], '=');
 	if (!str[0] || !str[1])
 	{
 		free(new);
 		return;
 	}
-	lst->key = ft_strdup(str[0]);
-	lst->val = ft_strdup(str[1]);
-	if (check_export(data, pars)== 0)
+	while (lst && lst->next)
 	{
-		write(2, "error\n", 6);
-		exit(0);
+		if (lst->next && ft_strncmp(lst->key, str[0], ft_strlen(str[0]))== 0)
+		{
+			free(lst->val);
+			lst->val = ft_strdup(str[1]);
+			// printlinkedlist(data->env_lst);
+			return ;
+		}
+		lst = lst->next;
 	}
+	if (pars->cmd == NULL)
+		return ;
+	lst->key = ft_strdup(str[0]);
 	new->key = NULL;
 	new->val = NULL;
 	new->next = NULL;
@@ -81,24 +84,24 @@ void	export(t_data *data, t_parse *pars)
         data->env_lst = new;
 	else 
         lst->next = new;
-	printlinkedlist(data->env_lst);
 	free(str);
 }
 
-int	check_export(t_data *data, t_parse *pars)
-{
-	t_env	*lst;
+// int	check_export(t_data *data, char *str)
+// {
+// 	t_env	*lst;
 	
-	if (pars->cmd == NULL)
-		return(0);
-	lst = data->env_lst;
-	while (lst->next && ft_strncmp(lst->key, pars->cmd[1], ft_strlen(pars->cmd[1]))!= 0)
-	{
-		if (lst->next && ft_strncmp(lst->next->key, pars->cmd[1], ft_strlen(pars->cmd[1]))== 0)
-		{
-			return (0);
-		}
-	}
-	return (1);
-}
+// 	if (str == NULL)
+// 		return(0);
+// 	lst = data->env_lst;
+// 	while (lst->next)
+// 	{
+// 		if (lst->next && ft_strncmp(lst->next->key, str, ft_strlen(str))== 0)
+// 		{
+// 			return (0);
+// 		}
+// 		lst = lst->next;
+// 	}
+// 	return (1);
+// }
 
