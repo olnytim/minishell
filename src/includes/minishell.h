@@ -38,10 +38,12 @@ typedef struct s_env
 
 typedef struct s_tig
 {
-	int	i_op;
-	int	i_fl;
-	int	i_lm;
-}	t_tig;
+	int i_op;
+	int i_fl;
+	int i_lm;
+	int	i_cmd;
+	int	**q_op;
+} t_tig;
 
 typedef struct s_parse
 {
@@ -80,7 +82,11 @@ int		builtin_cmp(char *cmd);
 
 int		args_split(char *line, t_parse *split, int i, int e);
 
-t_parse	*parsing(char *line);
+t_parse	*error(int e);
+
+t_parse *parsing(char *line);
+
+t_parse *smart_split(char *line);
 
 t_parse	*smart_split(char *line);
 

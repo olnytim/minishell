@@ -1,4 +1,4 @@
-# Minishell Project Roadmap
+# Minishell Project Roadmap👀
 
 This is a roadmap outlining the steps involved in creating a minishell project.
 

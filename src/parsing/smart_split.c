@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   smart_split.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:38:59 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/12 18:34:37 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/19 21:02:26 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,16 @@
 
 int count_struct(char *line, int i, int w)
 {
+	char	q;
+
 	while (line[i])
 	{
+		if (line[i] == 34 || line[i] == 39)
+		{
+			q = line[i++];
+			while (line[i] != q)
+				i++;
+		}
 		if (line[i] == '|')
 			w++;
 		i++;
@@ -35,12 +43,14 @@ t_parse *devider(char *line, t_parse *split)
 	while (count)
 	{
 		temp = malloc(sizeof(t_parse));
+		if (!temp)
+			return (NULL);
 		temp->t_tig = malloc(sizeof(t_tig));
 		temp->t_tig->i_fl = 0;
 		temp->t_tig->i_lm = 0;
 		temp->t_tig->i_op = 0;
-		if (!temp)
-			return (NULL);
+		temp->t_tig->i_cmd = 0;
+		temp->fd = -1;
 		temp->next = NULL;
 		temp->prev = NULL;
 		i += args_split(&line[i], temp, 0, 0);
