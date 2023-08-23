@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:23 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/19 20:42:01 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/22 16:29:25 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ void	echo(char **args);
 void	unset(t_data *data, t_parse *pars);
 void	export(t_data *data, t_parse *pars);
 int		check_export(t_data *data, t_parse *pars);
+void	ft_exit(t_parse *input);
 // void	cd(char **args);
 void	pwd(void);
 void	env(t_data *data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:56 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/19 21:28:17 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/22 15:20:28 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,12 +169,12 @@ int	operators_in_a_row(char *line, int i)
 
 t_parse *parsing(char *line)
 {
-	int		i;
+	// int		i;
 	t_parse	*splited;
 	// char	*true_line;
 
 	// printf("line == %s\n\n", line);
-	i = 0;
+	// i = 0;
 	if (!check_quotes(line))
 		return (error(0));
 	if (!operator_after_pipe(line, 0))

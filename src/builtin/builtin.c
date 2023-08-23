@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:56:32 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/17 18:25:01 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/22 15:20:41 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,41 +22,26 @@ void	pwd(void)
 void	unset(t_data *data, t_parse *pars)
 {
 	t_env	*lst;
-	
-	if (pars->cmd == NULL)
-		return ;
-	lst = data->env_lst;
-	while (lst->next && ft_strncmp(lst->key, pars->cmd[1], ft_strlen(pars->cmd[1]))!= 0)
+	int		i;
+
+	i = 1;
+	while(pars->cmd[i])
 	{
-		if (lst->next->next && ft_strncmp(lst->next->key, pars->cmd[1], ft_strlen(pars->cmd[1]))== 0)
+		lst = data->env_lst;
+		while (lst->next && ft_strncmp(lst->key, pars->cmd[i], ft_strlen(pars->cmd[1]))!= 0)
 		{
-			lst->next = lst->next->next;
-			break ;
+			if (lst->next->next && ft_strncmp(lst->next->key, pars->cmd[1], ft_strlen(pars->cmd[1]))== 0)
+			{
+				lst->next = lst->next->next;
+				break ;
+			}
+			lst = lst->next;
 		}
-		lst = lst->next;
+		i++;
 	}
 	data->env = join_key_and_val(data->env_lst);
 }
 
-
-
-// void	real_export(t_data *data, char *argv)
-// {
-		
-// }
-// void	export(t_data *data, t_parse *pars)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (pars->cmd[++i])
-// 		real_export(data, pars->cmd[i]);
-// }
-// void	cd(char **args)
-// {
-	
-	
-// }
 
 void	echo(char **args)
 {
