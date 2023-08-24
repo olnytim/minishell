@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:24:02 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/17 18:19:21 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/19 01:32:51 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	builtin_cmp(char *cmd)
 {
-	if (!*cmd)
+	if (!cmd || !*cmd)
 		return (0);
 	if (ft_strncmp(cmd, "pwd", 3) == 0
 		&& ft_strncmp(cmd, "pwd", ft_strlen(cmd)) == 0)

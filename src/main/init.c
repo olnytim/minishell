@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/22 13:09:15 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/24 14:40:22 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	conditions(t_parse *input, t_data *data)
 {
 	if (input)
 	{
-		if (*input->operator && *input->operator[0] == '|')
+		if (check_pipe(input))
 		{
 			input->operator++;
 			ft_pipe(struct_to2arr(input), data->env, input, data);

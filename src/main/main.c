@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/03 18:33:47 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/22 12:41:57 by timelkon         ###   ########.fr       */
+/*   Created: 2023/05/22 16:16:49 by apiloian          #+#    #+#             */
+/*   Updated: 2023/08/19 02:30:07 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ int	main(int ac, char **av/*, char **envp*/)
 {
 	t_data	data;
 
-	(void)ac;
 	(void)av;
-	// scan_env(envp, &data);
+	if (ac > 1)
+		printf("bro why u sent argument(s) 💀💀💀\n");
+	scan_env(envp, &data);
 	init(&data);
 	return (0);
 }
