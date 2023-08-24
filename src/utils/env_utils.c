@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:23:18 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/15 20:21:49 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/23 16:06:15 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,19 @@ char	**join_key_and_val(t_env *head)
 	return (arr);
 }
 
+char	**shlvl(char **key_val)
+{
+	if (key_val[0][0] == 'S' && ft_strncmp(key_val[0], "SHLVL", 5) == 0
+		&& ft_strncmp(key_val[0], "SHLVL", ft_strlen(key_val[0])) == 0)
+	{
+		if (!key_val[1])
+			key_val[1] = ft_strdup("1");
+		else
+			key_val[1] = ft_itoa(ft_atoi(key_val[1]) + 1);
+	}
+	return (key_val);
+}
+
 void	scan_env(char **envp, t_data *data)
 {
 	char	*str;
@@ -63,6 +76,7 @@ void	scan_env(char **envp, t_data *data)
 		str = *envp;
 		env->next = malloc(sizeof(t_env));
 		key_val = ft_split(str, '=');
+		key_val = shlvl(key_val);
 		env->key = key_val[0];
 		env->val = key_val[1];
 		env = env->next;
@@ -70,7 +84,6 @@ void	scan_env(char **envp, t_data *data)
 	}
 	env = head;
 	data->env_lst = env;
-	data->env = join_key_and_val(env);
 }
 
 void	printlinkedlist(t_env *head)

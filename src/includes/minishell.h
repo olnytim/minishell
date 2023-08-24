@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:31:13 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/19 02:37:35 by user             ###   ########.fr       */
+/*   Updated: 2023/08/24 14:40:48 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ typedef struct s_env
 
 typedef struct s_tig
 {
-	int i_op;
-	int i_fl;
-	int i_lm;
+	int	i_op;
+	int	i_fl;
+	int	i_lm;
 	int	i_cmd;
 	int	**q_op;
-} t_tig;
+}	t_tig;
 
 typedef struct s_parse
 {
@@ -84,9 +84,9 @@ int		args_split(char *line, t_parse *split, int i, int e);
 
 t_parse	*error(int e);
 
-t_parse *parsing(char *line);
+t_parse	*parsing(char *line);
 
-t_parse *smart_split(char *line);
+t_parse	*smart_split(char *line);
 
 t_parse	*smart_split(char *line);
 
@@ -97,6 +97,8 @@ void	ft_pipe(char **argv, char **env, t_parse *cmd, t_data *data);
 int		ft_parse_size(t_parse *lst);
 
 char	*join_2d_arr(char **arr);
+
+int		check_pipe(t_parse *input);
 
 char	**struct_to2arr(t_parse *lst);
 
