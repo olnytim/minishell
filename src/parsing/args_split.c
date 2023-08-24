@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:37:50 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/19 22:08:39 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/24 15:00:51 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,21 +59,46 @@ int count_oper(int i, int w, char *line)
 
 int count_cmd(int i, int w, char *line)
 {
+	char	q;
+
 	while (line[i] && line[i] != '|')
 	{
-		if (line[i] != '_' && line[i] != '>' && (line[i] != '>' && line[i + 1] != '>')
-			&& line[i] != '<' && (line[i] != '<' && line[i + 1] != '<') && line[i] != '|' && line[i])
-			w++;
-		while ((line[i] != '_' || line[i] != '>' || line[i] != '<' || line[i] != '|') && (line[i]))
+		while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == '>' || line[i] == '<'))
 			i++;
-		i++;
+		if (line[i] == 34 || line[i] == 39)
+		{
+			q = line[i++];
+			while (line[i] != q)
+				i++;
+			i++;
+		}
+		while (line[i] && line[i] != ' ' && line[i] != '\t' && line[i] != '>' && line[i] != '<')
+			i++;
+		w++;
 	}
 	return (w);
 }
 
-char	*file_lim_quotes(char *arg, int *i, int j)
+void	file_lim_quotes_2(char *arg, int *i, int * j, char *buf)
 {
 	char	q;
+
+	q = arg[*i];
+	*i += 1;
+	while (arg[*i] != q)
+	{
+		buf[*j] = arg[*i];
+		*i += 1;
+		*j += 1;
+	}
+	*i += 1;
+	if (arg[*i] == 34 || arg[*i] == 39)
+		file_lim_quotes_2(arg, i, j, buf);
+}
+
+char	*file_lim_quotes(char *arg, int *i, int j)
+{
+	// char	q;
 	char	*str;
 	char	*buf;
 
@@ -82,16 +107,9 @@ char	*file_lim_quotes(char *arg, int *i, int j)
 		arg[*i] != '>' && arg[*i] != '|' && arg[*i] != '<')
 	{
 		if (arg[*i] == 34 || arg[*i] == 39)
-		{
-			q = arg[*i];
-			*i += 1;
-			while (arg[*i] != q)
-			{
-				buf[j++] = arg[*i];
-				*i += 1;
-			}
-			*i += 1;
-		}
+			file_lim_quotes_2(arg, i, &j, buf);
+		if (arg[*i] == ' ' || arg[*i] == '\t')
+			break ;
 		buf[j++] = arg[*i];
 		*i += 1;
 	}
@@ -129,15 +147,25 @@ void ops_file_lim_split(char *line, t_parse *split, int *i)
 int	count_buf(int i, int w, char *line)
 {
 	char	q;
+	int		flag;
 
 	while (line[i] && line[i] != '|')
 	{
-		if (line[i] == 34 || line[i] == 39)
+		if (flag != 1 && (line[i] == 34 || line[i] == 39))
+		{
+			flag = 1;
 			q = line[i++];
-		if (line[i] == q)
+		}
+		if (line[i] == q && flag)
+		{
+			flag = 0;
 			i++;
-		i++;
-		w++;
+		}
+		if (line[i])
+		{
+			w++;
+			i++;
+		}
 	}
 	return (w);
 }
@@ -155,6 +183,8 @@ void	quote_handle(char *line, char *buf, int *i, int *j)
 		*i += 1;
 	}
 	*i += 1;
+	if (line[*i] == 34 || line[*i] == 39)
+		quote_handle(line, buf, i, j);
 }
 
 int args_split(char *line, t_parse *split, int i, int j)
@@ -178,12 +208,13 @@ int args_split(char *line, t_parse *split, int i, int j)
 		if (line[i] != ' ' && line[i] != '\t' && line[i] != '>' &&
 			line[i] != '<' && line[i] != '|' && line[i])
 		{
-			while (line[i] != ' ' && line[i] != '\t' && line[i] != '>' &&
-				line[i] != '<' && line[i] != '|' && line[i])
+			while (line && line[i] && line[i] != ' ' && line[i] != '\t' && line[i] != '>' &&
+				line[i] != '<' && line[i] != '|')
 			{
 				if (line[i] == 34 || line[i] == 39)
 					quote_handle(line, buf, &i, &j);
-				if (line[i] != ' ' && line[i] != '\t')
+				if (line[i] != ' ' && line[i] != '\t' &&
+					line[i] != '>' && line[i] != '<' && line[i] != '|')
 					buf[j++] = line[i++];
 			}
 			buf[j] = '\0';
