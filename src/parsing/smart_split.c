@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:38:59 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/19 21:02:26 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/22 13:08:08 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ t_parse *devider(char *line, t_parse *split)
 	int	i;
 
 	i = 0;
-	split = malloc(sizeof(t_parse));
 	count = count_struct(line, 0, 0) + 1;
 	while (count)
 	{
 		temp = malloc(sizeof(t_parse));
+		// temp = NULL;
 		if (!temp)
 			return (NULL);
 		temp->t_tig = malloc(sizeof(t_tig));
@@ -62,9 +62,11 @@ t_parse *devider(char *line, t_parse *split)
 
 t_parse *smart_split(char *line)
 {
-	t_parse split;
+	t_parse *split;
 
+	split = malloc(sizeof(t_parse));
+	split = NULL;
 	if (!line)
 		return (NULL);
-	return (devider(line, &split));
+	return (devider(line, split));
 }
