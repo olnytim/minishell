@@ -90,6 +90,8 @@ t_parse	*smart_split(char *line);
 
 t_parse	*smart_split(char *line);
 
+char	*desipher_dollar(char *line, int i, int j);
+
 char	**join_key_and_val(t_env *head);
 
 void	ft_pipe(char **argv, char **env, t_parse *cmd, t_data *data);
