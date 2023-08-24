@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 14:36:58 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/17 18:06:03 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/24 14:40:29 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,18 @@ char	**struct_to2arr(t_parse *lst)
 	arr[i++] = ft_strdup("/dev/stdout");
 	arr[i] = NULL;
 	return (arr);
+}
+
+int	check_pipe(t_parse *input)
+{
+	int	i;
+
+	i = 0;
+	while(input->operator && input->operator[i])
+	{
+		if (*input->operator[i] == '|')
+			return (1);
+		i++;
+	}
+	return (0);
 }
