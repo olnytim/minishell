@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:56 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/24 16:16:13 by user             ###   ########.fr       */
+/*   Updated: 2023/08/24 16:57:34 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,11 +155,11 @@ int	operators_in_a_row(char *line, int i)
 	return (1);
 }
 
-t_parse *parsing(char *line)
+t_parse *parsing(char *line, t_env *env)
 {
 	// int		i;
 	t_parse	*splited;
-	// char	*true_line;
+	char	*true_line;
 
 	// printf("line == %s\n\n", line);
 	// i = 0;
@@ -169,8 +169,8 @@ t_parse *parsing(char *line)
 		return (error(1));
 	if (!operators_in_a_row(line, 0))
 		return (error(2));
-	// true_line = desipher_dollar(line, 0, 0);
-	printf("%s\n", line);
+	true_line = desipher_dollar(line, env, 0, 0);
+	// printf("%s\n", line);
 	splited = smart_split(line);
 	// int a = 1;
 	// while (splited)

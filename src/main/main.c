@@ -6,13 +6,13 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 16:16:49 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/24 16:26:12 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/24 16:29:12 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	main(int ac, char **av/*, char **envp*/)
+int	main(int ac, char **av, char **envp)
 {
 	t_data	data;
 

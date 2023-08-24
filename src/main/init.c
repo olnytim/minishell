@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/24 14:40:22 by user             ###   ########.fr       */
+/*   Updated: 2023/08/24 16:51:19 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	init(t_data *data)
 			printf("\033[1A\033[6Cexit\n");
 			exit(EXIT_SUCCESS);
 		}
-		input = parsing(str);
+		input = parsing(str, data->env_lst);
 		data->env = join_key_and_val(data->env_lst);
 		data->path = find_path(data->env);
 		conditions(input, data);

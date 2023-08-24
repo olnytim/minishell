@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:31:13 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/24 14:40:48 by user             ###   ########.fr       */
+/*   Updated: 2023/08/24 16:58:02 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,13 @@ int		args_split(char *line, t_parse *split, int i, int e);
 
 t_parse	*error(int e);
 
-t_parse	*parsing(char *line);
+t_parse *parsing(char *line, t_env *env);
 
 t_parse	*smart_split(char *line);
 
 t_parse	*smart_split(char *line);
 
-char	*desipher_dollar(char *line, int i, int j);
+char	*desipher_dollar(char *line, t_env *env, int i, int j);
 
 char	**join_key_and_val(t_env *head);
 
