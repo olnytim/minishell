@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 prefix=/Users/user/Desktop/minishell/readline
-=======
-prefix=/Users/timelkon/Desktop/minishell/readline
->>>>>>> Tigran
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include

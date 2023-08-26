@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/24 14:40:22 by user             ###   ########.fr       */
+/*   Updated: 2023/08/26 14:51:53 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,7 @@ void	conditions(t_parse *input, t_data *data)
 	if (input)
 	{
 		if (check_pipe(input))
-		{
-			input->operator++;
 			ft_pipe(struct_to2arr(input), data->env, input, data);
-		}
 		else if (check_builtin_with_redirect(input, data) == 1)
 		{
 		}

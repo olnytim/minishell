@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:24:02 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/19 01:32:51 by user             ###   ########.fr       */
+/*   Updated: 2023/08/26 20:56:49 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int	check_builtin(t_parse *cmd, t_data *data)
 int	check_builtin_with_redirect(t_parse *cmd, t_data *data)
 {
 	int	child;
+	int	status;
 
 	if (*cmd->operator && (cmd->operator[0][0] == '>'
 		|| cmd->operator[0][0] == '<'))
@@ -74,7 +75,9 @@ int	check_builtin_with_redirect(t_parse *cmd, t_data *data)
 		{
 			if (builtin_cmp(cmd->cmd[0]))
 			{
-				ft_redirect(cmd);
+				status = ft_redirect(cmd);
+				if (status == 2)
+					dup2(cmd->fd, STDIN_FILENO);
 				check_builtin(cmd, data);
 			}
 			exit(EXIT_SUCCESS);
