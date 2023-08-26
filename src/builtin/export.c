@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 20:37:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/08/23 19:30:46 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/08/26 14:42:36 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	export(t_data *data, t_parse *pars)
 	if (pars->cmd == NULL)
 		return ;
 	lst->key = ft_strdup(str[0]);
+	lst->val = ft_strdup(str[1]);
 	new->key = NULL;
 	new->val = NULL;
 	new->next = NULL;
@@ -84,6 +85,7 @@ void	export(t_data *data, t_parse *pars)
         data->env_lst = new;
 	else 
         lst->next = new;
+	printlinkedlist(data->env_lst);
 	free(str);
 }
 

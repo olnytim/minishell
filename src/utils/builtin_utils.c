@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:24:02 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/23 18:51:00 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/08/26 14:37:04 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	builtin_cmp(char *cmd)
 {
-	if (!*cmd)
+	if (!*cmd || !cmd)
 		return (0);
 	if (ft_strncmp(cmd, "pwd", 3) == 0
 		&& ft_strncmp(cmd, "pwd", ft_strlen(cmd)) == 0)
@@ -41,7 +41,8 @@ int	builtin_cmp(char *cmd)
 }
 int		check_builtin(t_parse *cmd, t_data *data)
 {
-    // args = ft_split(cmd->cmd, ' ');
+	if (!*cmd->cmd)
+		return (0);
     if (ft_strncmp(cmd->cmd[0], "pwd", 3) == 0
         && ft_strncmp(cmd->cmd[0], "pwd", ft_strlen(cmd->cmd[0])) == 0)
         return (pwd(), close(cmd->fd), 1);
