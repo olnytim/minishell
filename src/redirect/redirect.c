@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:41:18 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/27 01:06:39 by user             ###   ########.fr       */
+/*   Updated: 2023/08/28 20:34:36 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ void	ft_redirect_heredoc(t_parse *lst)
 	lst->fd = open("heredoc", O_RDWR | O_CREAT, 0644);
 	while (1)
 	{
-		write(1, "> ", 2);
-		str = get_next_line(0);
+		str = readline("> ");
 		if (!str || (ft_strncmp(lim, str, ft_strlen(str) - 1) == 0
 			&& ft_strncmp(lim, str, ft_strlen(lim)) == 0))
 		{
@@ -55,11 +54,11 @@ void	ft_redirect_heredoc(t_parse *lst)
 			break ;
 		}
 		write(lst->fd, str, ft_strlen(str));
+		write(lst->fd, "\n", 1);
 		free(str);
 	}
 	close(lst->fd);
 	lst->fd = open("heredoc", O_RDONLY);
-	// dup2(lst->fd, STDIN_FILENO);
 }
 
 int	ft_redirect(t_parse *lst)

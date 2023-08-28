@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:23:18 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/28 12:20:14 by user             ###   ########.fr       */
+/*   Updated: 2023/08/28 12:35:27 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ void	free2d(char **arr)
 	free(arr);
 }
 
-void	printlinkedlist(t_env *head)
+void	printLinkedList(t_env *head)
 {
 	t_env	*current;
 

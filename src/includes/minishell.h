@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:31:13 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/27 13:24:04 by user             ###   ########.fr       */
+/*   Updated: 2023/08/28 20:34:43 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,6 @@ t_parse	*parsing(char *line);
 
 t_parse	*smart_split(char *line);
 
-t_parse	*smart_split(char *line);
-
 char	*desipher_dollar(char *line, int i, int j);
 
 char	**join_key_and_val(t_env *head);
@@ -106,17 +104,13 @@ char	**struct_to2arr(t_parse *lst);
 
 int		ft_redirect(t_parse *lst);
 
-void	printlinkedlist(t_env *head);
+void	printLinkedList(t_env *head);
 
 void	print2d(char **arr);
 
 void	ft_lstadd_back_shell(t_parse **lst, t_parse *new);
 
 void	error_parsing(void);
-
-void	printLinkedList(t_env *head);
-
-void	print2d(char **arr);
 
 void	free2d(char **arr);
 
