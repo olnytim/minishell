@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:23:18 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/23 19:08:10 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/08/28 12:35:10 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	scan_env(char **envp, t_data *data)
 	data->env = join_key_and_val(env);
 }
 
-void	printlinkedlist(t_env *head)
+void	printLinkedList(t_env *head)
 {
 	t_env	*current;
 

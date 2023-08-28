@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:23 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/23 19:08:01 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/08/28 12:35:20 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,6 @@ char	*join_2d_arr(char **arr);
 char	**struct_to2arr(t_parse *lst);
 
 int		ft_redirect(t_parse *lst);
-
-void	printlinkedlist(t_env *head);
 
 void	print2d(char **arr);
 
