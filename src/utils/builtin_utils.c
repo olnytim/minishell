@@ -14,7 +14,7 @@
 
 int	builtin_cmp(char *cmd)
 {
-	if (!*cmd || !cmd)
+	if (!cmd || !*cmd)
 		return (0);
 	if (ft_strncmp(cmd, "pwd", 3) == 0
 		&& ft_strncmp(cmd, "pwd", ft_strlen(cmd)) == 0)
@@ -71,6 +71,7 @@ int		check_builtin(t_parse *cmd, t_data *data)
 int	check_builtin_with_redirect(t_parse *cmd, t_data *data)
 {
 	int	child;
+	int	status;
 
 	if (*cmd->operator && (cmd->operator[0][0] == '>'
 		|| cmd->operator[0][0] == '<'))
@@ -80,7 +81,9 @@ int	check_builtin_with_redirect(t_parse *cmd, t_data *data)
 		{
 			if (builtin_cmp(cmd->cmd[0]))
 			{
-				ft_redirect(cmd);
+				status = ft_redirect(cmd);
+				if (status == 2)
+					dup2(cmd->fd, STDIN_FILENO);
 				check_builtin(cmd, data);
 			}
 			exit(EXIT_SUCCESS);

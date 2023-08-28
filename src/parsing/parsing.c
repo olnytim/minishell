@@ -133,12 +133,6 @@ int	operators_in_a_row(char *line, int i)
 
 	while (line[i])
 	{
-		if (line[i] == 34 || line[i] == 39)
-		{
-			q = line[i++];
-			while (line[i] != q)
-				i++;
-		}
 		if (line[i] == '>' || line[i] == '<')
 		{
 			c = line[i];
@@ -150,22 +144,16 @@ int	operators_in_a_row(char *line, int i)
 			if (line[i] == '>' || line[i] == '<' || line[i] == '|' || line[i] == '\0')
 				return (0);
 		}
+		if (line[i] == 34 || line[i] == 39)
+		{
+			q = line[i++];
+			while (line[i] != q)
+				i++;
+		}
 		i++;
 	}
 	return (1);
 }
-
-// char	*desipher_dollar(char *line, int i, int j)
-// {
-// 	char	*buf;
-// 	char	*str;
-
-// 	buf = malloc(ft_strlen(line) + 1);
-// 	while (line[i])
-// 	{
-		
-// 	}
-// }
 
 t_parse *parsing(char *line)
 {

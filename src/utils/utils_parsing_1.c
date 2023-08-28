@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:17:32 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/11 18:56:51 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/22 13:06:13 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ void	ft_lstadd_back_shell(t_parse **lst, t_parse *new)
 	a = (*lst);
 	if (lst)
 	{
-		if (*lst && (!(*lst)->cmd || !(*lst)->operator))
+		if (*lst == NULL)
 		{
 			*lst = new;
+			(*lst)->next = NULL;
+			(*lst)->prev = NULL;
 			return ;
 		}
 		while (a -> next != NULL)

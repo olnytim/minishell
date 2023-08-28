@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/19 22:32:22 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/27 15:23:20 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,8 @@ void	conditions(t_parse *input, t_data *data)
 {
 	if (input)
 	{
-		if (*input->operator && *input->operator[0] == '|')
-		{
-			input->operator++;
+		if (check_pipe(input))
 			ft_pipe(struct_to2arr(input), data->env, input, data);
-		}
 		else if (check_builtin_with_redirect(input, data) == 1)
 		{
 		}
@@ -59,7 +56,7 @@ void	init(t_data *data)
 		str = readline(MINISHELL);
 		if (!str)
 		{
-			printf("\033[1A\033[6Cexit\n");
+			printf("\n\033[1A\033[6Cexit\n");
 			exit(EXIT_SUCCESS);
 		}
 		input = parsing(str);
@@ -71,5 +68,7 @@ void	init(t_data *data)
 		if (*str)
 			add_history(str);
 		free(str);
+		free2d(data->env);
+		// system("leaks minishell");
 	}
 }

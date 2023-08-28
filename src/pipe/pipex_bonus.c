@@ -12,8 +12,11 @@
 
 #include "pipex_bonus.h"
 
-void	check_i(t_pipex *pipex, int i)
+void	check_i(t_pipex *pipex, int i, t_parse *cmd)
 {
+	if (*cmd->operator && **cmd->operator == '<'
+		&& *(*cmd->operator + 1) == '<')
+		return ;
 	if (i == 2)
 	{
 		dup2(pipex->infile, STDIN_FILENO);
@@ -36,18 +39,21 @@ void	piping(t_pipex *pipex, char **env, int i, t_parse *cmd)
 {
 	char	**args;
 	char	*path;
+	int		status;
 
+	status = ft_redirect(cmd);
 	pipex->pid1 = fork();
 	if (pipex->pid1 == 0)
 	{
 		opening(pipex, pipex->argc, pipex->argv);
 		args = ft_split_p(pipex->argv[i], ' ');
 		path = xx_path(pipex, args[0], env);
-		check_i(pipex, i);
+		check_i(pipex, i, cmd);
+		if (status == 2)
+			dup2(cmd->fd, STDIN_FILENO);
 		closing(pipex);
 		if (check_builtin(cmd, pipex->data) == 1)
 			exit(EXIT_SUCCESS);
-		ft_redirect(cmd);
 		execve(path, args, env);
 	}
 }
@@ -80,4 +86,5 @@ void	ft_pipe(char **argv, char **env, t_parse *cmd, t_data *data)
 	closing(&pipex);
 	while (wait(NULL) != -1)
 		;
+	free2d(argv);
 }
