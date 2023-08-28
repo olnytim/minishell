@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 16:16:49 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/26 14:45:16 by user             ###   ########.fr       */
+/*   Updated: 2023/08/27 15:18:59 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int ac, char **av, char **envp)
 	if (ac > 1)
 		printf("bro why u sent argument(s) 💀💀💀\n");
 	scan_env(envp, &data);
-	init(&data);
+  init(&data);
 	return (0);
 }
 

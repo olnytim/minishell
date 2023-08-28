@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:31:13 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/24 14:40:48 by user             ###   ########.fr       */
+/*   Updated: 2023/08/27 13:24:04 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,10 @@ void	error_parsing(void);
 void	printLinkedList(t_env *head);
 
 void	print2d(char **arr);
+
+void	free2d(char **arr);
+
+char	**env_split(char *str, char lim);
 
 void	sig_event_loop(void);
 

@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/26 14:51:53 by user             ###   ########.fr       */
+/*   Updated: 2023/08/27 15:23:20 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	init(t_data *data)
 		str = readline(MINISHELL);
 		if (!str)
 		{
-			printf("\033[1A\033[6Cexit\n");
+			printf("\n\033[1A\033[6Cexit\n");
 			exit(EXIT_SUCCESS);
 		}
 		input = parsing(str);
@@ -68,5 +68,7 @@ void	init(t_data *data)
 		if (*str)
 			add_history(str);
 		free(str);
+		free2d(data->env);
+		// system("leaks minishell");
 	}
 }

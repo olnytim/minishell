@@ -86,4 +86,5 @@ void	ft_pipe(char **argv, char **env, t_parse *cmd, t_data *data)
 	closing(&pipex);
 	while (wait(NULL) != -1)
 		;
+	free2d(argv);
 }
