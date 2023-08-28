@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:56 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/24 16:57:34 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/28 19:39:37 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,21 +157,24 @@ int	operators_in_a_row(char *line, int i)
 
 t_parse *parsing(char *line, t_env *env)
 {
-	// int		i;
+	(void)env;
 	t_parse	*splited;
 	char	*true_line;
 
 	// printf("line == %s\n\n", line);
-	// i = 0;
 	if (!check_quotes(line))
 		return (error(0));
 	if (!operator_after_pipe(line, 0))
 		return (error(1));
 	if (!operators_in_a_row(line, 0))
 		return (error(2));
-	true_line = desipher_dollar(line, env, 0, 0);
+	if (ft_strchr(line, 36))
+		true_line = desipher_dollar(line, env, 0, 0);
+	else
+		true_line = line;
+	free(line);
 	// printf("%s\n", line);
-	splited = smart_split(line);
+	splited = smart_split(true_line);
 	// int a = 1;
 	// while (splited)
 	// {
