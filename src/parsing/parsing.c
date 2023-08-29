@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:56 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/28 19:39:37 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/29 16:34:42 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,8 +171,10 @@ t_parse *parsing(char *line, t_env *env)
 	if (ft_strchr(line, 36))
 		true_line = desipher_dollar(line, env, 0, 0);
 	else
-		true_line = line;
-	free(line);
+	{
+		true_line = ft_strdup(line);
+		// free(line);
+	}
 	// printf("%s\n", line);
 	splited = smart_split(true_line);
 	// int a = 1;

@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:31:13 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/24 16:58:02 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/29 15:45:18 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ t_parse *parsing(char *line, t_env *env);
 t_parse	*smart_split(char *line);
 
 t_parse	*smart_split(char *line);
+
+char	*ft_strjoin_nl(char *str1, char *str2);
 
 char	*desipher_dollar(char *line, t_env *env, int i, int j);
 
