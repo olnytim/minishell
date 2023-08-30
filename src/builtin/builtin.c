@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:56:32 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/22 15:20:41 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/08/28 12:53:46 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	unset(t_data *data, t_parse *pars)
 	while(pars->cmd[i])
 	{
 		lst = data->env_lst;
-		while (lst->next && ft_strncmp(lst->key, pars->cmd[i], ft_strlen(pars->cmd[1]))!= 0)
+		while (lst->next && ft_strncmp(lst->key, pars->cmd[i], ft_strlen(pars->cmd[i]))!= 0)
 		{
-			if (lst->next->next && ft_strncmp(lst->next->key, pars->cmd[1], ft_strlen(pars->cmd[1]))== 0)
+			if (lst->next->next && ft_strncmp(lst->next->key, pars->cmd[i], ft_strlen(pars->cmd[i]))== 0)
 			{
 				lst->next = lst->next->next;
 				break ;
