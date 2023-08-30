@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/28 20:06:06 by user             ###   ########.fr       */
+/*   Updated: 2023/08/30 15:18:25 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 void	child(t_parse *input, t_data *data)
 {
-	if (!ft_redirect(input))
+	int	status;
+	
+	status = ft_redirect(input);
+	signal(SIGQUIT, ft_sigquit);
+	signal(SIGINT, ft_sigline);
+	if (fork() == 0)
 	{
 		if (!*input->cmd)
 			exit(EXIT_SUCCESS);
@@ -23,10 +28,12 @@ void	child(t_parse *input, t_data *data)
 			printf("ebash: %s: No such file or directory\n", input->cmd[0]);
 			exit(EXIT_SUCCESS);
 		}
+		ft_redirect_dup(input, status);
 		data->join_path = x_path(data, input->cmd[0]);
 		execve(data->join_path, input->cmd, data->env);
 	}
-	exit(EXIT_SUCCESS);
+	while (wait(NULL) != -1)
+		;
 }
 
 void	conditions(t_parse *input, t_data *data)
@@ -38,10 +45,8 @@ void	conditions(t_parse *input, t_data *data)
 		else if (check_builtin_with_redirect(input, data) == 1)
 		{
 		}
-		else if (fork() == 0)
+		else
 			child(input, data);
-		while (wait(NULL) != -1)
-			;
 	}
 }
 
@@ -50,9 +55,9 @@ void	init(t_data *data)
 	char	*str;
 	t_parse	*input;
 
-	sig_event_loop();
 	while (1)
 	{
+		sig_event_loop();
 		str = readline(MINISHELL);
 		if (!str)
 		{

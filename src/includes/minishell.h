@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:31:13 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/28 20:34:43 by user             ###   ########.fr       */
+/*   Updated: 2023/08/30 14:42:05 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ char	**struct_to2arr(t_parse *lst);
 
 int		ft_redirect(t_parse *lst);
 
+void	ft_redirect_dup(t_parse *lst, int status);
+
 void	printLinkedList(t_env *head);
 
 void	print2d(char **arr);
@@ -117,6 +119,14 @@ void	free2d(char **arr);
 char	**env_split(char *str, char lim);
 
 void	sig_event_loop(void);
+
+void	ft_next_line(int sig);
+
+void	ft_sigquit(int sig);
+
+void	ft_sigline(int sig);
+
+void	ft_sigempty(int sig);
 
 //			BUILTINS		//
 void	echo(char **args);

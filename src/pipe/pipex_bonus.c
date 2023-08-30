@@ -42,6 +42,8 @@ void	piping(t_pipex *pipex, char **env, int i, t_parse *cmd)
 	int		status;
 
 	status = ft_redirect(cmd);
+	signal(SIGQUIT, ft_sigempty);
+	signal(SIGINT, ft_sigline);
 	pipex->pid1 = fork();
 	if (pipex->pid1 == 0)
 	{
@@ -49,8 +51,7 @@ void	piping(t_pipex *pipex, char **env, int i, t_parse *cmd)
 		args = ft_split_p(pipex->argv[i], ' ');
 		path = xx_path(pipex, args[0], env);
 		check_i(pipex, i, cmd);
-		if (status == 2)
-			dup2(cmd->fd, STDIN_FILENO);
+		ft_redirect_dup(cmd, status);
 		closing(pipex);
 		if (check_builtin(cmd, pipex->data) == 1)
 			exit(EXIT_SUCCESS);
