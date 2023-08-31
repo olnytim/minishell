@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:24:02 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/31 13:19:08 by user             ###   ########.fr       */
+/*   Updated: 2023/08/31 17:13:25 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,6 @@ int	check_builtin(t_parse *cmd, t_data *data)
 	else if (ft_strncmp(cmd->cmd[0], "env", 3) == 0
 		&& ft_strncmp(cmd->cmd[0], "env", ft_strlen(cmd->cmd[0])) == 0)
 		return (env(data), close(cmd->fd), 1);
-	// else if (ft_strncmp(cmd->cmd[0], "cd", 2) == 0
-	// 	&& ft_strncmp(cmd->cmd[0], "cd", ft_strlen(cmd->cmd[0])) == 0)
-	// 	return (cd(cmd->cmd), close(cmd->fd), 1);
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:31:13 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/30 21:06:11 by user             ###   ########.fr       */
+/*   Updated: 2023/08/31 17:16:32 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,19 @@ char	**struct_to2arr(t_parse *lst);
 
 int		ft_redirect(t_parse *lst);
 
+int		ft_redirect_in(t_parse *lst);
+
+int		ft_redirect_heredoc(t_parse *lst);
+
+int		ft_redirect_out(t_parse *lst);
+
+int		ft_redirect_out_append(t_parse *lst);
+
 void	ft_redirect_dup(t_parse *lst, int status);
 
-void	printLinkedList(t_env *head);
+void	ft_redirect_cmp(t_parse *lst, int *status);
+
+void	print_linked_list(t_env *head);
 
 void	print2d(char **arr);
 

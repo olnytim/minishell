@@ -3,19 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:23:18 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/31 13:48:37 by user             ###   ########.fr       */
+/*   Updated: 2023/08/31 17:22:21 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	ft_env_size(t_env *lst)
+int	ft_env_size(t_env *head)
 {
 	size_t	counter;
+	t_env	*lst;
 
+	lst = head;
 	counter = 0;
 	while (lst)
 	{
@@ -51,8 +53,7 @@ char	**join_key_and_val(t_env *head)
 		lst = lst->next;
 		++i;
 	}
-	arr[i] = NULL;
-	return (arr);
+	return (arr[i] = NULL, arr);
 }
 
 char	**shlvl(char **key_val)
@@ -121,41 +122,4 @@ char	**env_split(char *str, char lim)
 	split[1] = ft_strdup(str + i + 1);
 	split[2] = NULL;
 	return (split);
-}
-
-void	free2d(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while (arr[i])
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
-}
-
-void	printLinkedList(t_env *head)
-{
-	t_env	*current;
-
-	current = head;
-	while (current != NULL)
-	{
-		printf("Key: %s, Val: %s\n", current->key, current->val);
-		current = current->next;
-	}
-}
-
-void	print2d(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while (arr[i])
-	{
-		printf("%s\n", arr[i]);
-		i++;
-	}
 }

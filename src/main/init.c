@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/31 13:15:47 by user             ###   ########.fr       */
+/*   Updated: 2023/08/31 17:24:08 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,5 @@ void	init(t_data *data)
 			add_history(str);
 		free(str);
 		free2d(data->env);
-		// system("leaks minishell");
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:41:18 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/30 21:04:23 by user             ###   ########.fr       */
+/*   Updated: 2023/08/31 14:25:10 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_redirect_in(t_parse *lst)
 	return (0);
 }
 
-void	ft_redirect_heredoc(t_parse *lst)
+int	ft_redirect_heredoc(t_parse *lst)
 {
 	char	*str;
 	char	*lim;
@@ -35,7 +35,7 @@ void	ft_redirect_heredoc(t_parse *lst)
 	{
 		str = readline("> ");
 		if (!str || (ft_strncmp(lim, str, ft_strlen(str)) == 0
-			&& ft_strncmp(lim, str, ft_strlen(lim)) == 0))
+				&& ft_strncmp(lim, str, ft_strlen(lim)) == 0))
 		{
 			free(str);
 			break ;
@@ -47,60 +47,32 @@ void	ft_redirect_heredoc(t_parse *lst)
 	}
 	close(lst->fd);
 	lst->fd = open("heredoc", O_RDONLY);
+	return (2);
 }
 
-void	ft_redirect_out(t_parse *lst)
+int	ft_redirect_out(t_parse *lst)
 {
 	lst->fd = open(*lst->file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	return (3);
 }
 
-void	ft_redirect_out_append(t_parse *lst)
+int	ft_redirect_out_append(t_parse *lst)
 {
 	lst->fd = open(*lst->file, O_WRONLY | O_CREAT | O_APPEND, 0644);
+	return (4);
 }
 
 int	ft_redirect(t_parse *lst)
 {
 	int	status;
-	
+
 	status = 0;
 	if (!lst->operator || !*lst->operator)
 		return (0);
 	while (*lst->operator)
 	{
-		if (**lst->operator == '<' && *(*lst->operator + 1) != '<')
-		{
-			if (!ft_redirect_in(lst))
-				status = 1;
-			lst->file++;
-		}
-		else if (**lst->operator == '<' && *(*lst->operator + 1) == '<')
-		{
-			ft_redirect_heredoc(lst);
-			lst->lim++;
-			status = 2;
-		}
-		else if (**lst->operator == '>' && *(*lst->operator + 1) != '>')
-		{
-			ft_redirect_out(lst);
-			lst->file++;
-			status = 3;
-		}
-		else if (**lst->operator == '>' && *(*lst->operator + 1) == '>')
-		{
-			ft_redirect_out_append(lst);
-			lst->file++;
-			status = 4;
-		}
+		ft_redirect_cmp(lst, &status);
 		lst->operator++;
 	}
 	return (status);
-}
-
-void	ft_redirect_dup(t_parse *lst, int status)
-{
-	if (status == 1 || status == 2)
-		dup2(lst->fd, STDIN_FILENO);
-	else if (status == 3 || status == 4)
-		dup2(lst->fd, STDOUT_FILENO);
 }
