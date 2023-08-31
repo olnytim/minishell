@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:23:18 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/28 12:35:27 by user             ###   ########.fr       */
+/*   Updated: 2023/08/31 13:48:37 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	**shlvl(char **key_val)
 {
 	char	*tmp;
 	int		i;
-	
+
 	if (key_val[0][0] == 'S' && ft_strncmp(key_val[0], "SHLVL", 5) == 0
 		&& ft_strncmp(key_val[0], "SHLVL", ft_strlen(key_val[0])) == 0)
 	{

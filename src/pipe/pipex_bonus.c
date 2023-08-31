@@ -41,6 +41,7 @@ void	piping(t_pipex *pipex, char **env, int i, t_parse *cmd)
 	char	*path;
 	int		status;
 
+	sig_event_loop();
 	status = ft_redirect(cmd);
 	signal(SIGQUIT, ft_sigempty);
 	signal(SIGINT, ft_sigline);

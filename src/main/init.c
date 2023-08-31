@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/30 15:18:25 by user             ###   ########.fr       */
+/*   Updated: 2023/08/31 13:15:47 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 void	child(t_parse *input, t_data *data)
 {
 	int	status;
-	
+
 	status = ft_redirect(input);
 	signal(SIGQUIT, ft_sigquit);
 	signal(SIGINT, ft_sigline);
 	if (fork() == 0)
 	{
 		if (!*input->cmd)
-			exit(EXIT_SUCCESS);
+			exit(EXIT_FAILURE);
 		if (!data->path)
 		{
 			printf("ebash: %s: No such file or directory\n", input->cmd[0]);
-			exit(EXIT_SUCCESS);
+			exit(EXIT_FAILURE);
 		}
 		ft_redirect_dup(input, status);
 		data->join_path = x_path(data, input->cmd[0]);

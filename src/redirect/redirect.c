@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:41:18 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/30 13:43:28 by user             ###   ########.fr       */
+/*   Updated: 2023/08/30 21:04:23 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	ft_redirect(t_parse *lst)
 {
 	int	status;
 	
+	status = 0;
 	if (!lst->operator || !*lst->operator)
 		return (0);
 	while (*lst->operator)

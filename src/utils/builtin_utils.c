@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:24:02 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/30 13:58:07 by user             ###   ########.fr       */
+/*   Updated: 2023/08/31 13:19:08 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	check_builtin_with_redirect(t_parse *cmd, t_data *data)
 	if (builtin)
 	{
 		if (*cmd->operator && (**cmd->operator == '>'
-			|| **cmd->operator == '<'))
+				|| **cmd->operator == '<'))
 		{
 			status = ft_redirect(cmd);
 			if (fork() == 0)
