@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:31:13 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/29 15:45:18 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:59:24 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,7 @@ int		args_split(char *line, t_parse *split, int i, int e);
 
 t_parse	*error(int e);
 
-t_parse *parsing(char *line, t_env *env);
-
-t_parse	*smart_split(char *line);
+t_parse	*parsing(char *line, t_env *env);
 
 t_parse	*smart_split(char *line);
 
@@ -108,7 +106,19 @@ char	**struct_to2arr(t_parse *lst);
 
 int		ft_redirect(t_parse *lst);
 
-void	printlinkedlist(t_env *head);
+int		ft_redirect_in(t_parse *lst);
+
+int		ft_redirect_heredoc(t_parse *lst);
+
+int		ft_redirect_out(t_parse *lst);
+
+int		ft_redirect_out_append(t_parse *lst);
+
+void	ft_redirect_dup(t_parse *lst, int status);
+
+void	ft_redirect_cmp(t_parse *lst, int *status);
+
+void	print_linked_list(t_env *head);
 
 void	print2d(char **arr);
 
@@ -116,11 +126,19 @@ void	ft_lstadd_back_shell(t_parse **lst, t_parse *new);
 
 void	error_parsing(void);
 
-void	printLinkedList(t_env *head);
+void	free2d(char **arr);
 
-void	print2d(char **arr);
+char	**env_split(char *str, char lim);
 
 void	sig_event_loop(void);
+
+void	ft_next_line(int sig);
+
+void	ft_sigquit(int sig);
+
+void	ft_sigline(int sig);
+
+void	ft_sigempty(int sig);
 
 //			BUILTINS		//
 void	echo(char **args);

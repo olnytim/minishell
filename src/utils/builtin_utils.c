@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:24:02 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/19 01:32:51 by user             ###   ########.fr       */
+/*   Updated: 2023/08/31 17:13:25 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,31 +56,31 @@ int	check_builtin(t_parse *cmd, t_data *data)
 	else if (ft_strncmp(cmd->cmd[0], "env", 3) == 0
 		&& ft_strncmp(cmd->cmd[0], "env", ft_strlen(cmd->cmd[0])) == 0)
 		return (env(data), close(cmd->fd), 1);
-	// else if (ft_strncmp(cmd->cmd[0], "cd", 2) == 0
-	// 	&& ft_strncmp(cmd->cmd[0], "cd", ft_strlen(cmd->cmd[0])) == 0)
-	// 	return (cd(cmd->cmd), close(cmd->fd), 1);
 	return (0);
 }
 
 int	check_builtin_with_redirect(t_parse *cmd, t_data *data)
 {
-	int	child;
+	int	status;
+	int	builtin;
 
-	if (*cmd->operator && (cmd->operator[0][0] == '>'
-		|| cmd->operator[0][0] == '<'))
+	builtin = builtin_cmp(*cmd->cmd);
+	if (builtin)
 	{
-		child = fork();
-		if (child == 0)
+		if (*cmd->operator && (**cmd->operator == '>'
+				|| **cmd->operator == '<'))
 		{
-			if (builtin_cmp(cmd->cmd[0]))
+			status = ft_redirect(cmd);
+			if (fork() == 0)
 			{
-				ft_redirect(cmd);
+				ft_redirect_dup(cmd, status);
 				check_builtin(cmd, data);
+				exit(EXIT_SUCCESS);
 			}
-			exit(EXIT_SUCCESS);
+			return (builtin);
 		}
-		return (builtin_cmp(cmd->cmd[0]));
+		else
+			return (check_builtin(cmd, data));
 	}
-	else
-		return (check_builtin(cmd, data));
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:56 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/31 12:48:38 by mac              ###   ########.fr       */
+/*   Updated: 2023/08/31 18:25:08 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,7 @@ t_parse *parsing(char *line, t_env *env)
 		true_line = ft_strdup(line);
 		// free(line);
 	}
-	printf("%s\n", line);
+	// printf("%s\n", line);
 	// int i = 0;
 	splited = smart_split(true_line);
 	// t_parse *temp = splited;

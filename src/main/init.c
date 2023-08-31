@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/30 20:49:52 by mac              ###   ########.fr       */
+/*   Updated: 2023/08/31 18:57:47 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,28 @@
 
 void	child(t_parse *input, t_data *data)
 {
-	if (!ft_redirect(input))
+	int	status;
+
+	status = ft_redirect(input);
+	if (status == -1)
+		return ;
+	signal(SIGQUIT, ft_sigquit);
+	signal(SIGINT, ft_sigline);
+	if (fork() == 0)
 	{
 		if (!*input->cmd)
-			exit(EXIT_SUCCESS);
+			exit(EXIT_FAILURE);
 		if (!data->path)
 		{
 			printf("ebash: %s: No such file or directory\n", input->cmd[0]);
-			exit(EXIT_SUCCESS);
+			exit(EXIT_FAILURE);
 		}
+		ft_redirect_dup(input, status);
 		data->join_path = x_path(data, input->cmd[0]);
 		execve(data->join_path, input->cmd, data->env);
 	}
-	exit(EXIT_SUCCESS);
+	while (wait(NULL) != -1)
+		;
 }
 
 void	conditions(t_parse *input, t_data *data)
@@ -34,17 +43,12 @@ void	conditions(t_parse *input, t_data *data)
 	if (input)
 	{
 		if (check_pipe(input))
-		{
-			input->operator++;
 			ft_pipe(struct_to2arr(input), data->env, input, data);
-		}
 		else if (check_builtin_with_redirect(input, data) == 1)
 		{
 		}
-		else if (fork() == 0)
+		else
 			child(input, data);
-		while (wait(NULL) != -1)
-			;
 	}
 }
 
@@ -53,13 +57,13 @@ void	init(t_data *data)
 	char	*str;
 	t_parse	*input;
 
-	sig_event_loop();
 	while (1)
 	{
+		sig_event_loop();
 		str = readline(MINISHELL);
 		if (!str)
 		{
-			printf("\033[1A\033[6Cexit\n");
+			printf("\n\033[1A\033[6Cexit\n");
 			exit(EXIT_SUCCESS);
 		}
 		input = parsing(str, data->env_lst);
@@ -71,5 +75,6 @@ void	init(t_data *data)
 		if (*str)
 			add_history(str);
 		free(str);
+		free2d(data->env);
 	}
 }
