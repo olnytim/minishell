@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/31 17:24:08 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:57:47 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	child(t_parse *input, t_data *data)
 	int	status;
 
 	status = ft_redirect(input);
+	if (status == -1)
+		return ;
 	signal(SIGQUIT, ft_sigquit);
 	signal(SIGINT, ft_sigline);
 	if (fork() == 0)

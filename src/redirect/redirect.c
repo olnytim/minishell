@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:41:18 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/31 14:25:10 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:57:54 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ int	ft_redirect(t_parse *lst)
 	while (*lst->operator)
 	{
 		ft_redirect_cmp(lst, &status);
+		if (status == -1)
+			return (status);
 		lst->operator++;
 	}
 	return (status);

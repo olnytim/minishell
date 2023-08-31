@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:31:13 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/31 17:16:32 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:59:24 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int		args_split(char *line, t_parse *split, int i, int e);
 
 t_parse	*error(int e);
 
-t_parse *parsing(char *line, t_env *env);
+t_parse	*parsing(char *line, t_env *env);
 
 t_parse	*smart_split(char *line);
 

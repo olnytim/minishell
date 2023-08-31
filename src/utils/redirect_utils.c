@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:24:53 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/31 14:33:20 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:56:06 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	ft_redirect_cmp(t_parse *lst, int *status)
 	{
 		if (!ft_redirect_in(lst))
 			*status = 1;
+		else
+			*status = -1;
 		lst->file++;
 	}
 	else if (**lst->operator == '<' && *(*lst->operator + 1) == '<')
