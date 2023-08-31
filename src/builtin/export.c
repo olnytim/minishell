@@ -6,89 +6,46 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 20:37:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/08/31 12:14:41 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/08/31 12:18:50 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-// void	export(t_data *data, t_parse *pars)
-// {
-// 	t_env	*lst;
-// 	t_env	*new;
-// 	char	**str;
-// 	int		i;
-// 	int		cnt;
+void extra(char **str, t_env **new)
+{	
+	new = (t_env **)malloc(sizeof(t_env));
+	if (!new)
+		return ;
+	if (!str[0] || !str[1])
+	{
+		free(new);
+		return;
+	}
+}
 
-// 	i = 1;
-// 	cnt = 0;
-// 	new = (t_env *)malloc(sizeof(t_env) * cnt + 1);
-// 	if (!new)
-// 		return ;
-// 	while (pars->cmd[i])
-// 	{
-// 		cnt++;
-// 	i = 1;
-// 	if (pars->cmd == NULL)
-// 		return ;
-// 	while (pars->cmd[i])
-// 	{
-		
-// 		lst = data->env_lst;
-// 		str = env_split(pars->cmd[i], '=');
-// 		if (!*str || !str)
-// 		{
-// 			free(new);
-// 			return;
-// 		}
-// 		while (lst && lst->next)
-// 		{
-// 			if (lst->next && ft_strncmp(lst->key, str[0], ft_strlen(str[0]))== 0)
-// 			{
-// 				free(lst->val);
-// 				lst->val = ft_strdup(str[1]);
-// 				return ;
-// 			}
-// 			{
-// 				free(lst->val);
-// 				lst->val = ft_strdup(str[1]);
-// 				return ;
-// 			}
-// 			lst = lst->next;
-// 		}
-// 		lst->next = new;
-// 		new->key = NULL;
-// 		new->val = NULL;
-// 		lst->key = ft_strdup(str[0]);
-// 		lst->val = ft_strdup(str[1]);
-// 		lst->next = new;
-// 		new->next = NULL;
-// 		i++;
-// 	}
-// 		i++;
-// 	}
-// 	free(str);
-// }
-
-
-
-void	for_export(t_data *data, char *line)
+void	for_export(t_data *data, char *line, t_parse *pars)
 {
 	t_env	*lst;
 	t_env	*new;
 	char	**str;
+	int		i;
 	
-
+	i = 0;
 	new = (t_env *)malloc(sizeof(t_env));
 	if (!new)
 		return ;
 	lst = data->env_lst;
 	str = env_split(line, '=');
-	dprintf(1, "%s\n", line);
-	if (!str[0] || !str[1])
+	extra(str, &new);
+	while (lst->key[i])
 	{
-		free(new);
-		return;
+		i++;
+		if (lst->key[i] == '+' && lst->key[i + 1] == '\0')
+		{
+			lst->key[i] = '\0';
+			lst->val = ft_strjoin(lst->val, pars->cmd[1]);
+		}
 	}
 	while (lst && lst->next)
 	{
@@ -109,22 +66,28 @@ void	for_export(t_data *data, char *line)
         data->env_lst = new;
 	else 
         lst->next = new;
-	// printLinkedList(data->env_lst);
 	free(str);
 }
-
 
 void	export(t_data *data, t_parse *pars)
 {
 	int	i;
+	// t_env	*lst;
 
-	i = 1;
+	i = 0;
+	// lst = data->env_lst;
 	if (pars->cmd[1] == NULL)
 		return ;
+	i = 1;
 	while (pars->cmd[i])
 	{
-		for_export(data, pars->cmd[i]);
+		if (ft_strchr(pars->cmd[i], '=')== 0 || ft_isdigit(pars->cmd[i][0]) == 1
+			|| pars->cmd[i][0] == '=' || ft_isalpha(pars->cmd[i][0]) == 0)
+		{
+			write(2, "export: not a valid identifier \n", 32);
+			return ;
+		}
+		for_export(data, pars->cmd[i], pars);
 		i++;
 	}
 }
-//somet
