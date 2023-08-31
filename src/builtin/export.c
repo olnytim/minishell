@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 20:37:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/08/30 21:31:11 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/08/31 12:14:41 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,3 +127,4 @@ void	export(t_data *data, t_parse *pars)
 		i++;
 	}
 }
+//somet
