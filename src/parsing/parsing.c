@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:56 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/29 16:34:42 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/31 12:48:38 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,6 @@ int	operators_in_a_row(char *line, int i)
 
 t_parse *parsing(char *line, t_env *env)
 {
-	(void)env;
 	t_parse	*splited;
 	char	*true_line;
 
@@ -175,10 +174,12 @@ t_parse *parsing(char *line, t_env *env)
 		true_line = ft_strdup(line);
 		// free(line);
 	}
-	// printf("%s\n", line);
+	printf("%s\n", line);
+	// int i = 0;
 	splited = smart_split(true_line);
+	// t_parse *temp = splited;
 	// int a = 1;
-	// while (splited)
+	// while (temp)
 	// {
 	// 	printf("\nnode #%i\n", a);
 	// 	i = 0;
@@ -198,7 +199,7 @@ t_parse *parsing(char *line, t_env *env)
 	// 	while (splited->lim[i])
 	// 		printf("%s\n", splited->lim[i++]);
 	// 	printf("\n-------\n");
-	// 	splited = splited->next;
+	// 	temp = temp->next;
 	// 	a++;
 	// }
 	// exit (0);

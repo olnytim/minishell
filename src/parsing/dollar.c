@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:47:03 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/29 16:35:37 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/30 21:58:36 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,51 @@ char	*join_dol(char *str, char *buf, int j)
 	return (temp);
 }
 
+int	count_wr_dol_buf(char *val)
+{
+	int	i;
+	int	w;
+
+	w = 0;
+	i = 0;
+	while (val[i])
+	{
+		if (val[i] == '>' || val[i] == '<' || val[i] == '|')
+		{
+			while (val[i] == '>' || val[i] == '<' || val[i] == '|')
+			{
+				i++;
+				w++;
+			}
+			w += 2;
+		}
+		i++;
+		w++;
+	}
+	return (w);
+}
+
+char	*fill_dol_buf(char *buf, char *val, int i, int j)
+{
+	while (val[i])
+	{
+		if (val[i] == '>' || val[i] == '<' || val[i] == '|')
+		{
+			buf[j++] = 39;
+			while (val[i] == '>' || val[i] == '<' || val[i] == '|')
+				i++;
+			buf[j++] = 39;
+		}
+		buf[j++] = val[i++];
+	}
+	buf[j] = '\0';
+	return (buf);
+}
+
 char	*write_dollar(char *val, char *str, char *dol, int flag)
 {
-	char *temp;
+	char	*temp;
+	char	*buf;
 
 	if (flag == 2)
 	{
@@ -89,9 +131,15 @@ char	*write_dollar(char *val, char *str, char *dol, int flag)
 	}
 	else
 	{
-		temp = ft_strjoin_nl(str, val);
+		buf = malloc(count_wr_dol_buf(val) + 1);
+		buf = fill_dol_buf(buf, val, 0, 0);
+		if (!str)
+			temp = ft_strdup(buf);
+		else
+			temp = ft_strjoin_nl(str, buf);
 		free(str);
-		str = temp;
+		free(buf);
+		return(temp);
 	}
 	return (str);
 }
@@ -139,7 +187,7 @@ char	*desipher_dollar(char *line, t_env *env, int i, int j)
 		{
 			str = check_dollar(&line[i], env, str, flag);
 			i++;
-			while (line[i] != '$' && line[i] != ' ' &&
+			while (line[i] && line[i] != '$' && line[i] != ' ' &&
 				line[i] != '\t' && !(line[i] >= 33 && line[i] <= 47))
 				i++;
 		}
