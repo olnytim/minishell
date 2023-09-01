@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/12 13:56:32 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/01 14:04:34 by valeriafedo      ###   ########.fr       */
+/*   Created: 2023/09/01 14:15:25 by vfedorov          #+#    #+#             */
+/*   Updated: 2023/09/01 15:13:55 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,32 +18,6 @@ void	pwd(void)
 
 	getcwd(dir, PATH_MAX);
 	printf("%s\n", dir);
-}
-
-void	unset(t_data *data, t_parse *pars)
-{
-	t_env	*lst;
-	int		i;
-
-	i = 1;
-	while (pars->cmd[i])
-	{
-		valid_variable_name(pars->cmd[i]);
-		lst = data->env_lst;
-		while (lst->next && ft_strncmp(lst->key, pars->cmd[i],
-				ft_strlen(pars->cmd[i])) != 0)
-		{
-			if (lst->next->next && ft_strncmp(lst->next->key, pars->cmd[i],
-					ft_strlen(pars->cmd[i])) == 0)
-			{
-				lst->next = lst->next->next;
-				break ;
-			}
-			lst = lst->next;
-		}
-		i++;
-	}
-	data->env = join_key_and_val(data->env_lst);
 }
 
 void	echo(char **args)
@@ -67,6 +41,17 @@ void	echo(char **args)
 	}
 	if (!flag)
 		printf("\n");
+}
+
+void	print2d(char **arr)
+{
+	int	i;
+	i = 0;
+	while (arr[i])
+	{
+		printf("%s\n", arr[i]);
+		i++;
+	}
 }
 
 void	env(t_data *data)

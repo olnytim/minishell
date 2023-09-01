@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:23:18 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/28 12:35:10 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/01 14:43:20 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,13 +148,4 @@ void	printLinkedList(t_env *head)
 	}
 }
 
-void	print2d(char **arr)
-{
-	int	i;
-	i = 0;
-	while (arr[i])
-	{
-		printf("%s\n", arr[i]);
-		i++;
-	}
-}
+
