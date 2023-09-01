@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:31:13 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/31 18:59:24 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/09/01 13:32:18 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ typedef struct s_parse
 	char			**operator;
 	char			**file;
 	char			**lim;
-	int				fd;
+	int				fd_in;
+	int				fd_out;
 	t_tig			*t_tig;
 	struct s_parse	*next;
 	struct s_parse	*prev;
@@ -127,6 +128,8 @@ void	ft_lstadd_back_shell(t_parse **lst, t_parse *new);
 void	error_parsing(void);
 
 void	free2d(char **arr);
+
+void	free_input(t_parse *input);
 
 char	**env_split(char *str, char lim);
 

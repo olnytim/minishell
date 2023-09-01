@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/31 18:57:47 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/09/01 14:49:36 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ void	init(t_data *data)
 {
 	char	*str;
 	t_parse	*input;
-
+	
+	(void)data;
 	while (1)
 	{
 		sig_event_loop();

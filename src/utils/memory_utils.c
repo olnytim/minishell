@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:17:06 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/31 17:17:29 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/09/01 14:47:53 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free2d(char **arr)
 	int	i;
 
 	i = 0;
-	while (arr[i])
+	while (arr && arr[i])
 	{
 		free(arr[i]);
 		i++;
