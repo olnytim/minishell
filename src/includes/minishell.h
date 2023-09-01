@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:23 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/29 15:57:05 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/01 14:00:27 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,8 @@ void	unset(t_data *data, t_parse *pars);
 void	export(t_data *data, t_parse *pars);
 int		check_export(t_data *data, char *str);
 void	ft_exit(t_parse *input);
+int		forchar(int symbol);
+void	valid_variable_name(char *var);
 // void	cd(char **args);
 void	pwd(void);
 void	env(t_data *data);

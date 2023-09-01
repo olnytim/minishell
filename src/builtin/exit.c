@@ -6,13 +6,13 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:35:02 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/08/28 12:24:40 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/01 14:06:39 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void ft_exit(t_parse *input)
+void	ft_exit(t_parse *input)
 {
 	int	i;
 
@@ -30,7 +30,7 @@ void ft_exit(t_parse *input)
 			if (!ft_isdigit(input->cmd[1][i++]))
 			{
 				printf("ebash: exit: %s: numeric argument required\n",
-				input->cmd[1]);
+					input->cmd[1]);
 				exit(255);
 			}
 		}

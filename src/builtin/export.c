@@ -6,13 +6,13 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 20:37:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/08/31 12:18:50 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/01 14:05:20 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void extra(char **str, t_env **new)
+void	extra(char **str, t_env **new)
 {	
 	new = (t_env **)malloc(sizeof(t_env));
 	if (!new)
@@ -20,7 +20,7 @@ void extra(char **str, t_env **new)
 	if (!str[0] || !str[1])
 	{
 		free(new);
-		return;
+		return ;
 	}
 }
 
