@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:15:25 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/09/01 15:13:55 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/09/01 18:44:23 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	echo(char **args)
 void	print2d(char **arr)
 {
 	int	i;
+
 	i = 0;
 	while (arr[i])
 	{

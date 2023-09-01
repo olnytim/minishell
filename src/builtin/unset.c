@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:19:20 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/09/01 14:25:38 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/09/01 18:45:11 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int unset_forchar(int symbol)
+int	unset_forchar(int symbol)
 {
 	if ((symbol >= 33 && symbol <= 47) || (symbol >= 58 && symbol <= 64)
 		|| (symbol >= 91 && symbol <= 94 && symbol <= 96)
@@ -21,7 +21,7 @@ int unset_forchar(int symbol)
 	return (0);
 }
 
-void    unset_valid_variable_name(char *var)
+void	unset_valid_variable_name(char *var)
 {
 	int	b;
 
@@ -45,6 +45,7 @@ void    unset_valid_variable_name(char *var)
 		return ;
 	}
 }
+
 void	unset(t_data *data, t_parse *pars)
 {
 	t_env	*lst;

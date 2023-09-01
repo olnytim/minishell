@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:23:18 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/01 14:43:20 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/09/01 18:42:31 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	**shlvl(char **key_val)
 {
 	char	*tmp;
 	int		i;
-	
+
 	if (key_val[0][0] == 'S' && ft_strncmp(key_val[0], "SHLVL", 5) == 0
 		&& ft_strncmp(key_val[0], "SHLVL", ft_strlen(key_val[0])) == 0)
 	{
@@ -147,5 +147,4 @@ void	printLinkedList(t_env *head)
 		current = current->next;
 	}
 }
-
 

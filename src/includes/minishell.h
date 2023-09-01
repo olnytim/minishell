@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:23 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/01 14:30:19 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/09/01 18:40:43 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,8 @@ int		unset_forchar(int symbol);
 void	unset_valid_variable_name(char *var);
 int		forchar(int symbol);
 int		valid_variable_name(char *var);
+void	print2d_expo(t_env *enw);
+void	export_env(t_data *data);
 // void	cd(char **args);
 void	pwd(void);
 void	env(t_data *data);
