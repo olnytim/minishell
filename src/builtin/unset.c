@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:19:20 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/09/01 18:45:11 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/02 14:24:59 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,5 @@ void	unset(t_data *data, t_parse *pars)
 		}
 		i++;
 	}
-	data->env = join_key_and_val(data->env_lst);
+	// data->env = join_key_and_val(data->env_lst);
 }
