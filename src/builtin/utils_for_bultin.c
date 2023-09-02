@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:24:41 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/01 18:41:29 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/02 16:14:57 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	forchar(int symbol)
 {
-	if ((symbol >= 33 && symbol <= 47) || (symbol >= 58
+	if ((symbol >= 33 && symbol <= 42 && symbol <= 47) || (symbol >= 58
 			&& symbol <= 60 && symbol <= 64)
 		|| (symbol >= 91 && symbol <= 94 && symbol <= 96)
 		|| (symbol >= 123 && symbol <= 126))

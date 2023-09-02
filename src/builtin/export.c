@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 20:37:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/01 18:42:16 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/02 17:14:52 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,9 @@
 
 void	val_to_exvar(t_env *lst, const char *value)
 {
-	int	i;
 
-	i = 0;
-	while (lst->key[i])
-	{
-		if (lst->key[i] == '+' && lst->key[i + 1] == '\0')
-		{
-			lst->key[i] = '\0';
-			lst->val = ft_strjoin(lst->val, value);
-		}
-		i++;
-	}
+	printf ("%s\n", value);
+	lst->val = ft_strjoin(lst->val, value);
 }
 
 void	add_keyvalue_to_env(char **keyvalue, t_env *end)
@@ -47,21 +38,47 @@ void	add_keyvalue_to_env(char **keyvalue, t_env *end)
 	free(keyvalue);
 }
 
+char	*check_plus(char *key)
+{
+	char *plus;
+
+	plus = ft_strrchr(key, '+');
+	if (plus[0] == '+')
+	{
+		plus[0] = '\0';
+		return (key);
+	}
+	else
+		return (key);
+}
+
 void	for_export(t_data *data, char *line, t_parse *pars)
 {
 	t_env	*lst;
 	char	**keyvalue;
-
+	int		flag;
+	
 	lst = data->env_lst;
 	keyvalue = env_split(line, '=');
-	val_to_exvar(lst, pars->cmd[1]);
+	if (check_plus(keyvalue[0]) == 0)
+		flag = 0;
+	else
+		flag = 1;
+	printf ("%s\n", keyvalue[0]);
 	while (lst && lst->next)
 	{
-		if (lst->next && ft_strncmp(lst->key, keyvalue[0],
-				ft_strlen(keyvalue[0])) == 0)
+		if (lst->next && ft_strncmp(lst->key, keyvalue[0], ft_strlen(keyvalue[0])) == 0)
 		{
-			free(lst->val);
-			lst->val = ft_strdup(keyvalue[1]);
+			if (flag == 0)
+			{
+				free(lst->val);
+				lst->val = ft_strdup(keyvalue[1]);
+			}
+			else
+			{
+				printf ("%s\n", pars->cmd[1]);
+				val_to_exvar(lst, keyvalue[1]);
+			}
 			return ;
 		}
 		lst = lst->next;
