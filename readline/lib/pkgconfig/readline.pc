@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 prefix=/Users/valeriafedorova/Desktop/minishell/readline
+=======
+prefix=/Users/apiloian/Desktop/minihell/readline
+>>>>>>> main
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include

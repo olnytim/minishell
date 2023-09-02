@@ -70,26 +70,26 @@ int		check_builtin(t_parse *cmd, t_data *data)
 
 int	check_builtin_with_redirect(t_parse *cmd, t_data *data)
 {
-	int	child;
 	int	status;
+	int	builtin;
 
-	if (*cmd->operator && (cmd->operator[0][0] == '>'
-		|| cmd->operator[0][0] == '<'))
+	builtin = builtin_cmp(*cmd->cmd);
+	if (builtin)
 	{
-		child = fork();
-		if (child == 0)
+		if (*cmd->operator && (**cmd->operator == '>'
+				|| **cmd->operator == '<'))
 		{
-			if (builtin_cmp(cmd->cmd[0]))
+			status = ft_redirect(cmd);
+			if (fork() == 0)
 			{
-				status = ft_redirect(cmd);
-				if (status == 2)
-					dup2(cmd->fd, STDIN_FILENO);
+				ft_redirect_dup(cmd, status);
 				check_builtin(cmd, data);
+				exit(EXIT_SUCCESS);
 			}
-			exit(EXIT_SUCCESS);
+			return (builtin);
 		}
-		return (builtin_cmp(cmd->cmd[0]));
+		else
+			return (check_builtin(cmd, data));
 	}
-	else
-		return (check_builtin(cmd, data));
+	return (0);
 }

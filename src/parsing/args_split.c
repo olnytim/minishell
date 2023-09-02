@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args_split.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:37:50 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/24 15:00:51 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/31 12:54:02 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ int count_cmd(int i, int w, char *line)
 
 	while (line[i] && line[i] != '|')
 	{
-		while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == '>' || line[i] == '<'))
+		while (line[i] && (line[i] == ' ' || line[i] == '\t' ||
+			line[i] == '>' || line[i] == '<'))
 			i++;
 		if (line[i] == 34 || line[i] == 39)
 		{
@@ -72,7 +73,8 @@ int count_cmd(int i, int w, char *line)
 				i++;
 			i++;
 		}
-		while (line[i] && line[i] != ' ' && line[i] != '\t' && line[i] != '>' && line[i] != '<')
+		while (line[i] && line[i] != ' ' && line[i] != '\t' && line[i] != '>'
+			&& line[i] != '<')
 			i++;
 		w++;
 	}

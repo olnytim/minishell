@@ -12,10 +12,12 @@
 
 #include "../includes/minishell.h"
 
-int	ft_env_size(t_env *lst)
+int	ft_env_size(t_env *head)
 {
 	size_t	counter;
+	t_env	*lst;
 
+	lst = head;
 	counter = 0;
 	while (lst)
 	{
@@ -51,8 +53,7 @@ char	**join_key_and_val(t_env *head)
 		lst = lst->next;
 		++i;
 	}
-	arr[i] = NULL;
-	return (arr);
+	return (arr[i] = NULL, arr);
 }
 
 char	**shlvl(char **key_val)
@@ -122,29 +123,3 @@ char	**env_split(char *str, char lim)
 	split[2] = NULL;
 	return (split);
 }
-
-void	free2d(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while (arr[i])
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
-}
-
-void	printLinkedList(t_env *head)
-{
-	t_env	*current;
-
-	current = head;
-	while (current != NULL)
-	{
-		printf("Key: %s, Val: %s\n", current->key, current->val);
-		current = current->next;
-	}
-}
-

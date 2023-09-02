@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   memory_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/16 17:58:03 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/08/30 21:25:27 by mac              ###   ########.fr       */
+/*   Created: 2023/08/31 17:17:06 by apiloian          #+#    #+#             */
+/*   Updated: 2023/08/31 17:17:29 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/minishell.h"
 
-size_t	ft_strlen(const char *str)
+void	free2d(char **arr)
 {
-	size_t	integer;
+	int	i;
 
-	if (!str)
-		return (0);
-	integer = 0;
-	while (str[integer])
-		++integer;
-	return (integer);
+	i = 0;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
 }

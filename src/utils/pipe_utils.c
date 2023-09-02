@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 14:36:58 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/27 15:01:17 by user             ###   ########.fr       */
+/*   Updated: 2023/08/31 13:17:22 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	check_pipe(t_parse *input)
 	int	i;
 
 	i = 0;
-	while(input->operator && input->operator[i])
+	while (input->operator && input->operator[i])
 	{
 		if (*input->operator[i] == '|')
 			return (1);

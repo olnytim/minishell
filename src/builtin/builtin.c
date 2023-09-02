@@ -43,18 +43,6 @@ void	echo(char **args)
 		printf("\n");
 }
 
-void	print2d(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while (arr[i])
-	{
-		printf("%s\n", arr[i]);
-		i++;
-	}
-}
-
 void	env(t_data *data)
 {
 	print2d(data->env);

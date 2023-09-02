@@ -84,13 +84,13 @@ int		args_split(char *line, t_parse *split, int i, int e);
 
 t_parse	*error(int e);
 
-t_parse	*parsing(char *line);
+t_parse *parsing(char *line, t_env *env);
 
 t_parse	*smart_split(char *line);
 
-t_parse	*smart_split(char *line);
+char	*ft_strjoin_nl(char *str1, char *str2);
 
-char	*desipher_dollar(char *line, int i, int j);
+char	*desipher_dollar(char *line, t_env *env, int i, int j);
 
 char	**join_key_and_val(t_env *head);
 
@@ -106,21 +106,39 @@ char	**struct_to2arr(t_parse *lst);
 
 int		ft_redirect(t_parse *lst);
 
+int		ft_redirect_in(t_parse *lst);
+
+int		ft_redirect_heredoc(t_parse *lst);
+
+int		ft_redirect_out(t_parse *lst);
+
+int		ft_redirect_out_append(t_parse *lst);
+
+void	ft_redirect_dup(t_parse *lst, int status);
+
+void	ft_redirect_cmp(t_parse *lst, int *status);
+
+void	print_linked_list(t_env *head);
+
 void	print2d(char **arr);
 
 void	ft_lstadd_back_shell(t_parse **lst, t_parse *new);
 
 void	error_parsing(void);
 
-void	printLinkedList(t_env *head);
-
-void	print2d(char **arr);
-
 void	free2d(char **arr);
 
 char	**env_split(char *str, char lim);
 
 void	sig_event_loop(void);
+
+void	ft_next_line(int sig);
+
+void	ft_sigquit(int sig);
+
+void	ft_sigline(int sig);
+
+void	ft_sigempty(int sig);
 
 //			BUILTINS		//
 void	echo(char **args);
