@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:24:02 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/31 17:13:25 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/09/03 14:33:56 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,16 @@ int	check_builtin(t_parse *cmd, t_data *data)
 		return (0);
 	if (ft_strncmp(cmd->cmd[0], "pwd", 3) == 0
 		&& ft_strncmp(cmd->cmd[0], "pwd", ft_strlen(cmd->cmd[0])) == 0)
-		return (pwd(), close(cmd->fd), 1);
+		return (pwd(), close(cmd->fd_in), close(cmd->fd_out), 1);
 	else if (ft_strncmp(cmd->cmd[0], "echo", 4) == 0
 		&& ft_strncmp(cmd->cmd[0], "echo", ft_strlen(cmd->cmd[0])) == 0)
-		return (echo(cmd->cmd), close(cmd->fd), 1);
+		return (echo(cmd->cmd), close(cmd->fd_in), close(cmd->fd_out), 1);
 	else if (ft_strncmp(cmd->cmd[0], "unset", 5) == 0
 		&& ft_strncmp(cmd->cmd[0], "unset", ft_strlen(cmd->cmd[0])) == 0)
-		return (unset(data, cmd->cmd), close(cmd->fd), 1);
+		return (unset(data, cmd->cmd), close(cmd->fd_in), close(cmd->fd_out), 1);
 	else if (ft_strncmp(cmd->cmd[0], "env", 3) == 0
 		&& ft_strncmp(cmd->cmd[0], "env", ft_strlen(cmd->cmd[0])) == 0)
-		return (env(data), close(cmd->fd), 1);
+		return (env(data), close(cmd->fd_in), close(cmd->fd_out), 1);
 	return (0);
 }
 
