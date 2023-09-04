@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:23:18 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/31 17:22:21 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/09/01 17:40:40 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ int	ft_env_size(t_env *head)
 
 	lst = head;
 	counter = 0;
-	while (lst)
+	while (lst->next)
 	{
 		lst = lst->next;
 		++counter;
 	}
-	return (counter);
+	return (counter + 1);
 }
 
 char	**join_key_and_val(t_env *head)

@@ -3,123 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   args_split.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:37:50 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/31 12:54:02 by mac              ###   ########.fr       */
+/*   Updated: 2023/09/01 18:47:28 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-int count_file(int i, int w, char *line)
-{
-	while (line[i] && line[i] != '|')
-	{
-		if (line[i] == '>' || line[i] == '<')
-		{
-			w++;
-			if (line[i] == '>' && line[i + 1] == '>')
-				i++;
-		}
-		i++;
-	}
-	return (w);
-}
-
-int count_lim(int i, int w, char *line)
-{
-	while (line[i] && line[i] != '|')
-	{
-		if (line[i] == '<' && line[i + 1] == '<')
-		{
-			w++;
-			i++;
-		}
-		i++;
-	}
-	return (w);
-}
-
-int count_oper(int i, int w, char *line)
-{
-	while (line[i] && line[i] != '|')
-	{
-		if (line[i] == '>' || line[i] == '<' || line[i] == '|')
-		{
-			if ((line[i] == '>' && line[i + 1] == '>') ||
-				(line[i] == '<' && line[i + 1] == '<'))
-				i++;
-			w++;
-		}
-		i++;
-	}
-	return (w);
-}
-
-int count_cmd(int i, int w, char *line)
-{
-	char	q;
-
-	while (line[i] && line[i] != '|')
-	{
-		while (line[i] && (line[i] == ' ' || line[i] == '\t' ||
-			line[i] == '>' || line[i] == '<'))
-			i++;
-		if (line[i] == 34 || line[i] == 39)
-		{
-			q = line[i++];
-			while (line[i] != q)
-				i++;
-			i++;
-		}
-		while (line[i] && line[i] != ' ' && line[i] != '\t' && line[i] != '>'
-			&& line[i] != '<')
-			i++;
-		w++;
-	}
-	return (w);
-}
-
-void	file_lim_quotes_2(char *arg, int *i, int * j, char *buf)
-{
-	char	q;
-
-	q = arg[*i];
-	*i += 1;
-	while (arg[*i] != q)
-	{
-		buf[*j] = arg[*i];
-		*i += 1;
-		*j += 1;
-	}
-	*i += 1;
-	if (arg[*i] == 34 || arg[*i] == 39)
-		file_lim_quotes_2(arg, i, j, buf);
-}
-
-char	*file_lim_quotes(char *arg, int *i, int j)
-{
-	// char	q;
-	char	*str;
-	char	*buf;
-
-	buf = malloc(ft_strlen(arg) + 1);
-	while (arg[*i] && arg[*i] != ' ' && arg[*i] != '\t' &&
-		arg[*i] != '>' && arg[*i] != '|' && arg[*i] != '<')
-	{
-		if (arg[*i] == 34 || arg[*i] == 39)
-			file_lim_quotes_2(arg, i, &j, buf);
-		if (arg[*i] == ' ' || arg[*i] == '\t')
-			break ;
-		buf[j++] = arg[*i];
-		*i += 1;
-	}
-	buf[j] = '\0';
-	str = ft_strdup(buf);
-	free(buf);
-	return (str);
-}
 
 void ops_file_lim_split(char *line, t_parse *split, int *i)
 {
@@ -146,60 +37,63 @@ void ops_file_lim_split(char *line, t_parse *split, int *i)
 	}
 }
 
-int	count_buf(int i, int w, char *line)
+char	*args_split_cont_1(char *line, char *buf_ind, t_parse *split)
 {
-	char	q;
-	int		flag;
-
-	while (line[i] && line[i] != '|')
-	{
-		if (flag != 1 && (line[i] == 34 || line[i] == 39))
-		{
-			flag = 1;
-			q = line[i++];
-		}
-		if (line[i] == q && flag)
-		{
-			flag = 0;
-			i++;
-		}
-		if (line[i])
-		{
-			w++;
-			i++;
-		}
-	}
-	return (w);
-}
-
-void	quote_handle(char *line, char *buf, int *i, int *j)
-{
-	char	q;
-
-	q = line[*i];
-	*i += 1;
-	while (line[*i] != q)
-	{
-		buf[*j] = line[*i];
-		*j += 1;
-		*i += 1;
-	}
-	*i += 1;
-	if (line[*i] == 34 || line[*i] == 39)
-		quote_handle(line, buf, i, j);
-}
-
-int args_split(char *line, t_parse *split, int i, int j)
-{
-	// int 	start;
-	char	*buf;
-	char	*buf_ind;
-
 	split->cmd = malloc((count_cmd(0, 0, line) + 1) * sizeof(char *));
 	split->file = malloc((count_file(0, 0, line) + 1) * sizeof(char *));
 	split->lim = malloc((count_lim(0, 0, line) + 1) * sizeof(char *));
 	split->operator = malloc((count_oper(0, 0, line) + 1) * sizeof(char *));
 	buf_ind = malloc((count_buf(0, 0, line) + 1) * sizeof(char));
+	return (buf_ind);
+}
+
+void	args_split_cont_2(char *line, char *buf_ind, t_parse *split, int *i)
+{
+	if (line[*i] == '|')
+	{
+		split->operator[split->t_tig->i_op++] = ft_strdup("|");
+		*i += 1;
+	}
+	if (*split->operator)
+		split->operator[split->t_tig->i_op] = NULL;
+	if (*split->file)
+		split->file[split->t_tig->i_fl] = NULL;
+	if (*split->lim)
+		split->lim[split->t_tig->i_lm] = NULL;
+	if (*split->cmd)
+		split->cmd[split->t_tig->i_cmd] = NULL;
+	free(buf_ind);
+}
+
+int	args_split_cont_3(char *line, char *buf, t_parse *split, int *j)
+{
+	int	i;
+
+	i = 0;
+	while (line && line[i] && line[i] != ' ' && line[i] != '\t'
+		&& line[i] != '>' && line[i] != '<' && line[i] != '|')
+	{
+		if (line[i] == 34 || line[i] == 39)
+			quote_handle(line, buf, &i, j);
+		if (line[i] != ' ' && line[i] != '\t' &&
+			line[i] != '>' && line[i] != '<' && line[i] != '|')
+			buf[*j] = line[i++];
+			*j += 1;
+	}
+	buf[*j] = '\0';
+	split->cmd[split->t_tig->i_cmd++] = ft_strdup(buf);
+	buf = &buf[*j];
+	*j = 0;
+	return (i);
+}
+
+int args_split(char *line, t_parse *split, int i, int j)
+{
+	char	*buf;
+	char	*buf_ind;
+
+	buf_ind = NULL;
+	buf_ind = args_split_cont_1(line, buf_ind, split);
 	if (!split->cmd || !split->file || !split->lim || !split->operator || !buf_ind)
 		return (0);
 	buf = buf_ind;
@@ -209,35 +103,9 @@ int args_split(char *line, t_parse *split, int i, int j)
 			i++;
 		if (line[i] != ' ' && line[i] != '\t' && line[i] != '>' &&
 			line[i] != '<' && line[i] != '|' && line[i])
-		{
-			while (line && line[i] && line[i] != ' ' && line[i] != '\t' && line[i] != '>' &&
-				line[i] != '<' && line[i] != '|')
-			{
-				if (line[i] == 34 || line[i] == 39)
-					quote_handle(line, buf, &i, &j);
-				if (line[i] != ' ' && line[i] != '\t' &&
-					line[i] != '>' && line[i] != '<' && line[i] != '|')
-					buf[j++] = line[i++];
-			}
-			buf[j] = '\0';
-			split->cmd[split->t_tig->i_cmd++] = ft_strdup(buf);
-			buf = &buf[j];
-			j = 0;
-		}
+			i += args_split_cont_3(&line[i], buf, split, &j);
 		else
 			ops_file_lim_split(line, split, &i);
 	}
-	if (line[i] == '|')
-	{
-		split->operator[split->t_tig->i_op++] = ft_strdup("|");
-		i++;
-	}
-	// split->cmd[split->t_tig->i_cmd++] = ft_strdup(buf);
-	// free (buf);
-	split->operator[split->t_tig->i_op] = NULL;
-	split->file[split->t_tig->i_fl] = NULL;
-	split->lim[split->t_tig->i_lm] = NULL;
-	split->cmd[split->t_tig->i_cmd] = NULL;
-	free(buf_ind);
-	return (i);
+	return (args_split_cont_2(line, buf_ind, split, &i), i);
 }
