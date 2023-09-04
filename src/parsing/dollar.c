@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:47:03 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/04 15:17:12 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/04 18:49:07 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*check_dollar(char *line, t_env *env, char *str, int flag)
 		line[i] != '\t' && !(line[i] >= 33 && line[i] <= 47))
 		i++;
 	dol = ft_substr(line, 1, i - 1);
-	while (temp->key)
+	while (temp && temp->key)
 	{
 		if (ft_strncmp(dol, temp->key, ft_strlen(dol)) == 0 &&
 			ft_strncmp(dol, temp->key, ft_strlen(temp->key)) == 0)

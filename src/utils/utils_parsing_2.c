@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:26:31 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/04 15:38:42 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:48:13 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ void	free_node(t_parse *input_node)
 	{
 		temp = input_node;
 		input_node = input_node->next;
-		if (temp->t_tig)
-			free(temp->t_tig);
-		free(temp);
+		// if (temp->t_tig)
+		// 	free(temp->t_tig);
+		// free(temp);
 		temp = NULL;
 	}
 }
@@ -61,5 +61,5 @@ void	free_input(t_parse *input_var, t_parse *input_node)
 		free(temp);
 		temp = NULL;
 	}
-	free_node(input_node);
+	// free_node(input_node);
 }

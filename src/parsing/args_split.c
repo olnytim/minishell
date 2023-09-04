@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:37:50 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/01 18:47:28 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/04 18:43:25 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ char	*args_split_cont_1(char *line, char *buf_ind, t_parse *split)
 	split->lim = malloc((count_lim(0, 0, line) + 1) * sizeof(char *));
 	split->operator = malloc((count_oper(0, 0, line) + 1) * sizeof(char *));
 	buf_ind = malloc((count_buf(0, 0, line) + 1) * sizeof(char));
+	buf_ind[count_buf(0, 0, line)] = '\0';
 	return (buf_ind);
 }
 
@@ -63,6 +64,7 @@ void	args_split_cont_2(char *line, char *buf_ind, t_parse *split, int *i)
 	if (*split->cmd)
 		split->cmd[split->t_tig->i_cmd] = NULL;
 	free(buf_ind);
+	buf_ind = NULL;
 }
 
 int	args_split_cont_3(char *line, char *buf, t_parse *split, int *j)
@@ -77,7 +79,9 @@ int	args_split_cont_3(char *line, char *buf, t_parse *split, int *j)
 			quote_handle(line, buf, &i, j);
 		if (line[i] != ' ' && line[i] != '\t' &&
 			line[i] != '>' && line[i] != '<' && line[i] != '|')
-			buf[*j] = line[i++];
+			buf[*j] = line[i];
+			if (line[i])
+				i++;
 			*j += 1;
 	}
 	buf[*j] = '\0';

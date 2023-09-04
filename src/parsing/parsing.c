@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:56 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/02 17:00:12 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/04 16:19:38 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,14 +111,15 @@ t_parse *parsing(char *line, t_env *env)
 		true_line = ft_strdup(line);
 	// printf("%s\n", line);
 	// int i = 0;
-	printf("%lu\n", sizeof (char **));
-	printf("%lu\n", sizeof (int *));
-	printf("%lu\n", sizeof (t_tig));
-	printf("%lu\n", sizeof (t_parse));
-	printf("%lu\n", sizeof (t_data));
-	printf("%lu\n", sizeof (t_env));
+	// printf("%lu\n", sizeof (char **));
+	// printf("%lu\n", sizeof (int *));
+	// printf("%lu\n", sizeof (t_tig));
+	// printf("%lu\n", sizeof (t_parse));
+	// printf("%lu\n", sizeof (t_data));
+	// printf("%lu\n", sizeof (t_env));
 	splited = smart_split(true_line);
 	free(true_line);
+	true_line = NULL;
 	// t_parse *temp = splited;
 	// int a = 1;
 	// while (temp)

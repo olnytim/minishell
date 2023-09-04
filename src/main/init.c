@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/04 15:35:52 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/04 18:54:36 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,24 @@
 t_parse	*duble_pointers(t_parse *input)
 {
 	t_parse	*temp;
+	t_parse	**head;
 
+	temp = NULL;
+	head = NULL;
 	if (!input)
 		return (NULL);
-	temp = malloc(sizeof (t_parse));
-	temp->cmd = input->cmd;
-	temp->operator = input->operator;
-	temp->file = input->file;
-	temp->lim = input->lim;
-	temp->next = input->next;
-	temp->prev = input->prev;
-	
+	while (temp)
+	{
+		temp = malloc(sizeof (t_parse));
+		temp->cmd = input->cmd;
+		temp->operator = input->operator;
+		temp->file = input->file;
+		temp->lim = input->lim;
+		temp->next = input->next;
+		temp->prev = input->prev;
+		temp->t_tig = input->t_tig;
+		ft_lstadd_back_shell(head, temp);
+	}
 	return (temp);
 }
 
@@ -85,6 +92,12 @@ void	init(t_data *data)
 			printf("\n\033[1A\033[6Cexit\n");
 			exit(EXIT_SUCCESS);
 		}
+		// if (str[0] == '$' && str[1] == '\0')
+		// {
+		// 	free(str);
+		// 	printf(NO_CMD, "$");
+		// 	continue ;
+		// }
 		input = parsing(str, data->env_lst);
 		if (input && !*input->cmd && !*input->file)
 		{
@@ -97,7 +110,7 @@ void	init(t_data *data)
 			free(input->operator);
 			free(input->t_tig);
 			free(input);
-			system("leaks minishell");
+			// system("leaks minishell");
 			continue ;
 		}
 		// exit (0);
@@ -112,7 +125,7 @@ void	init(t_data *data)
 		free2d(data->env);
 		free_input(input_free, input);
 		free(str);
-		system("leaks minishell");
+		// system("leaks minishell");
 		// exit (0);
 	}
 }

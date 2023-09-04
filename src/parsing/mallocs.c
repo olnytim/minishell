@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 20:56:25 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/01 17:59:47 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/04 18:35:27 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int count_oper(int i, int w, char *line)
 {
 	while (line[i] && line[i] != '|')
 	{
-		if (line[i] == '>' || line[i] == '<' || line[i] == '|')
+		if (line[i] == '>' || line[i] == '<')
 		{
 			if ((line[i] == '>' && line[i + 1] == '>') ||
 				(line[i] == '<' && line[i + 1] == '<'))
@@ -90,6 +90,8 @@ int count_oper(int i, int w, char *line)
 		}
 		i++;
 	}
+	if (line[i] == '|')
+		w++;
 	return (w);
 }
 
