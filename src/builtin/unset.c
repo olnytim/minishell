@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:19:20 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/09/04 12:35:37 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/04 15:39:36 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	unset_valid_variable_name(char *var)
 	int	b;
 
 	b = 0;
-	while (var[b] == '_')
-		b++;
+	// while (var[b] == '_')
+	// 	b++;
 	while (var[b])
 	{
 		if (unset_errorchar(var[b]) == 1)
@@ -57,12 +57,11 @@ void	unset(t_data *data, t_parse *pars)
 		valid_variable_name(pars->cmd[i]);
 		lst = data->env_lst;
 		while (lst->next && ft_strncmp(lst->key, pars->cmd[i],
-				ft_strlen(pars->cmd[i])) != 0 && ft_strncmp(lst->key, pars->cmd[i],
-				ft_strlen(lst->key)) != 0)
+				ft_strlen(pars->cmd[i])) != 0)
 		{
 			if (lst->next->next && ft_strncmp(lst->next->key, pars->cmd[i],
-					ft_strlen(pars->cmd[i])) == 0 && ft_strncmp(lst->next->key, pars->cmd[i],
-					ft_strlen(lst->next->key)) == 0)
+					ft_strlen(pars->cmd[i])) == 0 && ft_strncmp(lst->next->key,
+					pars->cmd[i], ft_strlen(lst->next->key)) == 0)
 			{
 				lst->next = lst->next->next;
 				break ;

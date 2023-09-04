@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:24:41 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/04 12:17:03 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/04 21:21:18 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	valid_variable_name(char *var)
 	int	b;
 
 	b = 0;
-	while (var[b] == '_')
-		b++;
+	// while (var[b] == '_')
+	// 	b++;
 	while (var[b])
 	{
 		if (var[b] == 43 && var[b + 1] == '\0')
@@ -50,18 +50,23 @@ int	valid_variable_name(char *var)
 	return (1);
 }
 
-void	print2d_expo(t_env *enw)
+void	print2d_expo(t_data *data)
 {
-	while (enw)
+	t_env	*env;
+
+	env = NULL;
+	env = data->env_lst;
+	while (env && env->next)
 	{
-		if (enw->key == NULL)
-			return ;
-		printf("declare -x %s=\"%s\"\n", enw->key, enw->val);
-		enw = enw->next;
+		if (!*env->val)
+			printf("declare -x %s=%s\n", env->key, env->val);
+		else
+			printf("declare -x %s=\"%s\"\n", env->key, env->val);
+		env = env->next;
 	}
 }
 
 void	export_env(t_data *data)
 {
-	print2d_expo(data->env_lst);
+	print2d_expo(data);
 }

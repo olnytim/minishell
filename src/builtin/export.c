@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 20:37:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/04 12:13:46 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/04 21:10:18 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,11 @@ void	for_export(t_data *data, char *line)
 
 void	export(t_data *data, t_parse *pars)
 {
-	int	i;
+	int		i;
 	char	**keyvalue;
 
 	i = 1;
+	printf("%s\n", pars->cmd[1]);
 	if (pars->cmd[1] == NULL)
 	{
 		export_env(data);
