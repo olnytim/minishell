@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:31:13 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/02 22:58:10 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/04 15:48:23 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,8 +154,6 @@ void	ft_lstadd_back_shell(t_parse **lst, t_parse *new);
 void	error_parsing(void);
 
 void	free2d(char **arr);
-
-void	free_input(t_parse *input);
 
 char	**env_split(char *str, char lim);
 
