@@ -17,7 +17,7 @@ void	free2d(char **arr)
 	int	i;
 
 	i = 0;
-	while (arr[i])
+	while (arr && arr[i])
 	{
 		free(arr[i]);
 		arr[i] = NULL;

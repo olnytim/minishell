@@ -59,7 +59,8 @@ typedef struct s_parse
 	char			**operator;
 	char			**file;
 	char			**lim;
-	int				fd;
+	int				fd_in;
+	int				fd_out;
 	t_tig			*t_tig;
 	struct s_parse	*next;
 	struct s_parse	*prev;
@@ -153,6 +154,8 @@ void	ft_lstadd_back_shell(t_parse **lst, t_parse *new);
 void	error_parsing(void);
 
 void	free2d(char **arr);
+
+void	free_input(t_parse *input);
 
 char	**env_split(char *str, char lim);
 

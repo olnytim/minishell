@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:24:53 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/31 18:56:06 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/09/01 12:58:23 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,34 +15,61 @@
 void	ft_redirect_dup(t_parse *lst, int status)
 {
 	if (status == 1 || status == 2)
-		dup2(lst->fd, STDIN_FILENO);
+		dup2(lst->fd_in, STDIN_FILENO);
 	else if (status == 3 || status == 4)
-		dup2(lst->fd, STDOUT_FILENO);
+		dup2(lst->fd_out, STDOUT_FILENO);
+	else if (status == 5)
+	{
+		dup2(lst->fd_in, STDIN_FILENO);
+		dup2(lst->fd_out, STDOUT_FILENO);
+	}
 }
 
-void	ft_redirect_cmp(t_parse *lst, int *status)
+int	ft_input_cmp(t_parse *lst, int *status)
 {
 	if (**lst->operator == '<' && *(*lst->operator + 1) != '<')
 	{
 		if (!ft_redirect_in(lst))
-			*status = 1;
+		{
+			if (*status == 3 || *status == 4 || *status == 5)
+				*status = 5;
+			else
+				*status = 1;
+		}
 		else
 			*status = -1;
 		lst->file++;
+		return (0);
 	}
 	else if (**lst->operator == '<' && *(*lst->operator + 1) == '<')
 	{
-		*status = ft_redirect_heredoc(lst);
+		if (*status == 3 || *status == 4 || *status == 5)
+			*status = ft_redirect_heredoc(lst) + 3;
+		else
+			*status = ft_redirect_heredoc(lst);
 		lst->lim++;
+		return (0);
 	}
-	else if (**lst->operator == '>' && *(*lst->operator + 1) != '>')
+	return (1);
+}
+
+void	ft_redirect_cmp(t_parse *lst, int *status)
+{
+	if (ft_input_cmp(lst, status) && **lst->operator == '>'
+		&& *(*lst->operator + 1) != '>')
 	{
-		*status = ft_redirect_out(lst);
+		if (*status == 1 || *status == 2 || *status == 5)
+			*status = ft_redirect_out(lst) + 2;
+		else
+			*status = ft_redirect_out(lst);
 		lst->file++;
 	}
 	else if (**lst->operator == '>' && *(*lst->operator + 1) == '>')
 	{
-		*status = ft_redirect_out_append(lst);
+		if (*status == 1 || *status == 2 || *status == 5)
+			*status = ft_redirect_out_append(lst) + 1;
+		else
+			*status = ft_redirect_out_append(lst);
 		lst->file++;
 	}
 }
