@@ -6,18 +6,11 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 20:37:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/02 17:14:52 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/04 12:13:46 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-void	val_to_exvar(t_env *lst, const char *value)
-{
-
-	printf ("%s\n", value);
-	lst->val = ft_strjoin(lst->val, value);
-}
 
 void	add_keyvalue_to_env(char **keyvalue, t_env *end)
 {
@@ -43,6 +36,8 @@ char	*check_plus(char *key)
 	char *plus;
 
 	plus = ft_strrchr(key, '+');
+	if (plus == NULL)
+		return (key);
 	if (plus[0] == '+')
 	{
 		plus[0] = '\0';
@@ -52,7 +47,7 @@ char	*check_plus(char *key)
 		return (key);
 }
 
-void	for_export(t_data *data, char *line, t_parse *pars)
+void	for_export(t_data *data, char *line)
 {
 	t_env	*lst;
 	char	**keyvalue;
@@ -62,9 +57,6 @@ void	for_export(t_data *data, char *line, t_parse *pars)
 	keyvalue = env_split(line, '=');
 	if (check_plus(keyvalue[0]) == 0)
 		flag = 0;
-	else
-		flag = 1;
-	printf ("%s\n", keyvalue[0]);
 	while (lst && lst->next)
 	{
 		if (lst->next && ft_strncmp(lst->key, keyvalue[0], ft_strlen(keyvalue[0])) == 0)
@@ -75,10 +67,7 @@ void	for_export(t_data *data, char *line, t_parse *pars)
 				lst->val = ft_strdup(keyvalue[1]);
 			}
 			else
-			{
-				printf ("%s\n", pars->cmd[1]);
-				val_to_exvar(lst, keyvalue[1]);
-			}
+				lst->val = ft_strjoin(lst->val, keyvalue[1]);
 			return ;
 		}
 		lst = lst->next;
@@ -89,16 +78,21 @@ void	for_export(t_data *data, char *line, t_parse *pars)
 void	export(t_data *data, t_parse *pars)
 {
 	int	i;
+	char	**keyvalue;
 
-	i = 0;
+	i = 1;
 	if (pars->cmd[1] == NULL)
+	{
 		export_env(data);
+		return ;
+	}
+	keyvalue = env_split(pars->cmd[i], '=');
 	i = 1;
 	while (pars->cmd[i])
 	{
-		if (valid_variable_name(pars->cmd[i]) == 0)
+		if (valid_variable_name(keyvalue[0]) == 0)
 			return ;
-		for_export(data, pars->cmd[i], pars);
+		for_export(data, pars->cmd[i]);
 		i++;
 	}
 }
