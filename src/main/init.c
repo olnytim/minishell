@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/04 18:54:36 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/05 19:49:41 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,30 @@
 t_parse	*duble_pointers(t_parse *input)
 {
 	t_parse	*temp;
-	t_parse	**head;
+	t_parse	*t_input;
+	t_parse	*head;
+	int		size;
 
+	t_input = input;
+	size = ft_lstsize_t_parse(input);
 	temp = NULL;
 	head = NULL;
 	if (!input)
 		return (NULL);
-	while (temp)
+	while (size--)
 	{
 		temp = malloc(sizeof (t_parse));
-		temp->cmd = input->cmd;
-		temp->operator = input->operator;
-		temp->file = input->file;
-		temp->lim = input->lim;
-		temp->next = input->next;
-		temp->prev = input->prev;
-		temp->t_tig = input->t_tig;
-		ft_lstadd_back_shell(head, temp);
+		temp->cmd = t_input->cmd;
+		temp->operator = t_input->operator;
+		temp->file = t_input->file;
+		temp->lim = t_input->lim;
+		temp->t_tig = t_input->t_tig;
+		temp->next = NULL;
+		temp->prev = NULL;
+		ft_lstadd_back_shell(&head, temp);
+		t_input = t_input->next;
 	}
-	return (temp);
+	return (head);
 }
 
 void	child(t_parse *input, t_data *data)
@@ -92,12 +97,12 @@ void	init(t_data *data)
 			printf("\n\033[1A\033[6Cexit\n");
 			exit(EXIT_SUCCESS);
 		}
-		// if (str[0] == '$' && str[1] == '\0')
-		// {
-		// 	free(str);
-		// 	printf(NO_CMD, "$");
-		// 	continue ;
-		// }
+		if (str[0] == '$' && str[1] == '\0')
+		{
+			free(str);
+			printf(NO_CMD, "$");
+			continue ;
+		}
 		input = parsing(str, data->env_lst);
 		if (input && !*input->cmd && !*input->file)
 		{
@@ -125,7 +130,7 @@ void	init(t_data *data)
 		free2d(data->env);
 		free_input(input_free, input);
 		free(str);
-		// system("leaks minishell");
+		system("leaks minishell");
 		// exit (0);
 	}
 }

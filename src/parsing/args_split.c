@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:37:50 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/04 18:43:25 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/05 12:46:25 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,10 @@ int	args_split_cont_3(char *line, char *buf, t_parse *split, int *j)
 			line[i] != '>' && line[i] != '<' && line[i] != '|')
 			buf[*j] = line[i];
 			if (line[i])
+			{
 				i++;
-			*j += 1;
+				*j += 1;
+			}
 	}
 	buf[*j] = '\0';
 	split->cmd[split->t_tig->i_cmd++] = ft_strdup(buf);

@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:47:03 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/04 18:49:07 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/05 20:22:57 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,8 @@ char	*desipher_dollar(char *line, t_env *env, int i, int j)
 			dol.str = check_dollar(&line[i], env, dol.str, dol.flag);
 			i++;
 			while (line[i] && line[i] != '$' && line[i] != ' ' &&
-				line[i] != '\t' && !(line[i] >= 33 && line[i] <= 47))
+				line[i] != '\t' && line[i] != '=' && line[i] != '?' &&
+					line[i] != '@' && !(line[i] >= 33 && line[i] <= 47))
 				i++;
 		}
 		while (line[i] && line[i] != '$')

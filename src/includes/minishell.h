@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:31:13 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/04 17:39:19 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/05 20:21:30 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ typedef struct s_data
 	char	**cmd_path;
 	t_env	*env_lst;
 }	t_data;
+
+// int		g_exit_code;
 
 void	init(t_data *data);
 
@@ -168,6 +170,8 @@ void	ft_sigline(int sig);
 void	ft_sigempty(int sig);
 
 void	free_input(t_parse *splited, t_parse *input);
+
+int	ft_lstsize_t_parse(t_parse *lst);
 
 //			BUILTINS		//
 void	echo(char **args);
