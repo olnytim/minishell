@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 14:36:58 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/05 20:00:28 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/06 14:27:26 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,16 @@ int	check_pipe(t_parse *input)
 		i++;
 	}
 	return (0);
+}
+
+int ft_isdir(const char *name)
+{
+	DIR *directory = opendir(name);
+
+	if (directory != NULL)
+	{
+		closedir(directory);
+		return 0;
+	}
+	return -1;
 }
