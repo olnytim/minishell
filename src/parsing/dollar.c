@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:47:03 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/05 20:22:57 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/06 19:45:14 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,14 @@ char	*check_dollar(char *line, t_env *env, char *str, int flag)
 	i = 1;
 	temp = env;
 	while (line[i] && line[i] != '$' && line[i] != ' ' &&
-		line[i] != '\t' && !(line[i] >= 33 && line[i] <= 47))
+		line[i] != '=' && line[i] != '@' && line[i] != '\t' && 
+			!(line[i] >= 33 && line[i] <= 47))
 		i++;
+	if (line[i] == '?' && line[i - 1] == '$')
+	{
+		str = write_dollar("$", str, "?", flag);
+		return (str);
+	}
 	dol = ft_substr(line, 1, i - 1);
 	while (temp && temp->key)
 	{
@@ -85,9 +91,9 @@ char	desipher_dollar_cont_1(char *line, char q, int *flag, int *i)
 {
 	if (*flag != 0 && line[*i] == q)
 		*flag = 0;
-	else if (line[*i] == 34)
+	else if (line[*i] == 34 && *flag != 2)
 		*flag = 1;
-	else
+	else if (*flag != 1)
 		*flag = 2;
 	q = line[*i];
 	return (q);
@@ -106,9 +112,8 @@ char	*desipher_dollar(char *line, t_env *env, int i, int j)
 		{
 			dol.str = check_dollar(&line[i], env, dol.str, dol.flag);
 			i++;
-			while (line[i] && line[i] != '$' && line[i] != ' ' &&
-				line[i] != '\t' && line[i] != '=' && line[i] != '?' &&
-					line[i] != '@' && !(line[i] >= 33 && line[i] <= 47))
+			while (line[i] && line[i] != '$' &&
+				line[i] != ' ' && line[i] != '\t')
 				i++;
 		}
 		while (line[i] && line[i] != '$')
