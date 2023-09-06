@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 14:36:58 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/31 13:17:22 by user             ###   ########.fr       */
+/*   Updated: 2023/09/05 20:00:28 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,25 @@ int	ft_parse_size(t_parse *lst)
 char	*join_2d_arr(char **arr)
 {
 	char	*str;
+	char	*tmp;
 	size_t	i;
 
 	i = 0;
 	str = ft_strdup("");
 	while (arr[i])
 	{
-		str = ft_strjoin(str, arr[i]);
+		tmp = ft_strjoin(str, arr[i]);
+		free(str);
 		if (arr[i + 1])
-			str = ft_strjoin(str, " ");
+		{
+			str = ft_strjoin(tmp, " ");
+			free(tmp);
+		}
+		else
+		{
+			str = ft_strdup(tmp);
+			free(tmp);
+		}
 		++i;
 	}
 	return (str);
@@ -45,20 +55,22 @@ char	*join_2d_arr(char **arr)
 char	**struct_to2arr(t_parse *lst)
 {
 	char	**arr;
+	char	*str;
 	size_t	size;
 	size_t	i;
 
 	size = ft_parse_size(lst);
-	arr = malloc(sizeof(char *) * (size + 1) + 3);
+	arr = malloc(sizeof(char *) * (size + 4));
 	if (!arr)
 		return (NULL);
 	i = 0;
-	arr[i] = ft_strdup("minishell");
-	i++;
+	arr[i++] = ft_strdup("minishell");
 	arr[i++] = ft_strdup("/dev/stdin");
 	while (lst)
 	{
-		arr[i] = ft_strdup(join_2d_arr(lst->cmd));
+		str = join_2d_arr(lst->cmd);
+		arr[i] = ft_strdup(str);
+		free(str);
 		lst = lst->next;
 		++i;
 	}

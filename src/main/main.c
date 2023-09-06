@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 16:16:49 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/28 19:40:47 by user             ###   ########.fr       */
+/*   Updated: 2023/09/05 20:06:45 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	main(int ac, char **av, char **envp)
 {
 	t_data	data;
+	data.env_lst = NULL;
 
 	(void)av;
 	if (ac > 1)

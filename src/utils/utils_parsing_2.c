@@ -6,11 +6,24 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:26:31 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/04 15:38:42 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/05 17:39:40 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int	ft_lstsize_t_parse(t_parse *lst)
+{
+	size_t	counter;
+
+	counter = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		++counter;
+	}
+	return (counter);
+}
 
 void	free_double(char **str)
 {
@@ -35,9 +48,12 @@ void	free_node(t_parse *input_node)
 	while (input_node)
 	{
 		temp = input_node;
+		temp->operator = NULL;
+		temp->cmd = NULL;
+		temp->file = NULL;
+		temp->lim = NULL;
+		temp->t_tig = NULL;
 		input_node = input_node->next;
-		if (temp->t_tig)
-			free(temp->t_tig);
 		free(temp);
 		temp = NULL;
 	}
@@ -47,7 +63,6 @@ void	free_input(t_parse *input_var, t_parse *input_node)
 {
 	t_parse	*temp;
 
-	(void)input_node;
 	while (input_var)
 	{
 		temp = input_var;
