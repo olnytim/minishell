@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/06 14:29:58 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/09/06 14:37:24 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ void	init(t_data *data)
 		}
 		if (str[0] == '$' && str[1] == '\0')
 		{
+			add_history(str);
 			free(str);
 			printf(NO_CMD, "$");
 			continue ;
