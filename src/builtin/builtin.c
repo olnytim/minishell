@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:56:32 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/28 15:32:53 by user             ###   ########.fr       */
+/*   Updated: 2023/09/06 20:01:49 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,21 @@ void	unset(t_data *data, char **argv)
 	data->env = join_key_and_val(data->env_lst);
 }
 
-void	echo(char **args)
+void echo(char **args)
 {
-	int	i;
-	int	flag;
-
+	int i;
+	int j;
+	int flag;
+	
 	i = 1;
 	flag = 0;
 	while (args[i] && ft_strncmp(args[i], "-n", 2) == 0)
 	{
+		j = 1;
+		while (args[i][j] == 'n')
+			j++;
+		if (ft_strncmp(args[i] + j, "n", ft_strlen(args[i] + j)) != 0)
+			break;
 		flag = 1;
 		i++;
 	}
