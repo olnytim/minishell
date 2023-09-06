@@ -3,80 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:56 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/31 18:25:08 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/09/02 17:00:12 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-// void lower_input(char *line)
-// {
-//  int i;
-
-//  i = 0;
-//  while (line[i] != '\0')
-//  {
-//   line[i] = (char)ft_tolower(line[i]);
-//   i++;
-//  }
-// }
-
-// void write_quotes(char *line, char *new, int *i, int *j)
-// {
-// 	char q;
-
-// 	q = line[*i];
-// 	// new[*j] = line[*i];
-// 	while (line[*i] == 34 || line[*i] == 39)
-// 		*i += 1;
-// 	// *j += 1;
-// 	while (line[*i] != q)
-// 	{
-// 		new[*j] = line[*i];
-// 		*i += 1;
-// 		*j += 1;
-// 	}
-// 	if (line[*i + 1] == 34 || line[*i + 1] == 39)
-// 		write_quotes(line, new, i, j);
-// 	else
-// 		*j -= 1;
-// 	// *i += 1;
-// 	return ;
-// }
-
-// char *epur_str(char *line, int j)
-// {
-// 	int i;
-// 	int flag;
-// 	char *new;
-
-// 	new = malloc(ft_strlen(line) * (char)+1);
-// 	i = 0;
-// 	while (line[i] == ' ' || line[i] == '\t')
-// 		i++;
-// 	while (line[i])
-// 	{
-// 		if ((line[i] == ' ' || line[i] == '\t'))
-// 			flag = 1;
-// 		if (line[i] != ' ' && line[i] != '\t')
-// 		{
-// 			if (flag == 1)
-// 				new[j++] = '_';
-// 			flag = 0;
-// 			if (line[i] == 34 || line[i] == 39)
-// 				write_quotes(line, new, &i, &j);
-// 			if (line[i] != 34 && line[i] != 39 && line[i] != ' ')
-// 				new[j] = line[i];
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	new[i] = '\0';
-// 	return (new);
-// }
 
 int check_quotes(char *line)
 {
@@ -84,7 +18,7 @@ int check_quotes(char *line)
 	char q;
 
 	i = 0;
-	if (!strchr(line, 34) && !strchr(line, 39))
+	if (!ft_strchr(line, 34) && !ft_strchr(line, 39))
 		return (1);
 	while (line[i])
 	{
@@ -104,6 +38,7 @@ int check_quotes(char *line)
 int	operator_after_pipe(char *line, int i)
 {
 	char	q;
+	char	*str;
 
 	while (line[i])
 	{
@@ -123,7 +58,10 @@ int	operator_after_pipe(char *line, int i)
 		}
 		i++;
 	}
-	return (1);
+	str = ft_strtrim(line, " ");
+	if (*str == '|')
+		return (free(str), 0);
+	return (free(str), 1);
 }
 
 int	operators_in_a_row(char *line, int i)
@@ -170,13 +108,17 @@ t_parse *parsing(char *line, t_env *env)
 	if (ft_strchr(line, 36))
 		true_line = desipher_dollar(line, env, 0, 0);
 	else
-	{
 		true_line = ft_strdup(line);
-		// free(line);
-	}
 	// printf("%s\n", line);
 	// int i = 0;
+	printf("%lu\n", sizeof (char **));
+	printf("%lu\n", sizeof (int *));
+	printf("%lu\n", sizeof (t_tig));
+	printf("%lu\n", sizeof (t_parse));
+	printf("%lu\n", sizeof (t_data));
+	printf("%lu\n", sizeof (t_env));
 	splited = smart_split(true_line);
+	free(true_line);
 	// t_parse *temp = splited;
 	// int a = 1;
 	// while (temp)

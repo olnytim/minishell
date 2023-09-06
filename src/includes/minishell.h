@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:31:13 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/01 13:32:18 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/09/04 15:48:23 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,16 @@ typedef struct s_tig
 	int	i_fl;
 	int	i_lm;
 	int	i_cmd;
-	int	**q_op;
 }	t_tig;
+
+typedef struct s_dol
+{
+	char	*buf;
+	char	*str;
+	int		flag;
+	char	q;
+}	t_dol;
+
 
 typedef struct s_parse
 {
@@ -83,11 +91,29 @@ int		builtin_cmp(char *cmd);
 
 int		args_split(char *line, t_parse *split, int i, int e);
 
+int		count_buf(int i, int w, char *line);
+
+int		count_cmd(int i, int w, char *line);
+
+int		count_file(int i, int w, char *line);
+
+int		count_oper(int i, int w, char *line);
+
+int		count_lim(int i, int w, char *line);
+
 t_parse	*error(int e);
 
 t_parse	*parsing(char *line, t_env *env);
 
 t_parse	*smart_split(char *line);
+
+int		count_wr_dol_buf(char *val);
+
+char	*join_dol(char *str, char *buf, int j);
+
+char	*file_lim_quotes(char *arg, int *i, int j);
+
+void	quote_handle(char *line, char *buf, int *i, int *j);
 
 char	*ft_strjoin_nl(char *str1, char *str2);
 
@@ -129,8 +155,6 @@ void	error_parsing(void);
 
 void	free2d(char **arr);
 
-void	free_input(t_parse *input);
-
 char	**env_split(char *str, char lim);
 
 void	sig_event_loop(void);
@@ -142,6 +166,8 @@ void	ft_sigquit(int sig);
 void	ft_sigline(int sig);
 
 void	ft_sigempty(int sig);
+
+void	free_input(t_parse *splited, t_parse *input);
 
 //			BUILTINS		//
 void	echo(char **args);

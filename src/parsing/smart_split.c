@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:38:59 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/01 14:37:47 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/09/02 15:30:02 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,19 @@ int count_struct(char *line, int i, int w)
 	return (w);
 }
 
-t_parse *devider(char *line, t_parse *split)
+t_parse *devider(char *line)
 {
+	t_parse	*split;
 	t_parse *temp;
 	int count;
 	int	i;
 
 	i = 0;
+	split = NULL;
 	count = count_struct(line, 0, 0) + 1;
 	while (count)
 	{
 		temp = malloc(sizeof(t_parse));
-		// temp = NULL;
 		if (!temp)
 			return (NULL);
 		temp->t_tig = malloc(sizeof(t_tig));
@@ -63,11 +64,13 @@ t_parse *devider(char *line, t_parse *split)
 
 t_parse *smart_split(char *line)
 {
-	t_parse *split;
+	// t_parse *split;
+	t_parse	*res;
 
-	split = malloc(sizeof(t_parse));
-	split = NULL;
+	// split = malloc(sizeof(t_parse));
+	// split = NULL;
 	if (!line)
 		return (NULL);
-	return (devider(line, split));
+	res = devider(line);
+	return (res);
 }

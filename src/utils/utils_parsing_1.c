@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:17:32 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/29 16:03:36 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/08/31 21:31:30 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,61 @@ char	*ft_strjoin_nl(char *str1, char *str2)
 		str2++;
 	}
 	spc[i] = '\0';
-	// free(str1);
 	return (spc);
+}
+
+void	file_lim_quotes_2(char *arg, int *i, int * j, char *buf)
+{
+	char	q;
+
+	q = arg[*i];
+	*i += 1;
+	while (arg[*i] != q)
+	{
+		buf[*j] = arg[*i];
+		*i += 1;
+		*j += 1;
+	}
+	*i += 1;
+	if (arg[*i] == 34 || arg[*i] == 39)
+		file_lim_quotes_2(arg, i, j, buf);
+}
+
+char	*file_lim_quotes(char *arg, int *i, int j)
+{
+	char	*str;
+	char	*buf;
+
+	buf = malloc(ft_strlen(arg) + 1);
+	while (arg[*i] && arg[*i] != ' ' && arg[*i] != '\t' &&
+		arg[*i] != '>' && arg[*i] != '|' && arg[*i] != '<')
+	{
+		if (arg[*i] == 34 || arg[*i] == 39)
+			file_lim_quotes_2(arg, i, &j, buf);
+		if (arg[*i] == ' ' || arg[*i] == '\t')
+			break ;
+		buf[j++] = arg[*i];
+		*i += 1;
+	}
+	buf[j] = '\0';
+	str = ft_strdup(buf);
+	free(buf);
+	return (str);
+}
+
+void	quote_handle(char *line, char *buf, int *i, int *j)
+{
+	char	q;
+
+	q = line[*i];
+	*i += 1;
+	while (line[*i] != q)
+	{
+		buf[*j] = line[*i];
+		*j += 1;
+		*i += 1;
+	}
+	*i += 1;
+	if (line[*i] == 34 || line[*i] == 39)
+		quote_handle(line, buf, i, j);
 }
