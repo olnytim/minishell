@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:23:18 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/01 17:40:40 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:15:55 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ int	ft_env_size(t_env *head)
 
 	lst = head;
 	counter = 0;
-	while (lst->next)
+	while (lst)
 	{
 		lst = lst->next;
 		++counter;
 	}
-	return (counter + 1);
+	return (counter);
 }
 
 char	**join_key_and_val(t_env *head)
@@ -78,22 +78,48 @@ char	**shlvl(char **key_val)
 	return (key_val);
 }
 
+t_env	*env_last(t_env *head)
+{
+	if (head)
+	{	
+		while (head->next)
+			head = head->next;
+	}
+	return (head);
+}
+
+t_env	*env_new(char *key, char *value)
+{
+	t_env	*new;
+
+	new = ft_calloc(1, sizeof(t_env));
+	new->key = key;
+	new->val = value;
+	return (new);
+}
+
+void	env_addback(t_env **head, t_env *to_push)
+{
+	if (head)
+	{
+		if(*head)
+			env_last(*head)->next = to_push;
+		else
+			*head = to_push;
+	}
+}
+
 void	scan_env(char **envp, t_data *data)
 {
 	char	**key_val;
 	t_env	*head;
-	t_env	*env;
 
-	env = malloc(sizeof(t_env));
-	head = env;
+	head = NULL;
 	while (*envp)
 	{
 		key_val = env_split(*envp, '=');
-		env->next = malloc(sizeof(t_env));
 		key_val = shlvl(key_val);
-		env->key = key_val[0];
-		env->val = key_val[1];
-		env = env->next;
+		env_addback(&head, env_new(key_val[0], key_val[1]));
 		free(key_val);
 		envp++;
 	}

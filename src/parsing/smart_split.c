@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   smart_split.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:38:59 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/02 15:30:02 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:38:57 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,7 @@ t_parse *devider(char *line)
 		temp = malloc(sizeof(t_parse));
 		if (!temp)
 			return (NULL);
-		temp->t_tig = malloc(sizeof(t_tig));
-		temp->t_tig->i_fl = 0;
-		temp->t_tig->i_lm = 0;
-		temp->t_tig->i_op = 0;
-		temp->t_tig->i_cmd = 0;
+		temp->t_tig = ft_calloc(1, sizeof(t_tig));
 		temp->fd_in = -1;
 		temp->fd_out = -1;
 		temp->next = NULL;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:31:13 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/04 15:48:23 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/06 14:20:43 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # include <string.h>
 # include <fcntl.h>
 # include <sys/time.h>
+# include <sys/types.h>
+# include <dirent.h>
+# include <errno.h>
 # include <limits.h>
 # include <signal.h>
 
@@ -74,6 +77,8 @@ typedef struct s_data
 	char	**cmd_path;
 	t_env	*env_lst;
 }	t_data;
+
+// int		g_exit_code;
 
 void	init(t_data *data);
 
@@ -168,6 +173,10 @@ void	ft_sigline(int sig);
 void	ft_sigempty(int sig);
 
 void	free_input(t_parse *splited, t_parse *input);
+
+int		ft_lstsize_t_parse(t_parse *lst);
+
+int		ft_isdir(const char* name);
 
 //			BUILTINS		//
 void	echo(char **args);
