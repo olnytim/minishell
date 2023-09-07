@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 20:37:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/04 21:10:18 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/07 21:58:02 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,10 @@ void	for_export(t_data *data, char *line)
 				lst->val = ft_strdup(keyvalue[1]);
 			}
 			else
+			{
+				free(lst->val);
 				lst->val = ft_strjoin(lst->val, keyvalue[1]);
+			}
 			return ;
 		}
 		lst = lst->next;
