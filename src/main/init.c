@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/06 14:37:24 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/09/09 18:38:36 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,16 @@ t_parse	*duble_pointers(t_parse *input)
 
 void	child(t_parse *input, t_data *data)
 {
-	int	status;
+	int		status;
+	pid_t	child;
 
 	status = ft_redirect(input);
 	if (status == -1)
 		return ;
 	signal(SIGQUIT, ft_sigquit);
 	signal(SIGINT, ft_sigline);
-	if (fork() == 0)
+	child = fork();
+	if (child == 0)
 	{
 		if (!*input->cmd)
 			exit(EXIT_FAILURE);
@@ -63,8 +65,9 @@ void	child(t_parse *input, t_data *data)
 		data->join_path = x_path(data, input->cmd[0]);
 		execve(data->join_path, input->cmd, data->env);
 	}
-	while (wait(NULL) != -1)
-		;
+	waitpid(child, &status, 0);
+	if (WIFEXITED(status))
+		g_exit_code = WEXITSTATUS(status);
 }
 
 void	conditions(t_parse *input, t_data *data)
@@ -89,6 +92,7 @@ void	init(t_data *data)
 
 	while (1)
 	{
+		printf("Exit code: %d\n", g_exit_code);
 		sig_event_loop();
 		str = readline(MINISHELL);
 		// str = ft_strdup("ls | wc -l >> a");
@@ -105,7 +109,7 @@ void	init(t_data *data)
 			continue ;
 		}
 		input = parsing(str, data->env_lst);
-		if (input && !*input->cmd && !*input->file)
+		if (input && !*input->cmd && !*input->file && !*input->lim)
 		{
 			if (*str)
 				add_history(str);
@@ -116,6 +120,7 @@ void	init(t_data *data)
 			free(input->operator);
 			free(input->t_tig);
 			free(input);
+			g_exit_code = 127;
 			// system("leaks minishell");
 			continue ;
 		}

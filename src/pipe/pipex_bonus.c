@@ -73,6 +73,7 @@ void	ft_pipe(char **argv, char **env, t_parse *cmd, t_data *data)
 {
 	t_pipex	pipex;
 	int		i;
+	int		status;
 
 	pipex.argc = ft_parse_size(cmd) + 3;
 	pipex.argv = argv;
@@ -86,7 +87,8 @@ void	ft_pipe(char **argv, char **env, t_parse *cmd, t_data *data)
 		cmd = cmd->next;
 	}
 	closing(&pipex);
-	while (wait(NULL) != -1)
-		;
+	waitpid(pipex.pid1, &status, 0);
+	if (WIFEXITED(status))
+		g_exit_code = WEXITSTATUS(status);
 	free2d(argv);
 }
