@@ -43,7 +43,7 @@ void	piping(t_pipex *pipex, char **env, int i, t_parse *cmd)
 
 	sig_event_loop();
 	status = ft_redirect(cmd);
-	signal(SIGQUIT, ft_sigempty);
+	signal(SIGQUIT, ft_sigquit);
 	signal(SIGINT, ft_sigline);
 	pipex->pid1 = fork();
 	if (pipex->pid1 == 0)

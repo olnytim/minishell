@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/09 18:38:36 by user             ###   ########.fr       */
+/*   Updated: 2023/09/09 22:07:54 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,14 @@ void	init(t_data *data)
 
 	while (1)
 	{
-		printf("Exit code: %d\n", g_exit_code);
+		// printf("Exit code: %d\n", g_exit_code);
 		sig_event_loop();
 		str = readline(MINISHELL);
 		// str = ft_strdup("ls | wc -l >> a");
 		if (!str)
 		{
 			printf("\n\033[1A\033[6Cexit\n");
+			g_exit_code = 0;
 			exit(EXIT_SUCCESS);
 		}
 		if (str[0] == '$' && str[1] == '\0')
