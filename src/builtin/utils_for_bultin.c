@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:24:41 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/04 21:21:18 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/11 21:00:10 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	errorchar(int symbol)
 {
-	if ((symbol >= 33 && symbol <= 35) || (symbol >= 58 &&
-		symbol <= 64) || (symbol >= 37 && symbol <= 47)
+	if ((symbol >= 33 && symbol <= 35) || (symbol >= 58
+			&& symbol <= 64) || (symbol >= 37 && symbol <= 47)
 		|| (symbol >= 91 && symbol <= 94 && symbol <= 96)
 		|| (symbol >= 123 && symbol <= 126))
 		return (1);
@@ -27,8 +27,6 @@ int	valid_variable_name(char *var)
 	int	b;
 
 	b = 0;
-	// while (var[b] == '_')
-	// 	b++;
 	while (var[b])
 	{
 		if (var[b] == 43 && var[b + 1] == '\0')
@@ -69,4 +67,11 @@ void	print2d_expo(t_data *data)
 void	export_env(t_data *data)
 {
 	print2d_expo(data);
+}
+
+int	valid_dir(char *path)
+{
+	struct stat	buf;
+
+	return (stat(path, &buf));
 }

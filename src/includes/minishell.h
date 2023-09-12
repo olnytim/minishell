@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:23 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/07 20:44:17 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/12 18:37:38 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <sys/time.h>
 # include <limits.h>
 # include <signal.h>
+# include <sys/stat.h>
 
 # include "../../libft/libft.h"
 # include <readline/readline.h>
@@ -157,7 +158,10 @@ void	for_export(t_data *data, char *line);
 // void	cd(char **args);
 void	pwd(void);
 void	env(t_data *data);
-
+int		valid_dir(char *path);
+void	norm_cd(t_data *data, t_parse *pars, char *old, char *new);
+void	find_var(t_data	*data, char *line, char *pointer);
+int		sravnim(char *str1, char *str2);
 //							//
 
 #endif

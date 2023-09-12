@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:07:13 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/07 21:59:01 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/11 21:24:25 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,27 +33,75 @@ void	find_var(t_data	*data, char *line, char *pointer)
 		tmp = ft_strdup(str);
 		free(str);
 		str = ft_strjoin(tmp, pointer);
-		free(tmp);		
+		free(tmp);
 		for_export(data, str);
 	}
 }
 
-void	find_way(t_data *data, char *old)
+char	*find_user(t_data *data)
 {
-	char	new[PATH_MAX];
+	t_env	*lst;
 
+	lst = data->env_lst;
+	while (ft_strncmp(lst->key, "USER=",
+			ft_strlen(lst->key)) != 0
+		&& ft_strncmp(lst->key, "USER=",
+			ft_strlen("USER=")) != 0)
+		lst = lst->next;
+	return (lst->val);
+}
+
+void	just_cd(t_data *data, char *user, char *old, char *new)
+{
+	char	*join;
+
+	getcwd(old, PATH_MAX);
+	join = ft_strjoin("/Users/", user);
+	chdir(join);
 	find_var(data, "OLDPWD", old);
 	getcwd(new, PATH_MAX);
 	find_var(data, "PWD", new);
-	
+}
+
+void	check_line(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line)
+	{
+		if ((line[i] >= 33 && line[i] <= 45)
+			|| (line[i] >= 48 && line[i] <= 64))
+		{
+			printf("cd: %s: No such file or directory\n", line);
+			return ;
+		}
+	}
 }
 
 void	cd(t_data *data, t_parse *pars)
 {
 	char	old[PATH_MAX];
+	char	new[PATH_MAX];
+	char	*user;
 
-	getcwd(old, PATH_MAX);
-	chdir(pars->cmd[1]);
-	find_way(data, old);
+	user = find_user(data);
+	if (pars->cmd[1] == NULL)
+		just_cd(data, user, old, new);
+	else if (pars->cmd[1][0] == '~')
+	{
+		if (pars->cmd[1][1] != '\0')
+		{
+			printf("cd: %s: No such file or directory\n", pars->cmd[1]);
+			return ;
+		}
+		just_cd(data, user, old, new);
+	}
+	else if (valid_dir(pars->cmd[1]) == -1)
+	{
+		printf("cd: %s: No such file or directory\n", pars->cmd[1]);
+		return ;
+	}
+	else
+		norm_cd(data, pars, old, new);
 }
-

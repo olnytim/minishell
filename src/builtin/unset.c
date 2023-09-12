@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:19:20 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/09/04 15:39:36 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/12 18:38:14 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ void	unset_valid_variable_name(char *var)
 	int	b;
 
 	b = 0;
-	// while (var[b] == '_')
-	// 	b++;
 	while (var[b])
 	{
 		if (unset_errorchar(var[b]) == 1)
@@ -45,30 +43,43 @@ void	unset_valid_variable_name(char *var)
 		return ;
 	}
 }
+int	delet(t_data *data, t_parse *pars, t_env *lst, int i)
+{
+	if (ft_strncmp(lst->key, pars->cmd[i],
+		ft_strlen(pars->cmd[i])) == 0 && ft_strncmp(lst->key,
+		pars->cmd[i], ft_strlen(lst->key)) == 0)
+	{
+		lst = lst->next;
+		data->env_lst = lst;
+		return (1);
+	}
+	return (0);
+}
 
 void	unset(t_data *data, t_parse *pars)
 {
 	t_env	*lst;
 	int		i;
+	t_env	*prev;
 
-	i = 1;
-	while (pars->cmd[i])
+	i = 0;
+	while (pars->cmd[++i])
 	{
-		valid_variable_name(pars->cmd[i]);
+		unset_valid_variable_name(pars->cmd[i]);
+		prev = NULL;
 		lst = data->env_lst;
-		while (lst->next && ft_strncmp(lst->key, pars->cmd[i],
-				ft_strlen(pars->cmd[i])) != 0)
+		while (lst->next)
 		{
-			if (lst->next->next && ft_strncmp(lst->next->key, pars->cmd[i],
-					ft_strlen(pars->cmd[i])) == 0 && ft_strncmp(lst->next->key,
-					pars->cmd[i], ft_strlen(lst->next->key)) == 0)
+			if (prev == NULL)
+				if (delet(data, pars, lst, i) == 1)
+					break ;
+			prev = lst;
+			if (lst->next->next && sravnim(lst->next->key, pars->cmd[i]) == 0)
 			{
 				lst->next = lst->next->next;
 				break ;
 			}
 			lst = lst->next;
 		}
-		i++;
 	}
-	// data->env = join_key_and_val(data->env_lst);
 }

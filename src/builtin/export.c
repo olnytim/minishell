@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 20:37:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/07 21:58:02 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/11 21:01:46 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	add_keyvalue_to_env(char **keyvalue, t_env *end)
 
 char	*check_plus(char *key)
 {
-	char *plus;
+	char	*plus;
 
 	plus = ft_strrchr(key, '+');
 	if (plus == NULL)
@@ -52,7 +52,7 @@ void	for_export(t_data *data, char *line)
 	t_env	*lst;
 	char	**keyvalue;
 	int		flag;
-	
+
 	lst = data->env_lst;
 	keyvalue = env_split(line, '=');
 	if (check_plus(keyvalue[0]) == 0)
