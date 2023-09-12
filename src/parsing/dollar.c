@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:47:03 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/06 19:45:14 by mac              ###   ########.fr       */
+/*   Updated: 2023/09/12 15:18:24 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+char	*fill_proc_buf(char *buf)
+{
+	char	*temp;
+
+	temp = buf;
+	if (!g_exit_code)
+		buf = ft_itoa(0);
+	else
+		buf = ft_itoa(g_exit_code);
+	free(temp);
+	return(buf);
+}
 
 char	*fill_dol_buf(char *buf, char *val, int i, int j)
 {
@@ -44,7 +57,10 @@ char	*write_dollar(char *val, char *str, char *dol, int flag)
 	else
 	{
 		buf = malloc(count_wr_dol_buf(val) + 1);
-		buf = fill_dol_buf(buf, val, 0, 0);
+		if (ft_strlen(dol) == 1 && *dol == '?')
+			buf = fill_proc_buf(buf);
+		else
+			buf = fill_dol_buf(buf, val, 0, 0);
 		if (!str)
 			temp = ft_strdup(buf);
 		else
@@ -63,13 +79,14 @@ char	*check_dollar(char *line, t_env *env, char *str, int flag)
 	i = 1;
 	temp = env;
 	while (line[i] && line[i] != '$' && line[i] != ' ' &&
-		line[i] != '=' && line[i] != '@' && line[i] != '\t' && 
-			!(line[i] >= 33 && line[i] <= 47))
+		line[i] != '=' && line[i] != '@' && line[i] != '\t' &&
+			line[i] != '?' && !(line[i] >= 33 && line[i] <= 47))
 		i++;
 	if (line[i] == '?' && line[i - 1] == '$')
 	{
-		str = write_dollar("$", str, "?", flag);
-		return (str);
+		dol = ft_strdup("?");
+		str = write_dollar("$", str, dol, flag);
+		return (free(dol), str);
 	}
 	dol = ft_substr(line, 1, i - 1);
 	while (temp && temp->key)
@@ -89,13 +106,21 @@ char	*check_dollar(char *line, t_env *env, char *str, int flag)
 
 char	desipher_dollar_cont_1(char *line, char q, int *flag, int *i)
 {
-	if (*flag != 0 && line[*i] == q)
-		*flag = 0;
+	if (flag && line[*i] == q)
+	{
+		q = 0;
+		flag = 0;
+	}
 	else if (line[*i] == 34 && *flag != 2)
+	{
+		q = line[*i];
 		*flag = 1;
+	}
 	else if (*flag != 1)
+	{
+		q = line[*i];
 		*flag = 2;
-	q = line[*i];
+	}
 	return (q);
 }
 
@@ -112,8 +137,9 @@ char	*desipher_dollar(char *line, t_env *env, int i, int j)
 		{
 			dol.str = check_dollar(&line[i], env, dol.str, dol.flag);
 			i++;
-			while (line[i] && line[i] != '$' &&
-				line[i] != ' ' && line[i] != '\t')
+			while ((line[i] == '?' && line[i - 1] == '$') || (line[i] && line[i] != '$' && line[i] != ' ' &&
+				line[i] != '=' && line[i] != '@' && line[i] != '\t' &&
+					line[i] != '?' && !(line[i] >= 33 && line[i] <= 47)))
 				i++;
 		}
 		while (line[i] && line[i] != '$')
