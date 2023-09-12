@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:56:32 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/06 20:01:49 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/09/09 16:51:52 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	pwd(void)
 
 	getcwd(dir, PATH_MAX);
 	printf("%s\n", dir);
+	g_exit_code = 0;
 }
 
 void	unset(t_data *data, char **argv)
@@ -36,6 +37,7 @@ void	unset(t_data *data, char **argv)
 		lst = lst->next;
 	}
 	data->env = join_key_and_val(data->env_lst);
+	g_exit_code = 0;
 }
 
 void echo(char **args)
@@ -65,9 +67,11 @@ void echo(char **args)
 	}
 	if (!flag)
 		printf("\n");
+	g_exit_code = 0;
 }
 
 void	env(t_data *data)
 {
 	print2d(data->env);
+	g_exit_code = 0;
 }

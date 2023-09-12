@@ -1,4 +1,4 @@
 libft/obj/*
 obj/*
 .vscode
-readline
+readline/*

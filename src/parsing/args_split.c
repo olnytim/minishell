@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:37:50 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/05 12:46:25 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/11 14:54:24 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	args_split_cont_3(char *line, char *buf, t_parse *split, int *j)
 		if (line[i] != ' ' && line[i] != '\t' &&
 			line[i] != '>' && line[i] != '<' && line[i] != '|')
 			buf[*j] = line[i];
-			if (line[i])
+			if (line[i] && line[i] != ' ' && line[i] != '\t')
 			{
 				i++;
 				*j += 1;

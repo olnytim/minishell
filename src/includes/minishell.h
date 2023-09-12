@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:31:13 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/06 14:20:43 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/09/06 18:42:13 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MINISHELL_H
 
 # define MINISHELL  "\e[1;31mebash\033[0m "
-# define NO_CMD     "command not found: %s\n"
+# define NO_CMD     "ebash: %s: command not found\n"
 
 # include <unistd.h>
 # include <stdio.h>
@@ -78,7 +78,7 @@ typedef struct s_data
 	t_env	*env_lst;
 }	t_data;
 
-// int		g_exit_code;
+int		g_exit_code;
 
 void	init(t_data *data);
 
