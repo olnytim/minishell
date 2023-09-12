@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 16:16:49 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/05 20:06:45 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/09 16:49:50 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	main(int ac, char **av, char **envp)
 	if (ac > 1)
 		printf("bro why u sent argument(s) 💀💀💀\n");
 	scan_env(envp, &data);
+	g_exit_code = 0;
 	init(&data);
 	return (0);
 }

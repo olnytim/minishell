@@ -14,7 +14,7 @@
 # define MINISHELL_H
 
 # define MINISHELL  "\e[1;31mebash\033[0m "
-# define NO_CMD     "command not found: %s\n"
+# define NO_CMD     "ebash: %s: command not found\n"
 
 # include <unistd.h>
 # include <stdio.h>
@@ -22,6 +22,9 @@
 # include <string.h>
 # include <fcntl.h>
 # include <sys/time.h>
+# include <sys/types.h>
+# include <dirent.h>
+# include <errno.h>
 # include <limits.h>
 # include <signal.h>
 
@@ -171,7 +174,9 @@ void	ft_sigempty(int sig);
 
 void	free_input(t_parse *splited, t_parse *input);
 
-int	ft_lstsize_t_parse(t_parse *lst);
+int		ft_lstsize_t_parse(t_parse *lst);
+
+int		ft_isdir(const char* name);
 
 //			BUILTINS		//
 void	echo(char **args);
