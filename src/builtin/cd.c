@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:07:13 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/11 21:24:25 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/12 22:12:39 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ char	*find_user(t_data *data)
 
 void	just_cd(t_data *data, char *user, char *old, char *new)
 {
-	char	*join;
+	// char	*join;
 
 	getcwd(old, PATH_MAX);
-	join = ft_strjoin("/Users/", user);
-	chdir(join);
+	// join = ft_strjoin("/Users/", user);
+	chdir(user);
 	find_var(data, "OLDPWD", old);
 	getcwd(new, PATH_MAX);
 	find_var(data, "PWD", new);
@@ -84,18 +84,23 @@ void	cd(t_data *data, t_parse *pars)
 	char	old[PATH_MAX];
 	char	new[PATH_MAX];
 	char	*user;
+	char	*valid;
+	char	*joi;
 
 	user = find_user(data);
 	if (pars->cmd[1] == NULL)
 		just_cd(data, user, old, new);
 	else if (pars->cmd[1][0] == '~')
 	{
-		if (pars->cmd[1][1] != '\0')
-		{
-			printf("cd: %s: No such file or directory\n", pars->cmd[1]);
-			return ;
-		}
-		just_cd(data, user, old, new);
+			joi = ft_strjoin("/Users/", user);
+			valid = ft_strjoin(joi, pars->cmd[1] + 1);
+			if (valid_dir(valid) == -1)
+			{
+				printf("cd: %s: No such file or directory\n", pars->cmd[1]);
+				return ;
+			}
+			else 
+				just_cd(data, valid, old, new);	
 	}
 	else if (valid_dir(pars->cmd[1]) == -1)
 	{
