@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:23 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/13 12:25:49 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/13 13:13:35 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,10 @@ int		ft_lstsize_t_parse(t_parse *lst);
 
 int		ft_isdir(const char* name);
 
+void	env_addback(t_env **head, t_env *to_push);
+t_env	*env_new(char *key, char *value);
+t_env	*env_last(t_env *head);
+
 //			BUILTINS		//
 void	echo(char **args);
 void	unset(t_data *data, t_parse *pars);
@@ -201,6 +205,7 @@ void	norm_cd(t_data *data, t_parse *pars, char *old, char *new);
 void	find_var(t_data	*data, char *line, char *pointer);
 int		sravnim(char *str1, char *str2);
 int		tilda(t_parse *pars, char *valid);
+
 //							//
 
 #endif

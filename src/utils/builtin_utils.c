@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:24:02 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/07 20:57:17 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/13 12:40:50 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,31 +39,31 @@ int	builtin_cmp(char *cmd)
 		return (1);
 	return (0);
 }
-int		check_builtin(t_parse *cmd, t_data *data)
+int	check_builtin(t_parse *cmd, t_data *data)
 {
 	if (!*cmd->cmd)
 		return (0);
-    if (ft_strncmp(cmd->cmd[0], "pwd", 3) == 0
-        && ft_strncmp(cmd->cmd[0], "pwd", ft_strlen(cmd->cmd[0])) == 0)
-        return (pwd(), close(cmd->fd), 1);
-    else if (ft_strncmp(cmd->cmd[0], "echo", 4) == 0
-        && ft_strncmp(cmd->cmd[0], "echo", ft_strlen(cmd->cmd[0])) == 0)
-        return (echo(cmd->cmd), close(cmd->fd), 1);
-    else if (ft_strncmp(cmd->cmd[0], "unset", 5) == 0
-        && ft_strncmp(cmd->cmd[0], "unset", ft_strlen(cmd->cmd[0])) == 0)
-        return (unset(data, cmd), close(cmd->fd), 1);
-    else if (ft_strncmp(cmd->cmd[0], "export", 6) == 0
+	if (ft_strncmp(cmd->cmd[0], "pwd", 3) == 0
+		&& ft_strncmp(cmd->cmd[0], "pwd", ft_strlen(cmd->cmd[0])) == 0)
+		return (pwd(), close(cmd->fd_in), close(cmd->fd_out), 1);
+	else if (ft_strncmp(cmd->cmd[0], "echo", 4) == 0
+		&& ft_strncmp(cmd->cmd[0], "echo", ft_strlen(cmd->cmd[0])) == 0)
+		return (echo(cmd->cmd), close(cmd->fd_in), close(cmd->fd_out), 1);
+	else if (ft_strncmp(cmd->cmd[0], "unset", 5) == 0
+		&& ft_strncmp(cmd->cmd[0], "unset", ft_strlen(cmd->cmd[0])) == 0)
+		return (unset(data, cmd), close(cmd->fd_in), close(cmd->fd_out), 1);
+	else if (ft_strncmp(cmd->cmd[0], "env", 3) == 0
+		&& ft_strncmp(cmd->cmd[0], "env", ft_strlen(cmd->cmd[0])) == 0)
+		return (env(data), close(cmd->fd_in), close(cmd->fd_out), 1);
+	else if (ft_strncmp(cmd->cmd[0], "export", 6) == 0
         && ft_strncmp(cmd->cmd[0], "export", ft_strlen(cmd->cmd[0])) == 0)
-        return (export(data, cmd), close(cmd->fd), 1);
-    else if (ft_strncmp(cmd->cmd[0], "env", 3) == 0
-        && ft_strncmp(cmd->cmd[0], "env", ft_strlen(cmd->cmd[0])) == 0)
-        return (env(data), close(cmd->fd), 1);
+		return (export(data, cmd), close(cmd->fd_in), close(cmd->fd_out), 1);
 	else if (ft_strncmp(cmd->cmd[0], "exit", 4) == 0
 		&& ft_strncmp(cmd->cmd[0], "exit", ft_strlen(cmd->cmd[0])) == 0)
-		return (ft_exit(cmd), close(cmd->fd), 1);
+		return (ft_exit(cmd), close(cmd->fd_in), close(cmd->fd_out),1);
     else if (ft_strncmp(cmd->cmd[0], "cd", 2) == 0
 		&& ft_strncmp(cmd->cmd[0], "cd", ft_strlen(cmd->cmd[0])) == 0)
-		return (cd(data, cmd), close(cmd->fd), 1);
+		return (cd(data, cmd), close(cmd->fd_in), close(cmd->fd_out), 1);
     return (0);
 }
 

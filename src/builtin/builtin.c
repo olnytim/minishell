@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:15:25 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/09/01 18:44:23 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/13 13:48:47 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ void	pwd(void)
 
 void	echo(char **args)
 {
-	int i;
-	int j;
-	int flag;
-	
+	int	i;
+	int	j;
+	int	flag;
+
 	i = 1;
 	flag = 0;
 	while (args[i] && ft_strncmp(args[i], "-n", 2) == 0)
@@ -35,14 +35,13 @@ void	echo(char **args)
 		while (args[i][j] == 'n')
 			j++;
 		if (ft_strncmp(args[i] + j, "n", ft_strlen(args[i] + j)) != 0)
-			break;
+			break ;
 		flag = 1;
 		i++;
 	}
 	while (args[i])
 	{
-		printf("%s", args[i]);
-		i++;
+		printf("%s", args[i++]);
 		if (args[i])
 			printf(" ");
 	}

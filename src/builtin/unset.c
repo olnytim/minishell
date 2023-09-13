@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:19:20 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/09/13 12:28:13 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/13 13:39:22 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,11 @@ void	unset(t_data *data, t_parse *pars)
 	i = 0;
 	while (pars->cmd[++i])
 	{
+		env_addback(&data->env_lst, env_new(NULL, NULL));
 		unset_valid_variable_name(pars->cmd[i]);
 		prev = NULL;
 		lst = data->env_lst;
-		while (lst->next)
+		while (lst && lst->next)
 		{
 			if (prev == NULL)
 				if (delet(data, pars, lst, i) == 1)

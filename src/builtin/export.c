@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 20:37:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/11 21:01:46 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/13 13:25:17 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	for_export(t_data *data, char *line)
 		}
 		lst = lst->next;
 	}
-	add_keyvalue_to_env(keyvalue, lst);
+	env_addback(&data->env_lst, env_new(keyvalue[0], keyvalue[1]));
 }
 
 void	export(t_data *data, t_parse *pars)
