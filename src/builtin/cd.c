@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:07:13 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/12 22:12:39 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/13 12:26:16 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,7 @@ char	*find_user(t_data *data)
 
 void	just_cd(t_data *data, char *user, char *old, char *new)
 {
-	// char	*join;
-
 	getcwd(old, PATH_MAX);
-	// join = ft_strjoin("/Users/", user);
 	chdir(user);
 	find_var(data, "OLDPWD", old);
 	getcwd(new, PATH_MAX);
@@ -94,13 +91,10 @@ void	cd(t_data *data, t_parse *pars)
 	{
 			joi = ft_strjoin("/Users/", user);
 			valid = ft_strjoin(joi, pars->cmd[1] + 1);
-			if (valid_dir(valid) == -1)
-			{
-				printf("cd: %s: No such file or directory\n", pars->cmd[1]);
-				return ;
-			}
-			else 
-				just_cd(data, valid, old, new);	
+		if (tilda(pars, valid) == 0)
+			return ;
+		else
+			just_cd(data, valid, old, new);
 	}
 	else if (valid_dir(pars->cmd[1]) == -1)
 	{

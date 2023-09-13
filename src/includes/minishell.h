@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:23 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/12 21:27:46 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/13 12:25:49 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,7 @@ int		valid_dir(char *path);
 void	norm_cd(t_data *data, t_parse *pars, char *old, char *new);
 void	find_var(t_data	*data, char *line, char *pointer);
 int		sravnim(char *str1, char *str2);
+int		tilda(t_parse *pars, char *valid);
 //							//
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:19:20 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/09/12 18:38:14 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/13 12:28:13 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,12 @@ void	unset_valid_variable_name(char *var)
 		return ;
 	}
 }
+
 int	delet(t_data *data, t_parse *pars, t_env *lst, int i)
 {
 	if (ft_strncmp(lst->key, pars->cmd[i],
-		ft_strlen(pars->cmd[i])) == 0 && ft_strncmp(lst->key,
-		pars->cmd[i], ft_strlen(lst->key)) == 0)
+			ft_strlen(pars->cmd[i])) == 0 && ft_strncmp(lst->key,
+			pars->cmd[i], ft_strlen(lst->key)) == 0)
 	{
 		lst = lst->next;
 		data->env_lst = lst;
