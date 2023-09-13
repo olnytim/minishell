@@ -6,13 +6,13 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:37:50 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/11 14:54:24 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/13 14:30:13 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void ops_file_lim_split(char *line, t_parse *split, int *i)
+void	ops_file_lim_split(char *line, t_parse *split, int *i)
 {
 	int		start;
 	char	c;
@@ -24,7 +24,8 @@ void ops_file_lim_split(char *line, t_parse *split, int *i)
 		start = *i;
 		if (line[*i + 1] == c)
 			*i += 1;
-		split->operator[split->t_tig->i_op] = ft_substr(line, start, (*i - start + 1));
+		split->operator[split->t_tig->i_op]
+			= ft_substr(line, start, (*i - start + 1));
 		*i += 1;
 		while ((line[*i] == ' ' || line[*i] == '\t') && line[*i])
 			*i += 1;
@@ -77,14 +78,14 @@ int	args_split_cont_3(char *line, char *buf, t_parse *split, int *j)
 	{
 		if (line[i] == 34 || line[i] == 39)
 			quote_handle(line, buf, &i, j);
-		if (line[i] != ' ' && line[i] != '\t' &&
-			line[i] != '>' && line[i] != '<' && line[i] != '|')
+		if (line[i] != ' ' && line[i] != '\t'
+			&& line[i] != '>' && line[i] != '<' && line[i] != '|')
 			buf[*j] = line[i];
-			if (line[i] && line[i] != ' ' && line[i] != '\t')
-			{
-				i++;
-				*j += 1;
-			}
+		if (line[i] && line[i] != ' ' && line[i] != '\t')
+		{
+			i++;
+			*j += 1;
+		}
 	}
 	buf[*j] = '\0';
 	split->cmd[split->t_tig->i_cmd++] = ft_strdup(buf);
@@ -93,22 +94,23 @@ int	args_split_cont_3(char *line, char *buf, t_parse *split, int *j)
 	return (i);
 }
 
-int args_split(char *line, t_parse *split, int i, int j)
+int	args_split(char *line, t_parse *split, int i, int j)
 {
 	char	*buf;
 	char	*buf_ind;
 
 	buf_ind = NULL;
 	buf_ind = args_split_cont_1(line, buf_ind, split);
-	if (!split->cmd || !split->file || !split->lim || !split->operator || !buf_ind)
+	if (!split->cmd || !split->file || !split->lim
+		|| !split->operator || !buf_ind)
 		return (0);
 	buf = buf_ind;
 	while (line[i] && line[i] != '|')
 	{
 		while (line[i] == ' ' || line[i] == '\t')
 			i++;
-		if (line[i] != ' ' && line[i] != '\t' && line[i] != '>' &&
-			line[i] != '<' && line[i] != '|' && line[i])
+		if (line[i] != ' ' && line[i] != '\t' && line[i] != '>'
+			&& line[i] != '<' && line[i] != '|' && line[i])
 			i += args_split_cont_3(&line[i], buf, split, &j);
 		else
 			ops_file_lim_split(line, split, &i);

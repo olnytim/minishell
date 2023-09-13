@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:56 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/08 13:05:59 by user             ###   ########.fr       */
+/*   Updated: 2023/09/13 15:31:58 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int check_quotes(char *line)
+int	check_quotes(char *line)
 {
-	int i;
-	char q;
+	int		i;
+	char	q;
 
 	i = 0;
 	if (!ft_strchr(line, 34) && !ft_strchr(line, 39))
@@ -69,7 +69,7 @@ int	operators_in_a_row(char *line, int i)
 	char	q;
 	char	c;
 
-	while (line[i])
+	while (line[i++])
 	{
 		if (line[i] == '>' || line[i] == '<')
 		{
@@ -79,7 +79,8 @@ int	operators_in_a_row(char *line, int i)
 			i++;
 			while (line[i] == ' ' || line[i] == '\t')
 				i++;
-			if (line[i] == '>' || line[i] == '<' || line[i] == '|' || line[i] == '\0')
+			if (line[i] == '>' || line[i] == '<'
+				|| line[i] == '|' || line[i] == '\0')
 				return (0);
 		}
 		if (line[i] == 34 || line[i] == 39)
@@ -88,12 +89,11 @@ int	operators_in_a_row(char *line, int i)
 			while (line[i] != q)
 				i++;
 		}
-		i++;
 	}
 	return (1);
 }
 
-t_parse *parsing(char *line, t_env *env)
+t_parse	*parsing(char *line, t_env *env)
 {
 	t_parse	*splited;
 	char	*true_line;
@@ -103,7 +103,7 @@ t_parse *parsing(char *line, t_env *env)
 		return (error(0));
 	if (!operator_after_pipe(line, 0))
 		return (error(1));
-	if (!operators_in_a_row(line, 0))
+	if (!operators_in_a_row(line, -1))
 		return (error(2));
 	if (ft_strchr(line, 36))
 		true_line = desipher_dollar(line, env, 0, 0);

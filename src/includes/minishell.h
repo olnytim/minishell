@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:31:13 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/06 18:42:13 by mac              ###   ########.fr       */
+/*   Updated: 2023/09/13 15:14:06 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,11 +124,19 @@ char	*ft_strjoin_nl(char *str1, char *str2);
 
 char	*desipher_dollar(char *line, t_env *env, int i, int j);
 
+char	*fill_proc_buf(char *buf);
+
 char	**join_key_and_val(t_env *head);
+
+int		desipher_dollar_1(char *line, int i);
 
 void	ft_pipe(char **argv, char **env, t_parse *cmd, t_data *data);
 
 int		ft_parse_size(t_parse *lst);
+
+char	desipher_dollar_cont_1(char *line, char q, int *flag, int *i);
+
+char	*fill_dol_buf(char *buf, char *val, int i, int j);
 
 char	*join_2d_arr(char **arr);
 

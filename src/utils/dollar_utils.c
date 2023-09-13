@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 22:56:44 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/04 15:16:38 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/13 15:11:19 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,54 @@ int	count_wr_dol_buf(char *val)
 		w++;
 	}
 	return (w);
+}
+
+char	*fill_proc_buf(char *buf)
+{
+	char	*temp;
+
+	temp = buf;
+	if (!g_exit_code)
+		buf = ft_itoa(0);
+	else
+		buf = ft_itoa(g_exit_code);
+	free(temp);
+	return (buf);
+}
+
+char	*fill_dol_buf(char *buf, char *val, int i, int j)
+{
+	while (val[i])
+	{
+		if (val[i] == '>' || val[i] == '<' || val[i] == '|')
+		{
+			buf[j++] = 39;
+			while (val[i] == '>' || val[i] == '<' || val[i] == '|')
+				i++;
+			buf[j++] = 39;
+		}
+		buf[j++] = val[i++];
+	}
+	buf[j] = '\0';
+	return (buf);
+}
+
+char	desipher_dollar_cont_1(char *line, char q, int *flag, int *i)
+{
+	if (flag && line[*i] == q)
+	{
+		q = 0;
+		flag = 0;
+	}
+	else if (line[*i] == 34 && *flag != 2)
+	{
+		q = line[*i];
+		*flag = 1;
+	}
+	else if (*flag != 1)
+	{
+		q = line[*i];
+		*flag = 2;
+	}
+	return (q);
 }
