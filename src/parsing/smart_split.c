@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:38:59 by timelkon          #+#    #+#             */
-/*   Updated: 2023/08/22 13:08:08 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:38:57 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,26 +31,24 @@ int count_struct(char *line, int i, int w)
 	return (w);
 }
 
-t_parse *devider(char *line, t_parse *split)
+t_parse *devider(char *line)
 {
+	t_parse	*split;
 	t_parse *temp;
 	int count;
 	int	i;
 
 	i = 0;
+	split = NULL;
 	count = count_struct(line, 0, 0) + 1;
 	while (count)
 	{
 		temp = malloc(sizeof(t_parse));
-		// temp = NULL;
 		if (!temp)
 			return (NULL);
-		temp->t_tig = malloc(sizeof(t_tig));
-		temp->t_tig->i_fl = 0;
-		temp->t_tig->i_lm = 0;
-		temp->t_tig->i_op = 0;
-		temp->t_tig->i_cmd = 0;
-		temp->fd = -1;
+		temp->t_tig = ft_calloc(1, sizeof(t_tig));
+		temp->fd_in = -1;
+		temp->fd_out = -1;
 		temp->next = NULL;
 		temp->prev = NULL;
 		i += args_split(&line[i], temp, 0, 0);
@@ -62,11 +60,13 @@ t_parse *devider(char *line, t_parse *split)
 
 t_parse *smart_split(char *line)
 {
-	t_parse *split;
+	// t_parse *split;
+	t_parse	*res;
 
-	split = malloc(sizeof(t_parse));
-	split = NULL;
+	// split = malloc(sizeof(t_parse));
+	// split = NULL;
 	if (!line)
 		return (NULL);
-	return (devider(line, split));
+	res = devider(line);
+	return (res);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:04:30 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/13 18:40:38 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/09/09 18:35:26 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,15 @@ char	*find_path(char **env)
 	return (0);
 }
 
+void	check_dir(char *argv)
+{
+	if (ft_isdir(argv) == 0)
+	{
+		printf("ebash: %s: is a directory\n", argv);
+		exit(EXIT_FAILURE);
+	}
+}
+
 char	*x_path(t_data *data, char *argv)
 {
 	int		i;
@@ -45,9 +54,10 @@ char	*x_path(t_data *data, char *argv)
 	if (!*data->path)
 		return (NULL);
 	data->cmd_path = ft_split(data->path, ':');
+	check_dir(argv);
 	if (access(argv, X_OK) == 0)
 		return (argv);
-	while (data->cmd_path[i])
+	while (data->cmd_path[i] && *argv)
 	{
 		data->cmd_path[i] = ft_strjoin(data->cmd_path[i], "/");
 		data->cmd_path[i] = ft_strjoin(data->cmd_path[i], argv);

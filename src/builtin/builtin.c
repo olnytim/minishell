@@ -18,17 +18,24 @@ void	pwd(void)
 
 	getcwd(dir, PATH_MAX);
 	printf("%s\n", dir);
+	g_exit_code = 0;
 }
 
 void	echo(char **args)
 {
-	int	i;
-	int	flag;
-
+	int i;
+	int j;
+	int flag;
+	
 	i = 1;
 	flag = 0;
 	while (args[i] && ft_strncmp(args[i], "-n", 2) == 0)
 	{
+		j = 1;
+		while (args[i][j] == 'n')
+			j++;
+		if (ft_strncmp(args[i] + j, "n", ft_strlen(args[i] + j)) != 0)
+			break;
 		flag = 1;
 		i++;
 	}
@@ -41,9 +48,11 @@ void	echo(char **args)
 	}
 	if (!flag)
 		printf("\n");
+	g_exit_code = 0;
 }
 
 void	env(t_data *data)
 {
 	print2d(data->env);
+	g_exit_code = 0;
 }

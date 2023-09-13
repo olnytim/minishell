@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 prefix=/Users/valeriafedorova/Desktop/minishell/readline
+=======
+prefix=/Users/user/Desktop/minishell/readline
+>>>>>>> origin/crrips
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
