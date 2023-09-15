@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 12:29:52 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/15 18:02:25 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/09/15 22:34:44 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_env
 {
 	char			*key;
 	char			*val;
+	int				flag;
 	struct s_env	*next;
 }	t_env;
 
@@ -210,7 +211,7 @@ int		unset_forchar(int symbol);
 void	unset_valid_variable_name(char *var);
 int		forchar(int symbol);
 int		valid_variable_name(char *var);
-void	export_env(t_env *head);
+void	export_env(t_env *head, char** keyvalue);
 void	cd(t_data *data, t_parse *pars);
 void	for_export(t_data *data, char *line);
 // void	cd(char **args);

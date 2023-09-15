@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 20:37:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/15 18:20:51 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/09/15 21:58:26 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	export(t_data *data, t_parse *pars)
 	i = 1;
 	if (pars->cmd[1] == NULL)
 	{
-		export_env(data->env_lst);
+		export_env(data->env_lst, data->env);
 		return ;
 	}
 	keyvalue = env_split(pars->cmd[i], '=');

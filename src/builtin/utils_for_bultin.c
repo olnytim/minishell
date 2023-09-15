@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_for_bultin.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:24:41 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/14 21:55:51 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/15 22:26:14 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,39 @@ int	valid_variable_name(char *var)
 	}
 	return (1);
 }
+int	find_equal(char *str, char c)
+{
+	int	i;
 
-void	export_env(t_env *head)
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+void	export_env(t_env *head, char **keyvalue)
 {
 	t_env	*current;
+	int		i;
 
+	i = 0;
 	current = head;
 	while (current != NULL)
 	{
-		if (!*current->val)
-			printf("declare -x %s=%s\n", current->key, current->val);
-		else
+		if (current->val && *current->val && *current->key)
 			printf("declare -x %s=\"%s\"\n", current->key, current->val);
+		else if (find_equal(keyvalue[i], '=') == 0)
+			printf("declare -x %s\n", current->key);
+		else if ((find_equal(keyvalue[i], '=') == 1))
+			printf("declare -x %s=\"\"\n", current->key);
+		i++;
 		current = current->next;
 	}
 }
+// name && name != NULL && *name == '=' && *(name + 1) == '\0'
 
 int	valid_dir(char *path)
 {

@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:23:18 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/15 17:04:16 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/09/15 21:39:30 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,16 @@ char	**join_key_and_val(t_env *head)
 	{
 		if (!lst->key)
 			break ;
-		arr[i] = ft_strjoin(lst->key, "=");
-		tmp = ft_strdup(arr[i]);
-		free(arr[i]);
-		arr[i] = ft_strjoin(tmp, lst->val);
-		free(tmp);
+		if (*lst->val)
+		{
+			arr[i] = ft_strjoin(lst->key, "=");
+			tmp = ft_strdup(arr[i]);
+			free(arr[i]);
+			arr[i] = ft_strjoin(tmp, lst->val);
+			free(tmp);
+		}
+		else
+			arr[i] = ft_strdup(lst->key);
 		lst = lst->next;
 		++i;
 	}

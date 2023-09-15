@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:14:34 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/14 17:03:06 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/15 18:35:17 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	print_linked_list(t_env *head)
 	current = head;
 	while (current != NULL)
 	{
-		if (*current->key || *current->val)
+		if (*current->key && *current->val)
 			printf("%s=%s\n", current->key, current->val);
 		current = current->next;
 	}

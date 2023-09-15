@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/15 18:05:18 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/09/15 18:21:59 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,5 @@ void	init(t_data *data)
 		free2d(data->env);
 		free_input(input_free, input);
 		free(str);
-		system ("leaks minishell");
 	}
 }
