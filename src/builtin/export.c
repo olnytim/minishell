@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 20:37:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/15 15:27:19 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/15 15:30:54 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ void	for_export(t_data *data, char *line)
 		lst = lst->next;
 	}
 	env_addback(&data->env_lst, env_new(keyvalue[0], keyvalue[1]));
-	// free(keyvalue[0]);
-	// free(keyvalue[1]);
 	free(keyvalue);
 }
 

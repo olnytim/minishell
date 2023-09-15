@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:07:13 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/14 18:27:24 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/15 15:47:06 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	find_var(t_data	*data, char *line, char *pointer)
 		str = ft_strjoin(tmp, pointer);
 		free(tmp);
 		for_export(data, str);
+		free(str);
 	}
 }
 
@@ -57,6 +58,8 @@ void	just_cd(t_data *data, char *user, char *old, char *new)
 	find_var(data, "OLDPWD", old);
 	new = getcwd(0, 0);
 	find_var(data, "PWD", new);
+	free(old);
+	free(new);
 }
 
 void	check_line(char *line)
@@ -87,11 +90,12 @@ void	cd(t_data *data, t_parse *pars)
 	joi = ft_strjoin("/Users/", user);
 	if (pars->cmd[1] == NULL)
 		just_cd(data, joi, old, new);
-	else if (pars->cmd[1][0] == '~') // ft_strcmp(pars->cmd[1], "~") == 0
+	else if (pars->cmd[1][0] == '~')
 	{
 		valid = ft_strjoin(joi, pars->cmd[1] + 1);
 		if (tilda(pars, valid) == 0)
 		{
+			free(joi);
 			free(valid);
 			return ;
 		}
@@ -103,8 +107,5 @@ void	cd(t_data *data, t_parse *pars)
 		printf("cd: %s: No such file or directory\n", pars->cmd[1]);
 	else
 		norm_cd(data, pars, old, new);
-	free(user);
 	free(joi);
-	// printf("Value of old and new: %p -> %p\n", old, new);
-	// system ("leaks minishell");
 }
