@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 20:37:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/15 15:30:54 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/15 16:59:07 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-char	*check_plus(char *key)
+int	check_plus(char *key)
 {
 	char	*plus;
 
 	plus = ft_strrchr(key, '+');
 	if (plus == NULL)
-		return (key);
+		return (0);
 	if (plus[0] == '+')
 	{
 		plus[0] = '\0';
-		return (key);
+		return (1);
 	}
 	else
-		return (key);
+		return (0);
 }
 
 void	for_export(t_data *data, char *line)
@@ -35,10 +35,11 @@ void	for_export(t_data *data, char *line)
 	int		flag;
 	char	*tmp;
 
+	flag = 0;
 	lst = data->env_lst;
 	keyvalue = env_split(line, '=');
-	if (check_plus(keyvalue[0]) == 0)
-		flag = 0;
+	if (check_plus(keyvalue[0]))
+		flag = 1;
 	while (lst)
 	{
 		if (ft_strncmp(lst->key, keyvalue[0], ft_strlen(keyvalue[0])) == 0
@@ -53,6 +54,7 @@ void	for_export(t_data *data, char *line)
 			else
 			{
 				tmp = lst->val;
+				lst->val = NULL;
 				lst->val = ft_strjoin(tmp, keyvalue[1]);
 				free(tmp);
 			}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/15 15:55:48 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/15 17:05:48 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,5 +133,6 @@ void	init(t_data *data)
 		free2d(data->env);
 		free_input(input_free, input);
 		free(str);
+		system ("leaks minishell");
 	}
 }

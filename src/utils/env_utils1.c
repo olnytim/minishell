@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:23:18 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/15 12:29:03 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/09/15 17:04:16 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,15 @@ void	scan_env(char **envp, t_data *data)
 	while (*envp)
 	{
 		key_val = env_split(*envp, '=');
-		key_val = shlvl(key_val);
+		if (key_val[0][0] == 'O' && ft_strncmp(key_val[0], "OLDPWD", 6) == 0
+		&& ft_strncmp(key_val[0], "OLDPWD", ft_strlen(key_val[0])) == 0)
+		{
+			env_addback(&head, env_new(ft_strdup("OLDPWD"), ft_strdup("\0")));
+			free2d(key_val);
+			envp++;
+			continue ;
+		}
+		key_val = shlvl(key_val); 
 		env_addback(&head, env_new(key_val[0], key_val[1]));
 		free(key_val);
 		envp++;
