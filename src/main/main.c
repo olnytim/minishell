@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 16:16:49 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/14 15:16:15 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/14 15:21:23 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 int	main(int ac, char **av, char **envp)
 {
 	t_data	data;
-	data.env_lst = NULL;
 
 	(void)av;
+	data.env_lst = NULL;
 	if (ac > 1)
 		printf("bro why u sent argument(s) 💀💀💀\n");
 	scan_env(envp, &data);

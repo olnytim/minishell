@@ -3,10 +3,9 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/11 17:35:23 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/14 21:56:00 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/15 12:29:52 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +55,6 @@ typedef struct s_dol
 	char	q;
 }	t_dol;
 
-
 typedef struct s_parse
 {
 	char			**cmd;
@@ -86,6 +84,16 @@ void	init(t_data *data);
 char	*find_path(char **env);
 
 char	*x_path(t_data *data, char *argv);
+
+int		ft_env_size(t_env *head);
+
+char	**shlvl(char **key_val);
+
+void	env_addback(t_env **head, t_env *to_push);
+
+t_env	*env_new(char *key, char *value);
+
+void	check_shlvl(t_env **head);
 
 void	scan_env(char **envp, t_data *data);
 
@@ -125,11 +133,19 @@ char	*ft_strjoin_nl(char *str1, char *str2);
 
 char	*desipher_dollar(char *line, t_env *env, int i, int j);
 
+char	*fill_proc_buf(char *buf);
+
 char	**join_key_and_val(t_env *head);
+
+int		desipher_dollar_1(char *line, int i);
 
 void	ft_pipe(char **argv, char **env, t_parse *cmd, t_data *data);
 
 int		ft_parse_size(t_parse *lst);
+
+char	desipher_dollar_cont_1(char *line, char q, int *flag, int *i);
+
+char	*fill_dol_buf(char *buf, char *val, int i, int j);
 
 char	*join_2d_arr(char **arr);
 
@@ -177,7 +193,7 @@ void	free_input(t_parse *splited, t_parse *input);
 
 int		ft_lstsize_t_parse(t_parse *lst);
 
-int		ft_isdir(const char* name);
+int		ft_isdir(const char *name);
 
 void	env_addback(t_env **head, t_env *to_push);
 t_env	*env_new(char *key, char *value);

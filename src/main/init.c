@@ -92,10 +92,8 @@ void	init(t_data *data)
 
 	while (1)
 	{
-		// printf("Exit code: %d\n", g_exit_code);
 		sig_event_loop();
 		str = readline(MINISHELL);
-		// str = ft_strdup("ls | wc -l >> a");
 		if (!str)
 		{
 			printf("\n\033[1A\033[6Cexit\n");
@@ -122,10 +120,8 @@ void	init(t_data *data)
 			free(input->t_tig);
 			free(input);
 			g_exit_code = 127;
-			// system("leaks minishell");
 			continue ;
 		}
-		// exit (0);
 		data->env = join_key_and_val(data->env_lst);
 		data->path = find_path(data->env);
 		input_free = duble_pointers(input);
@@ -137,7 +133,5 @@ void	init(t_data *data)
 		free2d(data->env);
 		free_input(input_free, input);
 		free(str);
-		system("leaks minishell");
-		// exit (0);
 	}
 }

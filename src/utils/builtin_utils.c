@@ -51,7 +51,8 @@ int	check_builtin(t_parse *cmd, t_data *data)
 		return (echo(cmd->cmd), close(cmd->fd_in), close(cmd->fd_out), 1);
 	else if (ft_strncmp(cmd->cmd[0], "unset", 5) == 0
 		&& ft_strncmp(cmd->cmd[0], "unset", ft_strlen(cmd->cmd[0])) == 0)
-		return (unset(data, cmd), close(cmd->fd_in), close(cmd->fd_out), 1);
+		return (unset(data, cmd->cmd),
+			close(cmd->fd_in), close(cmd->fd_out), 1);
 	else if (ft_strncmp(cmd->cmd[0], "env", 3) == 0
 		&& ft_strncmp(cmd->cmd[0], "env", ft_strlen(cmd->cmd[0])) == 0)
 		return (env(data), close(cmd->fd_in), close(cmd->fd_out), 1);

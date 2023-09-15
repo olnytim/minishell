@@ -6,16 +6,16 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:56 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/02 14:33:32 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/15 12:21:11 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int check_quotes(char *line)
+int	check_quotes(char *line)
 {
-	int i;
-	char q;
+	int		i;
+	char	q;
 
 	i = 0;
 	if (!ft_strchr(line, 34) && !ft_strchr(line, 39))
@@ -79,21 +79,21 @@ int	operators_in_a_row(char *line, int i)
 			i++;
 			while (line[i] == ' ' || line[i] == '\t')
 				i++;
-			if (line[i] == '>' || line[i] == '<' || line[i] == '|' || line[i] == '\0')
+			if (line[i] == '>' || line[i] == '<'
+				|| line[i] == '|' || line[i] == '\0')
 				return (0);
 		}
 		if (line[i] == 34 || line[i] == 39)
 		{
 			q = line[i++];
-			while (line[i] != q)
-				i++;
+			while (line[i++] != q);
 		}
 		i++;
 	}
 	return (1);
 }
 
-t_parse *parsing(char *line, t_env *env)
+t_parse	*parsing(char *line, t_env *env)
 {
 	t_parse	*splited;
 	char	*true_line;

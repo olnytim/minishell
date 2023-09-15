@@ -1,31 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_utils.c                                        :+:      :+:    :+:   */
+/*   env_utils1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:23:18 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/14 22:16:58 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/15 12:29:03 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-int	ft_env_size(t_env *head)
-{
-	size_t	counter;
-	t_env	*lst;
-
-	lst = head;
-	counter = 0;
-	while (lst && lst->next)
-	{
-		lst = lst->next;
-		++counter;
-	}
-	return (counter);
-}
 
 char	**join_key_and_val(t_env *head)
 {
@@ -56,28 +41,6 @@ char	**join_key_and_val(t_env *head)
 	return (arr[i] = NULL, arr);
 }
 
-char	**shlvl(char **key_val)
-{
-	char	*tmp;
-	int		i;
-
-	if (key_val[0][0] == 'S' && ft_strncmp(key_val[0], "SHLVL", 5) == 0
-		&& ft_strncmp(key_val[0], "SHLVL", ft_strlen(key_val[0])) == 0)
-	{
-		if (!key_val[1])
-			key_val[1] = ft_strdup("1");
-		else
-		{
-			tmp = ft_strdup(key_val[1]);
-			free(key_val[1]);
-			i = ft_atoi(tmp) + 1;
-			key_val[1] = ft_itoa(i);
-			free(tmp);
-		}
-	}
-	return (key_val);
-}
-
 t_env	*env_last(t_env *head)
 {
 	if (head)
@@ -102,7 +65,7 @@ void	env_addback(t_env **head, t_env *to_push)
 {
 	if (head)
 	{
-		if(*head)
+		if (*head)
 			env_last(*head)->next = to_push;
 		else
 			*head = to_push;
@@ -123,32 +86,6 @@ void	scan_env(char **envp, t_data *data)
 		free(key_val);
 		envp++;
 	}
+	check_shlvl(&head);
 	data->env_lst = head;
-}
-
-
-
-char	**env_split(char *str, char lim)
-{
-	char	**split;
-	int		i;
-
-	split = malloc(sizeof(char *) * 3);
-	if (!split)
-		return (NULL);
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == lim)
-		{
-			str[i] = '\0';
-			break ;
-		}
-		i++;
-	}
-	split[0] = ft_strdup(str);
-	// printf("%s\n", split[0] + 16);
-	split[1] = ft_strdup(str + i + 1);
-	split[2] = NULL;
-	return (split);
 }
