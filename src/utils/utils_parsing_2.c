@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_parsing_2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:26:31 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/05 17:39:40 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/15 11:52:06 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	free_double(char **str)
 	free(str);
 	str = NULL;
 }
-
 
 void	free_node(t_parse *input_node)
 {

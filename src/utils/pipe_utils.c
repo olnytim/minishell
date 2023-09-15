@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 14:36:58 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/06 14:27:26 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/09/15 11:48:30 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,14 +93,15 @@ int	check_pipe(t_parse *input)
 	return (0);
 }
 
-int ft_isdir(const char *name)
+int	ft_isdir(const char *name)
 {
-	DIR *directory = opendir(name);
+	DIR	*directory;
 
+	directory = opendir(name);
 	if (directory != NULL)
 	{
 		closedir(directory);
-		return 0;
+		return (0);
 	}
-	return -1;
+	return (-1);
 }

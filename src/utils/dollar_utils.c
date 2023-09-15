@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 22:56:44 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/13 15:11:19 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/15 11:48:45 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*join_dol(char *str, char *buf, int j)
 {
-	char *temp;
+	char	*temp;
 
 	buf[j] = '\0';
 	if (!str)

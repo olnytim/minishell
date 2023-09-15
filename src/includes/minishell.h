@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:31:13 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/13 15:14:06 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/14 15:06:57 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ typedef struct s_dol
 	int		flag;
 	char	q;
 }	t_dol;
-
 
 typedef struct s_parse
 {
@@ -184,7 +183,7 @@ void	free_input(t_parse *splited, t_parse *input);
 
 int		ft_lstsize_t_parse(t_parse *lst);
 
-int		ft_isdir(const char* name);
+int		ft_isdir(const char *name);
 
 //			BUILTINS		//
 void	echo(char **args);
