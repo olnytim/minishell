@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:31:13 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/14 15:06:57 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/09/15 11:57:20 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,10 @@ void	init(t_data *data);
 char	*find_path(char **env);
 
 char	*x_path(t_data *data, char *argv);
+
+int		ft_env_size(t_env *head);
+
+char	**shlvl(char **key_val);
 
 void	scan_env(char **envp, t_data *data);
 

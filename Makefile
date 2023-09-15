@@ -73,7 +73,7 @@ $(NAME): $(LIB_DIR) Makefile $(OBJS)
 	@make DONE_MSG
 
 #
-$(OBJ)/%.o: $(SRC)/%.c $(LIB_DIR)
+$(OBJ)/%.o: $(SRC)/%.c $(LIB_DIR) Makefile
 	@mkdir -p $(OBJ) $(OBJ_DIR)
 	@echo "${YELLOW}Compiling $<${RESET}"
 	@$(GCC) $(CFLAGS) $(LIBS) -c $< -o $@
