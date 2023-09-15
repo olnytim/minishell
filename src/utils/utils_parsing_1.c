@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_parsing_1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:17:32 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/05 17:51:48 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/15 11:51:53 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	*ft_strjoin_nl(char *str1, char *str2)
 	return (spc);
 }
 
-void	file_lim_quotes_2(char *arg, int *i, int * j, char *buf)
+void	file_lim_quotes_2(char *arg, int *i, int *j, char *buf)
 {
 	char	q;
 
@@ -80,8 +80,8 @@ char	*file_lim_quotes(char *arg, int *i, int j)
 	char	*buf;
 
 	buf = malloc(ft_strlen(arg) + 1);
-	while (arg[*i] && arg[*i] != ' ' && arg[*i] != '\t' &&
-		arg[*i] != '>' && arg[*i] != '|' && arg[*i] != '<')
+	while (arg[*i] && arg[*i] != ' ' && arg[*i] != '\t'
+		&& arg[*i] != '>' && arg[*i] != '|' && arg[*i] != '<')
 	{
 		if (arg[*i] == 34 || arg[*i] == 39)
 			file_lim_quotes_2(arg, i, &j, buf);

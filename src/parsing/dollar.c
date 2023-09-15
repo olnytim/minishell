@@ -6,41 +6,11 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:47:03 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/12 15:18:24 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/13 15:14:16 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-char	*fill_proc_buf(char *buf)
-{
-	char	*temp;
-
-	temp = buf;
-	if (!g_exit_code)
-		buf = ft_itoa(0);
-	else
-		buf = ft_itoa(g_exit_code);
-	free(temp);
-	return(buf);
-}
-
-char	*fill_dol_buf(char *buf, char *val, int i, int j)
-{
-	while (val[i])
-	{
-		if (val[i] == '>' || val[i] == '<' || val[i] == '|')
-		{
-			buf[j++] = 39;
-			while (val[i] == '>' || val[i] == '<' || val[i] == '|')
-				i++;
-			buf[j++] = 39;
-		}
-		buf[j++] = val[i++];
-	}
-	buf[j] = '\0';
-	return (buf);
-}
 
 char	*write_dollar(char *val, char *str, char *dol, int flag)
 {
@@ -65,9 +35,25 @@ char	*write_dollar(char *val, char *str, char *dol, int flag)
 			temp = ft_strdup(buf);
 		else
 			temp = ft_strjoin_nl(str, buf);
-		return(free(str), free(buf), temp);
+		return (free(str), free(buf), temp);
 	}
 	return (str);
+}
+
+int	check_dollar_1(char *line, int i)
+{
+	while (line[i] && line[i] != '$' && line[i] != ' '
+		&& line[i] != '=' && line[i] != '@' && line[i] != '\t'
+		&& line[i] != '?' && !(line[i] >= 33 && line[i] <= 47))
+		i++;
+	return (i);
+}
+
+char	*check_dollar_2(char *dol, char *str, int flag)
+{
+	dol = ft_strdup("?");
+	str = write_dollar("$", str, dol, flag);
+	return (free(dol), str);
 }
 
 char	*check_dollar(char *line, t_env *env, char *str, int flag)
@@ -76,23 +62,17 @@ char	*check_dollar(char *line, t_env *env, char *str, int flag)
 	char	*dol;
 	int		i;
 
+	dol = NULL;
 	i = 1;
 	temp = env;
-	while (line[i] && line[i] != '$' && line[i] != ' ' &&
-		line[i] != '=' && line[i] != '@' && line[i] != '\t' &&
-			line[i] != '?' && !(line[i] >= 33 && line[i] <= 47))
-		i++;
+	i = check_dollar_1(line, i);
 	if (line[i] == '?' && line[i - 1] == '$')
-	{
-		dol = ft_strdup("?");
-		str = write_dollar("$", str, dol, flag);
-		return (free(dol), str);
-	}
+		return (check_dollar_2(dol, str, flag));
 	dol = ft_substr(line, 1, i - 1);
 	while (temp && temp->key)
 	{
-		if (ft_strncmp(dol, temp->key, ft_strlen(dol)) == 0 &&
-			ft_strncmp(dol, temp->key, ft_strlen(temp->key)) == 0)
+		if (ft_strncmp(dol, temp->key, ft_strlen(dol)) == 0
+			&& ft_strncmp(dol, temp->key, ft_strlen(temp->key)) == 0)
 		{
 			str = write_dollar(temp->val, str, dol, flag);
 			return (free(dol), str);
@@ -102,26 +82,6 @@ char	*check_dollar(char *line, t_env *env, char *str, int flag)
 	if (!*dol && line[i] != '$' && line[i - 2] != '$')
 		str = write_dollar("$", str, dol, flag);
 	return (free(dol), str);
-}
-
-char	desipher_dollar_cont_1(char *line, char q, int *flag, int *i)
-{
-	if (flag && line[*i] == q)
-	{
-		q = 0;
-		flag = 0;
-	}
-	else if (line[*i] == 34 && *flag != 2)
-	{
-		q = line[*i];
-		*flag = 1;
-	}
-	else if (*flag != 1)
-	{
-		q = line[*i];
-		*flag = 2;
-	}
-	return (q);
 }
 
 char	*desipher_dollar(char *line, t_env *env, int i, int j)
@@ -137,10 +97,7 @@ char	*desipher_dollar(char *line, t_env *env, int i, int j)
 		{
 			dol.str = check_dollar(&line[i], env, dol.str, dol.flag);
 			i++;
-			while ((line[i] == '?' && line[i - 1] == '$') || (line[i] && line[i] != '$' && line[i] != ' ' &&
-				line[i] != '=' && line[i] != '@' && line[i] != '\t' &&
-					line[i] != '?' && !(line[i] >= 33 && line[i] <= 47)))
-				i++;
+			i = desipher_dollar_1(line, i);
 		}
 		while (line[i] && line[i] != '$')
 		{

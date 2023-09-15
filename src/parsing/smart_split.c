@@ -6,13 +6,13 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:38:59 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/04 17:38:57 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/13 15:21:03 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int count_struct(char *line, int i, int w)
+int	count_struct(char *line, int i, int w)
 {
 	char	q;
 
@@ -31,12 +31,12 @@ int count_struct(char *line, int i, int w)
 	return (w);
 }
 
-t_parse *devider(char *line)
+t_parse	*devider(char *line)
 {
 	t_parse	*split;
-	t_parse *temp;
-	int count;
-	int	i;
+	t_parse	*temp;
+	int		count;
+	int		i;
 
 	i = 0;
 	split = NULL;
@@ -58,11 +58,10 @@ t_parse *devider(char *line)
 	return (split);
 }
 
-t_parse *smart_split(char *line)
+t_parse	*smart_split(char *line)
 {
-	// t_parse *split;
 	t_parse	*res;
-
+	// t_parse *split;
 	// split = malloc(sizeof(t_parse));
 	// split = NULL;
 	if (!line)

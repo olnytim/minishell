@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:56:32 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/09 16:51:52 by user             ###   ########.fr       */
+/*   Updated: 2023/09/14 15:04:28 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ void	unset(t_data *data, char **argv)
 	g_exit_code = 0;
 }
 
-void echo(char **args)
+void	echo(char **args)
 {
-	int i;
-	int j;
-	int flag;
-	
+	int	i;
+	int	j;
+	int	flag;
+
 	i = 1;
 	flag = 0;
 	while (args[i] && ft_strncmp(args[i], "-n", 2) == 0)
@@ -54,14 +54,13 @@ void echo(char **args)
 		while (args[i][j] == 'n')
 			j++;
 		if (ft_strncmp(args[i] + j, "n", ft_strlen(args[i] + j)) != 0)
-			break;
+			break ;
 		flag = 1;
 		i++;
 	}
 	while (args[i])
 	{
-		printf("%s", args[i]);
-		i++;
+		printf("%s", args[i++]);
 		if (args[i])
 			printf(" ");
 	}

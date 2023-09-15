@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 20:56:25 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/04 18:35:27 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/13 15:17:09 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ int	count_buf(int i, int w, char *line)
 	return (w);
 }
 
-int count_cmd(int i, int w, char *line)
+int	count_cmd(int i, int w, char *line)
 {
 	char	q;
 
 	while (line[i] && line[i] != '|')
 	{
-		while (line[i] && (line[i] == ' ' || line[i] == '\t' ||
-			line[i] == '>' || line[i] == '<'))
+		while (line[i] && (line[i] == ' ' || line[i] == '\t'
+				|| line[i] == '>' || line[i] == '<'))
 			i++;
 		if (line[i] == 34 || line[i] == 39)
 		{
@@ -54,15 +54,15 @@ int count_cmd(int i, int w, char *line)
 				i++;
 			i++;
 		}
-		while (line[i] && line[i] != ' ' && line[i] != '\t' && line[i] != '>'
-			&& line[i] != '<')
+		while (line[i] && line[i] != ' ' && line[i] != '\t'
+			&& line[i] != '>' && line[i] != '<')
 			i++;
 		w++;
 	}
 	return (w);
 }
 
-int count_file(int i, int w, char *line)
+int	count_file(int i, int w, char *line)
 {
 	while (line[i] && line[i] != '|')
 	{
@@ -77,14 +77,14 @@ int count_file(int i, int w, char *line)
 	return (w);
 }
 
-int count_oper(int i, int w, char *line)
+int	count_oper(int i, int w, char *line)
 {
 	while (line[i] && line[i] != '|')
 	{
 		if (line[i] == '>' || line[i] == '<')
 		{
-			if ((line[i] == '>' && line[i + 1] == '>') ||
-				(line[i] == '<' && line[i + 1] == '<'))
+			if ((line[i] == '>' && line[i + 1] == '>')
+				|| (line[i] == '<' && line[i + 1] == '<'))
 				i++;
 			w++;
 		}
@@ -95,7 +95,7 @@ int count_oper(int i, int w, char *line)
 	return (w);
 }
 
-int count_lim(int i, int w, char *line)
+int	count_lim(int i, int w, char *line)
 {
 	while (line[i] && line[i] != '|')
 	{
