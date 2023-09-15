@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:24:02 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/15 14:07:47 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/15 14:27:48 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	check_builtin(t_parse *cmd, t_data *data)
 		return (env(data), close(cmd->fd_in), close(cmd->fd_out), 1);
 	else if (ft_strncmp(cmd->cmd[0], "export", 6) == 0
         && ft_strncmp(cmd->cmd[0], "export", ft_strlen(cmd->cmd[0])) == 0)
-		return (export(data, cmd),close(cmd->fd_in), close(cmd->fd_out), 1);	
+		return (export(data, cmd), /*system("leaks minishell"),*/close(cmd->fd_in), close(cmd->fd_out), 1);	
 	else if (ft_strncmp(cmd->cmd[0], "exit", 4) == 0
 		&& ft_strncmp(cmd->cmd[0], "exit", ft_strlen(cmd->cmd[0])) == 0)
 		return (ft_exit(cmd), close(cmd->fd_in), close(cmd->fd_out),1);

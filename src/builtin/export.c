@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 20:37:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/15 14:17:51 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/15 15:27:19 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,14 @@ void	for_export(t_data *data, char *line)
 				lst->val = ft_strjoin(tmp, keyvalue[1]);
 				free(tmp);
 			}
+			free2d(keyvalue);
 			return ;
 		}
 		lst = lst->next;
 	}
 	env_addback(&data->env_lst, env_new(keyvalue[0], keyvalue[1]));
-	free(keyvalue[0]);
+	// free(keyvalue[0]);
+	// free(keyvalue[1]);
 	free(keyvalue);
 }
 
@@ -70,7 +72,7 @@ void	export(t_data *data, t_parse *pars)
 	int		i;
 	char	**keyvalue;
 
-	system ("leaks minishell");
+	// system ("leaks minishell");
 	i = 1;
 	// printf("%s\n", pars->cmd[1]);
 	if (pars->cmd[1] == NULL)
