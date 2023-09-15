@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:56 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/13 15:31:58 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/15 12:21:11 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	operators_in_a_row(char *line, int i)
 	char	q;
 	char	c;
 
-	while (line[i++])
+	while (line[i])
 	{
 		if (line[i] == '>' || line[i] == '<')
 		{
@@ -86,9 +86,9 @@ int	operators_in_a_row(char *line, int i)
 		if (line[i] == 34 || line[i] == 39)
 		{
 			q = line[i++];
-			while (line[i] != q)
-				i++;
+			while (line[i++] != q);
 		}
+		i++;
 	}
 	return (1);
 }
@@ -103,7 +103,7 @@ t_parse	*parsing(char *line, t_env *env)
 		return (error(0));
 	if (!operator_after_pipe(line, 0))
 		return (error(1));
-	if (!operators_in_a_row(line, -1))
+	if (!operators_in_a_row(line, 0))
 		return (error(2));
 	if (ft_strchr(line, 36))
 		true_line = desipher_dollar(line, env, 0, 0);

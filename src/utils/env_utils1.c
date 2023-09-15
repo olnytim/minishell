@@ -6,7 +6,7 @@
 /*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:23:18 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/15 11:51:02 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/09/15 12:29:03 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ void	scan_env(char **envp, t_data *data)
 		free(key_val);
 		envp++;
 	}
+	check_shlvl(&head);
 	data->env_lst = head;
 }
