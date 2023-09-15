@@ -6,30 +6,11 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 20:37:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/13 13:25:17 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/14 22:24:42 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-void	add_keyvalue_to_env(char **keyvalue, t_env *end)
-{
-	t_env	*new;
-
-	end->key = ft_strdup(keyvalue[0]);
-	if (keyvalue[1] == NULL)
-		end->val = ft_strdup("");
-	else
-	end->val = ft_strdup(keyvalue[1]);
-	new = malloc(sizeof(t_env));
-	if (!new)
-		exit(1);
-	*new = (t_env){0};
-	end->next = new;
-	free(keyvalue[0]);
-	free(keyvalue[1]);
-	free(keyvalue);
-}
 
 char	*check_plus(char *key)
 {
@@ -52,30 +33,34 @@ void	for_export(t_data *data, char *line)
 	t_env	*lst;
 	char	**keyvalue;
 	int		flag;
+	char	*tmp;
 
 	lst = data->env_lst;
 	keyvalue = env_split(line, '=');
 	if (check_plus(keyvalue[0]) == 0)
 		flag = 0;
-	while (lst && lst->next)
+	while (lst)
 	{
-		if (lst->next && ft_strncmp(lst->key, keyvalue[0], ft_strlen(keyvalue[0])) == 0)
+		if (ft_strncmp(lst->key, keyvalue[0], ft_strlen(keyvalue[0])) == 0)
 		{
 			if (flag == 0)
 			{
 				free(lst->val);
+				lst->val = NULL;
 				lst->val = ft_strdup(keyvalue[1]);
 			}
 			else
 			{
-				free(lst->val);
-				lst->val = ft_strjoin(lst->val, keyvalue[1]);
+				tmp = lst->val;
+				lst->val = ft_strjoin(tmp, keyvalue[1]);
+				free(tmp);
 			}
 			return ;
 		}
 		lst = lst->next;
 	}
 	env_addback(&data->env_lst, env_new(keyvalue[0], keyvalue[1]));
+	// free(keyvalue);
 }
 
 void	export(t_data *data, t_parse *pars)
@@ -84,10 +69,10 @@ void	export(t_data *data, t_parse *pars)
 	char	**keyvalue;
 
 	i = 1;
-	printf("%s\n", pars->cmd[1]);
+	// printf("%s\n", pars->cmd[1]);
 	if (pars->cmd[1] == NULL)
 	{
-		export_env(data);
+		export_env(data->env_lst);
 		return ;
 	}
 	keyvalue = env_split(pars->cmd[i], '=');
@@ -95,8 +80,15 @@ void	export(t_data *data, t_parse *pars)
 	while (pars->cmd[i])
 	{
 		if (valid_variable_name(keyvalue[0]) == 0)
+		{
+			free2d(keyvalue);
 			return ;
+		}
 		for_export(data, pars->cmd[i]);
+		printf("%p\n", keyvalue);
+		printf("%s\n", keyvalue[0] + 16);
+		printf("%p\n", keyvalue[1]);
 		i++;
 	}
+	free2d(keyvalue);
 }

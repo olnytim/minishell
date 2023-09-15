@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:23:18 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/13 13:13:31 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/14 22:16:58 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_env_size(t_env *head)
 
 	lst = head;
 	counter = 0;
-	while (lst)
+	while (lst && lst->next)
 	{
 		lst = lst->next;
 		++counter;
@@ -126,6 +126,8 @@ void	scan_env(char **envp, t_data *data)
 	data->env_lst = head;
 }
 
+
+
 char	**env_split(char *str, char lim)
 {
 	char	**split;
@@ -145,6 +147,7 @@ char	**env_split(char *str, char lim)
 		i++;
 	}
 	split[0] = ft_strdup(str);
+	// printf("%s\n", split[0] + 16);
 	split[1] = ft_strdup(str + i + 1);
 	split[2] = NULL;
 	return (split);

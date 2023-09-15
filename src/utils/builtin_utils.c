@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:24:02 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/13 12:40:50 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/14 21:26:09 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	check_builtin(t_parse *cmd, t_data *data)
 		return (env(data), close(cmd->fd_in), close(cmd->fd_out), 1);
 	else if (ft_strncmp(cmd->cmd[0], "export", 6) == 0
         && ft_strncmp(cmd->cmd[0], "export", ft_strlen(cmd->cmd[0])) == 0)
-		return (export(data, cmd), close(cmd->fd_in), close(cmd->fd_out), 1);
+		return (export(data, cmd), close(cmd->fd_in), close(cmd->fd_out), 1);	
 	else if (ft_strncmp(cmd->cmd[0], "exit", 4) == 0
 		&& ft_strncmp(cmd->cmd[0], "exit", ft_strlen(cmd->cmd[0])) == 0)
 		return (ft_exit(cmd), close(cmd->fd_in), close(cmd->fd_out),1);

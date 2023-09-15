@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:15:25 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/09/13 13:48:47 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/14 15:37:46 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ void	echo(char **args)
 
 void	env(t_data *data)
 {
-	print2d(data->env);
+	print_linked_list(data->env_lst);
 	g_exit_code = 0;
 }

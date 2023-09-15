@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:23 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/13 13:13:35 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/14 21:56:00 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,8 +193,7 @@ int		unset_forchar(int symbol);
 void	unset_valid_variable_name(char *var);
 int		forchar(int symbol);
 int		valid_variable_name(char *var);
-void	print2d_expo(t_data *data);
-void	export_env(t_data *data);
+void	export_env(t_env *head);
 void	cd(t_data *data, t_parse *pars);
 void	for_export(t_data *data, char *line);
 // void	cd(char **args);

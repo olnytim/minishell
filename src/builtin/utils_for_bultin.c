@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:24:41 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/11 21:00:10 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/14 21:55:51 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,25 +48,19 @@ int	valid_variable_name(char *var)
 	return (1);
 }
 
-void	print2d_expo(t_data *data)
+void	export_env(t_env *head)
 {
-	t_env	*env;
+	t_env	*current;
 
-	env = NULL;
-	env = data->env_lst;
-	while (env && env->next)
+	current = head;
+	while (current != NULL)
 	{
-		if (!*env->val)
-			printf("declare -x %s=%s\n", env->key, env->val);
+		if (!*current->val)
+			printf("declare -x %s=%s\n", current->key, current->val);
 		else
-			printf("declare -x %s=\"%s\"\n", env->key, env->val);
-		env = env->next;
+			printf("declare -x %s=\"%s\"\n", current->key, current->val);
+		current = current->next;
 	}
-}
-
-void	export_env(t_data *data)
-{
-	print2d_expo(data);
 }
 
 int	valid_dir(char *path)

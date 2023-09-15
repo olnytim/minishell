@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 20:58:31 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/13 12:27:40 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/14 17:58:21 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 void	norm_cd(t_data *data, t_parse *pars, char *old, char *new)
 {
-	getcwd(old, PATH_MAX);
+	old = getcwd(0, 0);
 	chdir(pars->cmd[1]);
+	printf("old is: %p\n", old);
 	find_var(data, "OLDPWD", old);
-	getcwd(new, PATH_MAX);
+	new = getcwd(0, 0);
 	find_var(data, "PWD", new);
 }
 

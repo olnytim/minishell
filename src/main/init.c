@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/08/29 15:56:59 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/14 21:33:31 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ void	init(t_data *data)
 		free2d(data->env);
 		free_input(input_free, input);
 		free(str);
-		// system("leaks minishell");
+		system("leaks minishell");
 		// exit (0);
 	}
 }

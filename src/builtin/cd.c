@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:07:13 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/13 12:26:16 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/14 18:27:24 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ void	find_var(t_data	*data, char *line, char *pointer)
 			ft_strlen(line)) == 0)
 	{
 		str = ft_strjoin(line, "=");
-		tmp = ft_strdup(str);
-		free(str);
+		tmp = str;
 		str = ft_strjoin(tmp, pointer);
 		free(tmp);
 		for_export(data, str);
@@ -53,10 +52,10 @@ char	*find_user(t_data *data)
 
 void	just_cd(t_data *data, char *user, char *old, char *new)
 {
-	getcwd(old, PATH_MAX);
+	old = getcwd(0, 0);
 	chdir(user);
 	find_var(data, "OLDPWD", old);
-	getcwd(new, PATH_MAX);
+	new = getcwd(0, 0);
 	find_var(data, "PWD", new);
 }
 
@@ -78,29 +77,34 @@ void	check_line(char *line)
 
 void	cd(t_data *data, t_parse *pars)
 {
-	char	old[PATH_MAX];
-	char	new[PATH_MAX];
+	char	*old = NULL;
+	char	*new = NULL;
 	char	*user;
 	char	*valid;
 	char	*joi;
 
 	user = find_user(data);
+	joi = ft_strjoin("/Users/", user);
 	if (pars->cmd[1] == NULL)
-		just_cd(data, user, old, new);
-	else if (pars->cmd[1][0] == '~')
+		just_cd(data, joi, old, new);
+	else if (pars->cmd[1][0] == '~') // ft_strcmp(pars->cmd[1], "~") == 0
 	{
-			joi = ft_strjoin("/Users/", user);
-			valid = ft_strjoin(joi, pars->cmd[1] + 1);
+		valid = ft_strjoin(joi, pars->cmd[1] + 1);
 		if (tilda(pars, valid) == 0)
+		{
+			free(valid);
 			return ;
+		}
 		else
 			just_cd(data, valid, old, new);
+		free(valid);
 	}
 	else if (valid_dir(pars->cmd[1]) == -1)
-	{
 		printf("cd: %s: No such file or directory\n", pars->cmd[1]);
-		return ;
-	}
 	else
 		norm_cd(data, pars, old, new);
+	free(user);
+	free(joi);
+	// printf("Value of old and new: %p -> %p\n", old, new);
+	// system ("leaks minishell");
 }
