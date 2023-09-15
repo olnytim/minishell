@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 12:29:52 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/15 22:34:44 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/09/16 02:36:22 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,6 @@ char	*x_path(t_data *data, char *argv);
 int		ft_env_size(t_env *head);
 
 char	**shlvl(char **key_val);
-
-void	env_addback(t_env **head, t_env *to_push);
-
-t_env	*env_new(char *key, char *value);
 
 void	check_shlvl(t_env **head);
 
@@ -198,7 +194,7 @@ int		ft_lstsize_t_parse(t_parse *lst);
 int		ft_isdir(const char *name);
 
 void	env_addback(t_env **head, t_env *to_push);
-t_env	*env_new(char *key, char *value);
+t_env	*env_new(char *key, char *value, int flag);
 t_env	*env_last(t_env *head);
 
 //			BUILTINS		//
@@ -211,10 +207,9 @@ int		unset_forchar(int symbol);
 void	unset_valid_variable_name(char *var);
 int		forchar(int symbol);
 int		valid_variable_name(char *var);
-void	export_env(t_env *head, char** keyvalue);
+void	export_env(t_env *head);
 void	cd(t_data *data, t_parse *pars);
 void	for_export(t_data *data, char *line);
-// void	cd(char **args);
 void	pwd(void);
 void	env(t_data *data);
 int		valid_dir(char *path);

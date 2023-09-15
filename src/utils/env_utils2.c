@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 11:50:18 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/15 13:59:34 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/16 02:07:06 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,5 @@ void	check_shlvl(t_env **head)
 				return ;
 		lst = lst->next;
 	}
-	env_addback(head, env_new(ft_strdup("SHLVL"), ft_strdup("1")));
+	env_addback(head, env_new(ft_strdup("SHLVL"), ft_strdup("1"), 0));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 20:37:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/15 21:58:26 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/09/16 02:36:13 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,34 @@ int	check_plus(char *key)
 		return (0);
 }
 
+int	find_equal(char *str, char c)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 void	for_export(t_data *data, char *line)
 {
 	t_env	*lst;
 	char	**keyvalue;
 	int		flag;
+	int		eq;
 	char	*tmp;
 
 	flag = 0;
 	lst = data->env_lst;
+	if (find_equal(line, '='))
+		eq = 1;
+	else
+		eq = 0;
 	keyvalue = env_split(line, '=');
 	if (check_plus(keyvalue[0]))
 		flag = 1;
@@ -63,7 +82,7 @@ void	for_export(t_data *data, char *line)
 		}
 		lst = lst->next;
 	}
-	env_addback(&data->env_lst, env_new(keyvalue[0], keyvalue[1]));
+	env_addback(&data->env_lst, env_new(keyvalue[0], keyvalue[1], eq));
 	free(keyvalue);
 }
 
@@ -71,14 +90,16 @@ void	export(t_data *data, t_parse *pars)
 {
 	int		i;
 	char	**keyvalue;
+	char	*tmp;
 
 	i = 1;
 	if (pars->cmd[1] == NULL)
 	{
-		export_env(data->env_lst, data->env);
+		export_env(data->env_lst);
 		return ;
 	}
-	keyvalue = env_split(pars->cmd[i], '=');
+	tmp = ft_strdup(pars->cmd[i]);
+	keyvalue = env_split(tmp, '=');
 	i = 1;
 	while (pars->cmd[i])
 	{
@@ -91,4 +112,5 @@ void	export(t_data *data, t_parse *pars)
 		i++;
 	}
 	free2d(keyvalue);
+	free(tmp);
 }
