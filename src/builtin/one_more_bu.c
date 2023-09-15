@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   one_more_bu.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 20:58:31 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/15 15:47:25 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/15 18:20:22 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,18 @@ int	sravnim(char *str1, char *str2)
 	return (str1[i] - str2[i]);
 }
 
-int	tilda(t_parse *pars, char *valid)
+char	*whum_find(t_data *data, char *whum)
 {
-	if (valid_dir(valid) == -1)
-	{
-		printf("cd: %s: No such file or directory\n", pars->cmd[1]);
-		return (0);
-	}
-	return (1);
+	t_env	*lst;
+	char	*kto;
+
+	kto = ft_strjoin(whum, "=");
+	lst = data->env_lst;
+	while (ft_strncmp(lst->key, kto,
+			ft_strlen(lst->key)) != 0
+		&& ft_strncmp(lst->key, kto,
+			ft_strlen(kto)) != 0)
+		lst = lst->next;
+	free(kto);
+	return (lst->val);
 }

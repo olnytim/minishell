@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:07:13 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/15 15:47:06 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/15 18:16:41 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,6 @@ void	find_var(t_data	*data, char *line, char *pointer)
 	}
 }
 
-char	*find_user(t_data *data)
-{
-	t_env	*lst;
-
-	lst = data->env_lst;
-	while (ft_strncmp(lst->key, "USER=",
-			ft_strlen(lst->key)) != 0
-		&& ft_strncmp(lst->key, "USER=",
-			ft_strlen("USER=")) != 0)
-		lst = lst->next;
-	return (lst->val);
-}
-
 void	just_cd(t_data *data, char *user, char *old, char *new)
 {
 	old = getcwd(0, 0);
@@ -78,31 +65,37 @@ void	check_line(char *line)
 	}
 }
 
+void	minus(t_data *data)
+{
+	char	*min;
+
+	min = whum_find(data, "OLDPWD");
+	if (!(chdir(min)))
+	{
+		pwd();
+		return ;
+	}
+	else
+		printf ("ebash: cd: OLDPWD is not set\n");
+}
+
 void	cd(t_data *data, t_parse *pars)
 {
-	char	*old = NULL;
-	char	*new = NULL;
+	char	*old;
+	char	*new;
 	char	*user;
-	char	*valid;
 	char	*joi;
 
-	user = find_user(data);
+	old = NULL;
+	new = NULL;
+	user = whum_find(data, "USER");
 	joi = ft_strjoin("/Users/", user);
 	if (pars->cmd[1] == NULL)
 		just_cd(data, joi, old, new);
+	else if (pars->cmd[1][0] == '-')
+		minus(data);
 	else if (pars->cmd[1][0] == '~')
-	{
-		valid = ft_strjoin(joi, pars->cmd[1] + 1);
-		if (tilda(pars, valid) == 0)
-		{
-			free(joi);
-			free(valid);
-			return ;
-		}
-		else
-			just_cd(data, valid, old, new);
-		free(valid);
-	}
+		tilda_main(data, pars, joi);
 	else if (valid_dir(pars->cmd[1]) == -1)
 		printf("cd: %s: No such file or directory\n", pars->cmd[1]);
 	else

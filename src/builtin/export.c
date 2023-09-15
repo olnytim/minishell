@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 20:37:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/15 16:59:07 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/09/15 18:20:51 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,7 @@ void	export(t_data *data, t_parse *pars)
 	int		i;
 	char	**keyvalue;
 
-	// system ("leaks minishell");
 	i = 1;
-	// printf("%s\n", pars->cmd[1]);
 	if (pars->cmd[1] == NULL)
 	{
 		export_env(data->env_lst);
@@ -89,7 +87,6 @@ void	export(t_data *data, t_parse *pars)
 			free2d(keyvalue);
 			return ;
 		}
-		
 		for_export(data, pars->cmd[i]);
 		i++;
 	}

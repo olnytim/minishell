@@ -3,9 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Updated: 2023/09/15 12:29:52 by apiloian         ###   ########.fr       */
+/*   Created: 2023/09/15 12:29:52 by apiloian          #+#    #+#             */
+/*   Updated: 2023/09/15 18:02:25 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,6 +221,9 @@ void	norm_cd(t_data *data, t_parse *pars, char *old, char *new);
 void	find_var(t_data	*data, char *line, char *pointer);
 int		sravnim(char *str1, char *str2);
 int		tilda(t_parse *pars, char *valid);
+char	*whum_find(t_data *data, char *whum);
+void	tilda_main(t_data *data, t_parse *pars, char *joi);
+void	just_cd(t_data *data, char *user, char *old, char *new);
 
 //							//
 
