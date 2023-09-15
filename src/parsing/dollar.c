@@ -84,6 +84,26 @@ char	*check_dollar(char *line, t_env *env, char *str, int flag)
 	return (free(dol), str);
 }
 
+char	desipher_dollar_cont_1(char *line, char q, int *flag, int *i)
+{
+	if (flag && line[*i] == q)
+	{
+		q = 0;
+		*flag = 0;
+	}
+	else if (line[*i] == 34 && *flag != 2)
+	{
+		q = line[*i];
+		*flag = 1;
+	}
+	else if (*flag != 1)
+	{
+		q = line[*i];
+		*flag = 2;
+	}
+	return (q);
+}
+
 char	*desipher_dollar(char *line, t_env *env, int i, int j)
 {
 	t_dol	dol;
