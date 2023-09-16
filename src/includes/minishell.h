@@ -27,6 +27,7 @@
 # include <errno.h>
 # include <limits.h>
 # include <signal.h>
+# include <sys/stat.h>
 
 # include "../../libft/libft.h"
 # include <readline/readline.h>
@@ -36,6 +37,7 @@ typedef struct s_env
 {
 	char			*key;
 	char			*val;
+	int				flag;
 	struct s_env	*next;
 }	t_env;
 
@@ -88,10 +90,6 @@ char	*x_path(t_data *data, char *argv);
 int		ft_env_size(t_env *head);
 
 char	**shlvl(char **key_val);
-
-void	env_addback(t_env **head, t_env *to_push);
-
-t_env	*env_new(char *key, char *value);
 
 void	check_shlvl(t_env **head);
 
@@ -205,10 +203,28 @@ void	conditions(t_parse *input, t_data *data);
 
 //			BUILTINS		//
 void	echo(char **args);
-void	unset(t_data *data, char **argv);
-// void	cd(char **args);
+void	unset(t_data *data, t_parse *pars);
+void	export(t_data *data, t_parse *pars);
+int		check_export(t_data *data, char *str);
+int		ft_exit(t_parse *input);
+int		unset_forchar(int symbol);
+void	unset_valid_variable_name(char *var);
+int		forchar(int symbol);
+int		valid_variable_name(char *var);
+void	export_env(t_env *head);
+void	cd(t_data *data, t_parse *pars);
+void	for_export(t_data *data, char *line);
 void	pwd(void);
 void	env(t_data *data);
+int		valid_dir(char *path);
+void	norm_cd(t_data *data, t_parse *pars, char *old, char *new);
+void	find_var(t_data	*data, char *line, char *pointer);
+int		sravnim(char *str1, char *str2);
+int		tilda(t_parse *pars, char *valid);
+char	*whum_find(t_data *data, char *whum);
+void	tilda_main(t_data *data, t_parse *pars, char *joi);
+void	just_cd(t_data *data, char *user, char *old, char *new);
+
 //							//
 
 #endif

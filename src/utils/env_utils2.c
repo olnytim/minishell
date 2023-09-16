@@ -85,5 +85,5 @@ void	check_shlvl(t_env **head)
 			return ;
 		lst = lst->next;
 	}
-	env_addback(head, env_new(ft_strdup("SHLVL"), ft_strdup("1")));
+	env_addback(head, env_new(ft_strdup("SHLVL"), ft_strdup("1"), 0));
 }

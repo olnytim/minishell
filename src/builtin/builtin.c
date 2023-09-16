@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/12 13:56:32 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/14 15:04:28 by apiloian         ###   ########.fr       */
+/*   Created: 2023/09/01 14:15:25 by vfedorov          #+#    #+#             */
+/*   Updated: 2023/09/14 15:37:46 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,6 @@ void	pwd(void)
 
 	getcwd(dir, PATH_MAX);
 	printf("%s\n", dir);
-	g_exit_code = 0;
-}
-
-void	unset(t_data *data, char **argv)
-{
-	t_env	*lst;
-
-	lst = data->env_lst;
-	while (lst->next && ft_strncmp(lst->key, argv[1], ft_strlen(argv[1])) != 0)
-	{
-		if (lst->next->next
-			&& ft_strncmp(lst->next->key, argv[1], ft_strlen(argv[1])) == 0)
-		{
-			lst->next = lst->next->next;
-			break ;
-		}
-		lst = lst->next;
-	}
-	data->env = join_key_and_val(data->env_lst);
 	g_exit_code = 0;
 }
 
@@ -71,6 +52,6 @@ void	echo(char **args)
 
 void	env(t_data *data)
 {
-	print2d(data->env);
+	print_linked_list(data->env_lst);
 	g_exit_code = 0;
 }

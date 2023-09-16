@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:23:18 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/15 12:29:03 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/09/16 01:53:25 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,16 @@ char	**join_key_and_val(t_env *head)
 	{
 		if (!lst->key)
 			break ;
-		arr[i] = ft_strjoin(lst->key, "=");
-		tmp = ft_strdup(arr[i]);
-		free(arr[i]);
-		arr[i] = ft_strjoin(tmp, lst->val);
-		free(tmp);
+		if (*lst->val)
+		{
+			arr[i] = ft_strjoin(lst->key, "=");
+			tmp = ft_strdup(arr[i]);
+			free(arr[i]);
+			arr[i] = ft_strjoin(tmp, lst->val);
+			free(tmp);
+		}
+		else
+			arr[i] = ft_strdup(lst->key);
 		lst = lst->next;
 		++i;
 	}
@@ -51,13 +56,14 @@ t_env	*env_last(t_env *head)
 	return (head);
 }
 
-t_env	*env_new(char *key, char *value)
+t_env	*env_new(char *key, char *value, int flag)
 {
 	t_env	*new;
 
 	new = ft_calloc(1, sizeof(t_env));
 	new->key = key;
 	new->val = value;
+	new->flag = flag;
 	return (new);
 }
 
@@ -81,8 +87,16 @@ void	scan_env(char **envp, t_data *data)
 	while (*envp)
 	{
 		key_val = env_split(*envp, '=');
-		key_val = shlvl(key_val);
-		env_addback(&head, env_new(key_val[0], key_val[1]));
+		if (key_val[0][0] == 'O' && ft_strncmp(key_val[0], "OLDPWD", 6) == 0
+		&& ft_strncmp(key_val[0], "OLDPWD", ft_strlen(key_val[0])) == 0)
+		{
+			env_addback(&head, env_new(ft_strdup("OLDPWD"), ft_strdup("\0"), 0));
+			free2d(key_val);
+			envp++;
+			continue ;
+		}
+		key_val = shlvl(key_val); 
+		env_addback(&head, env_new(key_val[0], key_val[1], 0));
 		free(key_val);
 		envp++;
 	}
