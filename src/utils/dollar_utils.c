@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 22:56:44 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/15 11:48:45 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/09/15 17:03:43 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ char	desipher_dollar_cont_1(char *line, char q, int *flag, int *i)
 	if (flag && line[*i] == q)
 	{
 		q = 0;
-		flag = 0;
+		*flag = 0;
 	}
 	else if (line[*i] == 34 && *flag != 2)
 	{

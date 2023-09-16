@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:31:13 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/15 12:29:52 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/09/15 17:40:13 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,14 @@ void	free_input(t_parse *splited, t_parse *input);
 int		ft_lstsize_t_parse(t_parse *lst);
 
 int		ft_isdir(const char *name);
+
+void	sig_ex(char *str);
+
+void	init_cont_1(t_data *data, t_parse *input, char *str);
+
+t_parse	*duble_pointers(t_parse *input);
+
+void	conditions(t_parse *input, t_data *data);
 
 //			BUILTINS		//
 void	echo(char **args);
