@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 20:56:25 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/13 15:17:09 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/15 17:40:25 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ int	count_cmd(int i, int w, char *line)
 			i++;
 		}
 		while (line[i] && line[i] != ' ' && line[i] != '\t'
-			&& line[i] != '>' && line[i] != '<')
+			&& line[i] != '>' && line[i] != '<' && line[i] != 34
+			&& line[i] != 39)
 			i++;
 		w++;
 	}

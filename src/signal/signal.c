@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 20:10:57 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/09 19:39:41 by user             ###   ########.fr       */
+/*   Updated: 2023/09/15 17:40:54 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,14 @@ void	sig_event_loop(void)
 	rl_catch_signals = 0;
 	signal(SIGINT, ft_next_line);
 	signal(SIGQUIT, SIG_IGN);
+}
+
+void	sig_ex(char *str)
+{
+	if (!str)
+	{
+		printf("\n\033[1A\033[6Cexit\n");
+		g_exit_code = 0;
+		exit(EXIT_SUCCESS);
+	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 11:50:18 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/15 12:29:06 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/09/15 17:42:21 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	check_shlvl(t_env **head)
 	{
 		if (lst->key[0] == 'S' && ft_strncmp(lst->key, "SHLVL", 5) == 0
 			&& ft_strncmp(lst->key, "SHLVL", ft_strlen(lst->key)) == 0)
-				return ;
+			return ;
 		lst = lst->next;
 	}
 	env_addback(head, env_new(ft_strdup("SHLVL"), ft_strdup("1")));
