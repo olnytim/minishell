@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_parsing_1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:17:32 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/15 11:51:53 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/09/16 16:19:06 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*ft_strjoin_nl(char *str1, char *str2)
 		spc[i] = str1[i];
 		i++;
 	}
-	while (*str2)
+	while (str2 && *str2)
 	{
 		spc[i] = *str2;
 		i++;

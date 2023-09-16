@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:56 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/15 12:21:11 by apiloian         ###   ########.fr       */
+/*   Updated: 2023/09/16 15:46:52 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	operators_in_a_row(char *line, int i)
 	char	q;
 	char	c;
 
-	while (line[i])
+	while (line[++i])
 	{
 		if (line[i] == '>' || line[i] == '<')
 		{
@@ -86,9 +86,9 @@ int	operators_in_a_row(char *line, int i)
 		if (line[i] == 34 || line[i] == 39)
 		{
 			q = line[i++];
-			while (line[i++] != q);
+			while (line[i] != q)
+				i++;
 		}
-		i++;
 	}
 	return (1);
 }
@@ -98,53 +98,18 @@ t_parse	*parsing(char *line, t_env *env)
 	t_parse	*splited;
 	char	*true_line;
 
-	// printf("line == %s\n\n", line);
 	if (!check_quotes(line))
 		return (error(0));
 	if (!operator_after_pipe(line, 0))
 		return (error(1));
-	if (!operators_in_a_row(line, 0))
+	if (!operators_in_a_row(line, -1))
 		return (error(2));
 	if (ft_strchr(line, 36))
 		true_line = desipher_dollar(line, env, 0, 0);
 	else
 		true_line = ft_strdup(line);
-	// printf("%s\n", line);
-	// int i = 0;
-	// printf("%lu\n", sizeof (char **));
-	// printf("%lu\n", sizeof (int *));
-	// printf("%lu\n", sizeof (t_tig));
-	// printf("%lu\n", sizeof (t_parse));
-	// printf("%lu\n", sizeof (t_data));
-	// printf("%lu\n", sizeof (t_env));
 	splited = smart_split(true_line);
 	free(true_line);
 	true_line = NULL;
-	// t_parse *temp = splited;
-	// int a = 1;
-	// while (temp)
-	// {
-	// 	printf("\nnode #%i\n", a);
-	// 	i = 0;
-	// 	printf("cmd ==\n");
-	// 	while (splited->cmd[i])
-	// 		printf("%s\n", splited->cmd[i++]);
-	// 	i = 0;
-	// 	printf("\noperator ==\n");
-	// 	while (splited->operator[i])
-	// 		printf("%s\n", splited->operator[i++]);
-	// 	i = 0;
-	// 	printf("\nfile ==\n");
-	// 	while (splited->file[i])
-	// 		printf("%s\n", splited->file[i++]);
-	// 	i = 0;
-	// 	printf("\nlimiter ==\n");
-	// 	while (splited->lim[i])
-	// 		printf("%s\n", splited->lim[i++]);
-	// 	printf("\n-------\n");
-	// 	temp = temp->next;
-	// 	a++;
-	// }
-	// exit (0);
 	return (splited);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/16 02:35:14 by user             ###   ########.fr       */
+/*   Updated: 2023/09/16 16:31:42 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,22 +84,30 @@ void	conditions(t_parse *input, t_data *data)
 	}
 }
 
+int	init_empty_free(char *str, t_parse *input)
+{
+	add_history(str);
+	free(str);
+	free(input->cmd);
+	free(input->file);
+	free(input->lim);
+	free(input->operator);
+	free(input->t_tig);
+	free(input);
+	g_exit_code = 127;
+	return (1);
+}
+
 void	init(t_data *data)
 {
 	char	*str;
 	t_parse	*input;
-	t_parse	*input_free;
 
 	while (1)
 	{
 		sig_event_loop();
 		str = readline(MINISHELL);
-		if (!str)
-		{
-			printf("\n\033[1A\033[6Cexit\n");
-			g_exit_code = 0;
-			exit(EXIT_SUCCESS);
-		}
+		sig_ex(str);
 		if (str[0] == '$' && str[1] == '\0')
 		{
 			add_history(str);
@@ -110,28 +118,10 @@ void	init(t_data *data)
 		input = parsing(str, data->env_lst);
 		if (input && !*input->cmd && !*input->file && !*input->lim)
 		{
-			if (*str)
-				add_history(str);
-			free(str);
-			free(input->cmd);
-			free(input->file);
-			free(input->lim);
-			free(input->operator);
-			free(input->t_tig);
-			free(input);
-			g_exit_code = 127;
-			continue ;
+			if (*str && init_empty_free(str, input))
+				continue ;
 		}
-		data->env = join_key_and_val(data->env_lst);
-		data->path = find_path(data->env);
-		input_free = duble_pointers(input);
-		conditions(input, data);
-		unlink("heredoc");
-		data->join_path = NULL;
-		if (*str)
-			add_history(str);
-		free2d(data->env);
-		free_input(input_free, input);
-		free(str);
+		init_cont_1(data, input, str);
+		system("leaks minishell");
 	}
 }

@@ -3,30 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/21 15:08:38 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/01/21 17:07:05 by tgalyaut         ###   ########.fr       */
+/*   Created: 2023/01/20 15:01:41 by timelkon          #+#    #+#             */
+/*   Updated: 2023/01/28 16:55:22 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
-{
-	unsigned char		*t;
-	unsigned const char	*f;
+void	*ft_memmove(void *dst1, const void *src1, size_t len)
 
-	if (!dst && !src)
-		return (dst);
-	t = dst;
-	f = src;
+{
+	char	*dst;
+	char	*src;
+	size_t	i;
+
+	i = 0;
+	dst = (char *) dst1;
+	src = (char *) src1;
 	if (dst < src)
-		ft_memcpy(dst, src, len);
-	else
 	{
-		while (len--)
-			*(t + len) = *(f + len);
+		while (i < len)
+		{
+		dst[i] = src[i];
+		i++;
+		}
 	}
-	return ((unsigned char *)dst);
+	else if (dst > src)
+	{
+		i = len - 1;
+		while (i < len)
+		{
+			dst[i] = src[i];
+			i--;
+		}
+	}
+	return (dst);
 }

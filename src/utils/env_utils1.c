@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:23:18 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/16 01:53:25 by user             ###   ########.fr       */
+/*   Updated: 2023/09/16 15:54:44 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 char	**join_key_and_val(t_env *head)
 {
 	char	**arr;
-	char	*tmp;
 	t_env	*lst;
 	size_t	size;
 	size_t	i;
@@ -31,13 +30,7 @@ char	**join_key_and_val(t_env *head)
 		if (!lst->key)
 			break ;
 		if (*lst->val)
-		{
-			arr[i] = ft_strjoin(lst->key, "=");
-			tmp = ft_strdup(arr[i]);
-			free(arr[i]);
-			arr[i] = ft_strjoin(tmp, lst->val);
-			free(tmp);
-		}
+			arr = join_key_val_cont(arr, i, lst);
 		else
 			arr[i] = ft_strdup(lst->key);
 		lst = lst->next;
@@ -95,7 +88,7 @@ void	scan_env(char **envp, t_data *data)
 			envp++;
 			continue ;
 		}
-		key_val = shlvl(key_val); 
+		key_val = shlvl(key_val);
 		env_addback(&head, env_new(key_val[0], key_val[1], 0));
 		free(key_val);
 		envp++;

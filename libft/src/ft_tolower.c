@@ -3,18 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/20 16:06:55 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/01/20 18:56:07 by tgalyaut         ###   ########.fr       */
+/*   Created: 2023/01/17 15:38:06 by timelkon          #+#    #+#             */
+/*   Updated: 2023/01/27 19:44:58 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 int	ft_tolower(int c)
+
 {
 	if (c >= 65 && c <= 90)
-		c += 32;
-	return (c);
+		return (c + 32);
+	else
+		return (c);
 }

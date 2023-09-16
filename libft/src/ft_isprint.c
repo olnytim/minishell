@@ -3,18 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 18:47:13 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/01/20 18:58:22 by tgalyaut         ###   ########.fr       */
+/*   Created: 2023/01/16 17:31:08 by timelkon          #+#    #+#             */
+/*   Updated: 2023/01/30 19:47:37 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 int	ft_isprint(int c)
+
 {
-	if (c >= 32 && c <= 126)
+	if (c < 32 || c > 126)
+		return (0);
+	else
 		return (1);
-	return (0);
 }

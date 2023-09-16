@@ -3,83 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/31 18:47:59 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/02/18 19:03:27 by tgalyaut         ###   ########.fr       */
+/*   Created: 2023/01/25 12:29:26 by timelkon          #+#    #+#             */
+/*   Updated: 2023/09/16 16:30:25 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-static int	numlen(int num)
+static char	*nbr(int n, char *s, int n1)
+
 {
-	int		i;
-	long	numl;
+	int	i;
 
-	i = 0;
-	numl = num;
-	if (numl < 0)
-		numl *= -1;
-	while (numl > 9)
+	i = n1;
+	if (n < 0)
 	{
-		numl /= 10;
-		++i;
+		s[0] = '-';
+		n *= -1;
 	}
-	++i;
-	return (i);
-}
-
-static char	ito(int n)
-{
-	char	s;
-
-	s = 0;
-	s = (n % 10) + 48;
+	s[i] = '\0';
+	i--;
+	if (n == 0)
+	{
+		s[0] = '0';
+		return (s);
+	}
+	while (i >= 0 && n > 0)
+	{
+		s[i] = (n % 10) + 48;
+		n = n / 10;
+		i--;
+	}
 	return (s);
 }
 
-static char	*nbr(int num, char *temp, int len)
-{
-	temp[len] = '\0';
-	if (num == 0)
-		temp[0] = '0';
-	if (num == -2147483648)
-	{
-		temp[0] = '-';
-		temp[1] = '2';
-		num = 147483648;
-	}
-	if (num < 0)
-	{
-		temp[0] = '-';
-		num *= -1;
-	}
-	--len;
-	while (num > 0)
-	{
-		temp[len] = ito(num);
-		num /= 10;
-		len--;
-	}
-	return (temp);
-}
+char	*ft_itoa(int n1)
 
-char	*ft_itoa(int n)
 {
-	char	*s;
-	int		i;
-	long	numl;
+	unsigned int	n;
+	char			*s;
 
-	numl = n;
-	if (n < 0)
-		i = numlen(numl) + 1;
-	else
-		i = numlen(numl);
-	s = malloc(sizeof(char) * (i + 1));
-	if (!s)
+	if (n1 == 0)
+		return (ft_strdup("0"));
+	if (n1 == -2147483648)
+		return (ft_strdup("-2147483648"));
+	if (n1 == 2147483647)
+		return (ft_strdup("2147483647"));
+	n = ft_numlen((unsigned int)n1);
+	s = malloc(n * sizeof(char) + 1);
+	if (s == NULL)
 		return (NULL);
-	s = nbr(numl, s, i);
+	s = nbr(n1, s, n);
 	return (s);
 }
