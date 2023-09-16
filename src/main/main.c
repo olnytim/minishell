@@ -6,18 +6,11 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 16:16:49 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/16 16:31:47 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/16 20:15:28 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-// void ctrl_c_handleing(int signal)
-// {
-//     (void)signal;
-//     rl_replace_line("\nminishell armgevor$ ", 0);
-//     rl_redisplay();
-// }
 
 int	main(int ac, char **av, char **envp)
 {

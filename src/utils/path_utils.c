@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:04:30 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/09 18:35:26 by user             ###   ########.fr       */
+/*   Updated: 2023/09/16 22:15:24 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ char	*x_path(t_data *data, char *argv)
 		}
 		i++;
 	}
-	printf(NO_CMD, argv);
+	ft_putstr_fd("ebash: ", 2);
+	ft_putstr_fd(argv, 2);
+	ft_putstr_fd(": command not found\n", 2);
 	exit(EXIT_FAILURE);
 }

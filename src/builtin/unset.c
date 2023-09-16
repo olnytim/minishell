@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:19:20 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/09/14 17:16:24 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/16 22:24:29 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	unset_valid_variable_name(char *var)
 		if (unset_errorchar(var[b]) == 1)
 		{
 			write(2, "syntax error near unexpected token\n", 35);
+			g_exit_code = 1;
 			return ;
 		}
 		b++;
@@ -39,6 +40,7 @@ void	unset_valid_variable_name(char *var)
 	if (ft_isalpha(var[b]) == 0 && var[0] != '_')
 	{
 		write(2, "unset: not a valid identifier\n", 30);
+		g_exit_code = 1;
 		b++;
 		return ;
 	}
@@ -62,6 +64,7 @@ void	unset(t_data *data, t_parse *pars)
 				free(lst->val);
 				lst->key = ft_strdup("\0");
 				lst->val = ft_strdup("\0");
+				g_exit_code = 0;
 				break ;
 			}
 			lst = lst->next;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:15:25 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/09/14 15:37:46 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/09/16 21:43:14 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

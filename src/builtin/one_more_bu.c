@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   one_more_bu.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 20:58:31 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/15 18:20:22 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/09/16 20:32:55 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	norm_cd(t_data *data, t_parse *pars, char *old, char *new)
 	find_var(data, "PWD", new);
 	free(old);
 	free(new);
+	g_exit_code = 0;
 }
 
 int	sravnim(char *str1, char *str2)
