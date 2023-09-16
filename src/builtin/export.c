@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 20:37:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/16 02:36:13 by user             ###   ########.fr       */
+/*   Updated: 2023/09/16 16:00:20 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,32 @@ int	find_equal(char *str, char c)
 	return (0);
 }
 
+void	for_export_cont(int flag, t_env *lst, char **keyvalue)
+{
+	char	*tmp;
+
+	if (flag == 0)
+	{
+		free(lst->val);
+		lst->val = NULL;
+		lst->val = ft_strdup(keyvalue[1]);
+	}
+	else
+	{
+		tmp = lst->val;
+		lst->val = NULL;
+		lst->val = ft_strjoin(tmp, keyvalue[1]);
+		free(tmp);
+	}
+	free2d(keyvalue);
+}
+
 void	for_export(t_data *data, char *line)
 {
 	t_env	*lst;
 	char	**keyvalue;
 	int		flag;
 	int		eq;
-	char	*tmp;
 
 	flag = 0;
 	lst = data->env_lst;
@@ -63,23 +82,7 @@ void	for_export(t_data *data, char *line)
 	{
 		if (ft_strncmp(lst->key, keyvalue[0], ft_strlen(keyvalue[0])) == 0
 			&& ft_strncmp(lst->key, keyvalue[0], ft_strlen(lst->key)) == 0)
-		{
-			if (flag == 0)
-			{
-				free(lst->val);
-				lst->val = NULL;
-				lst->val = ft_strdup(keyvalue[1]);
-			}
-			else
-			{
-				tmp = lst->val;
-				lst->val = NULL;
-				lst->val = ft_strjoin(tmp, keyvalue[1]);
-				free(tmp);
-			}
-			free2d(keyvalue);
-			return ;
-		}
+			return (for_export_cont(flag, lst, keyvalue));
 		lst = lst->next;
 	}
 	env_addback(&data->env_lst, env_new(keyvalue[0], keyvalue[1], eq));

@@ -3,33 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/14 23:44:07 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/02/17 16:15:07 by tgalyaut         ###   ########.fr       */
+/*   Created: 2023/02/01 17:18:23 by timelkon          #+#    #+#             */
+/*   Updated: 2023/02/02 14:46:14 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
-{
-	t_list	*temp;
-	t_list	*map;
 
-	map = NULL;
-	if (!lst)
-		return (NULL);
+{
+	t_list	*gog;
+	t_list	*new;
+
+	if (!lst || !f || ! del)
+		return (0);
+	gog = NULL;
 	while (lst)
 	{
-		temp = ft_lstnew(f(lst->content));
-		if (temp == NULL)
+		new = ft_lstnew((*f)(lst -> content));
+		if (!new)
 		{
-			ft_lstclear(&lst, del);
-			return (NULL);
+			ft_lstclear (&gog, del);
+			return (gog);
 		}
-		ft_lstadd_back(&map, temp);
-		lst = lst->next;
+		ft_lstadd_back (&gog, new);
+		lst = lst -> next;
 	}
-	return (map);
+	return (gog);
 }

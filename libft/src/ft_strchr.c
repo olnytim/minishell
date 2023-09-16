@@ -3,26 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/27 15:09:41 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/02/17 16:05:25 by tgalyaut         ###   ########.fr       */
+/*   Created: 2023/01/17 16:41:07 by timelkon          #+#    #+#             */
+/*   Updated: 2023/02/16 12:20:16 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 char	*ft_strchr(const char *s, int c)
+
 {
-	if (c == 0)
-		return ((char *)(s + ft_strlen(s)));
-	while (*s)
-	{
-		if (*s == (unsigned char)c)
-			return ((char *)s);
-		s++;
-	}
-	if (*s == '0')
-		return (NULL);
-	return (NULL);
+	char	*cop;
+
+	cop = (char *)s;
+	while (*cop != '\0' && *cop != (char)c)
+		cop++;
+	if (*cop == (char)c)
+		return (cop);
+	return (0);
 }

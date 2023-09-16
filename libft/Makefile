@@ -21,9 +21,7 @@ SRC_FILES 	=	ft_isalnum.c		ft_isascii.c	ft_isprint.c \
 				ft_lstsize.c		ft_lstnew.c		ft_lstadd_front.c\
 				ft_lstadd_back.c	ft_lstiter.c	ft_lstlast.c\
 				ft_lstdelone.c		ft_lstclear.c	ft_lstmap.c\
-				get_next_line_bonus.c	ft_putf.c	ft_conversions.c \
-				ft_striteri.c ft_split.c			ft_printf.c \
-				get_next_line_utils_bonus.c			ft_strcmp.c
+				ft_striteri.c		ft_split.c		ft_numlen.c
 
 # Object files
 OBJ_FILES	=	$(patsubst %.c, $(OBJ_DIR)/%.o, $(SRC_FILES))

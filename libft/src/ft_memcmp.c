@@ -3,28 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/27 21:11:44 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/01/27 21:43:47 by tgalyaut         ###   ########.fr       */
+/*   Created: 2023/01/20 14:12:50 by timelkon          #+#    #+#             */
+/*   Updated: 2023/02/02 14:47:31 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
-{
-	unsigned char	*scr;
-	unsigned char	*dst;
 
-	scr = (unsigned char *)s1;
-	dst = (unsigned char *)s2;
-	while (n--)
+{
+	size_t			a;
+	unsigned char	*str1;
+	unsigned char	*str2;
+
+	str1 = (unsigned char *) s1;
+	str2 = (unsigned char *) s2;
+	a = 1;
+	if (n == 0)
+		return (0);
+	while (*str1 == *str2 && a < n)
 	{
-		if (*scr != *dst)
-			return (*scr - *dst);
-		++scr;
-		++dst;
+		str1++;
+		str2++;
+		a++;
 	}
-	return (0);
+	return (*str1 - *str2);
 }

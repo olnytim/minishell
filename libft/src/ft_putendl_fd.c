@@ -3,24 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/31 14:43:58 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/01/31 15:24:58 by tgalyaut         ###   ########.fr       */
+/*   Created: 2023/01/24 18:05:26 by timelkon          #+#    #+#             */
+/*   Updated: 2023/01/27 19:13:18 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 void	ft_putendl_fd(char *s, int fd)
-{
-	size_t	i;
 
-	i = 0;
-	while (s[i])
+{
+	int	a;
+
+	a = 0;
+	if (!s)
+		return ;
+	while (s[a] != '\0')
 	{
-		write(fd, &s[i], 1);
-		i++;
+		write(fd, &s[a], 1);
+		a++;
 	}
 	write(fd, "\n", 1);
 }

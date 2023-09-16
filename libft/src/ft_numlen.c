@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_numlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/09 19:45:04 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/08/05 16:59:45 by apiloian         ###   ########.fr       */
+/*   Created: 2023/02/10 15:11:55 by timelkon          #+#    #+#             */
+/*   Updated: 2023/02/10 15:12:16 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+int	ft_numlen(int n)
 
-int	ft_strcmp(char *str1, char *str2)
 {
-	while (*str1 && *str2 && str1 == str2)
+	int	i;
+
+	i = 0;
+	if (n < 0)
 	{
-		++str1;
-		++str2;
+		n *= -1;
+		i++;
 	}
-	return (*str1 - *str2);
+	while (n / 10 > 0)
+	{
+		n = n / 10;
+		i++;
+	}
+	if (n <= 9)
+		i++;
+	return (i);
 }

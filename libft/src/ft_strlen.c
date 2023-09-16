@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/16 17:58:03 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/08/30 21:25:27 by mac              ###   ########.fr       */
+/*   Created: 2023/01/16 15:01:13 by timelkon          #+#    #+#             */
+/*   Updated: 2023/09/16 16:16:25 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,16 @@
 
 size_t	ft_strlen(const char *str)
 {
-	size_t	integer;
+	size_t	a;
+	char	*len;
 
 	if (!str)
 		return (0);
-	integer = 0;
-	while (str[integer])
-		++integer;
-	return (integer);
+	a = 0;
+	len = (char *)str;
+	while (len[a] != '\0')
+	{
+		a++;
+	}
+	return (a);
 }
