@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:24:41 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/17 18:42:58 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/09/17 19:14:10 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,12 @@ void	export_env(t_env *head)
 		else if (current->flag == 0 && *current->key)
 			printf("declare -x %s\n", current->key);
 		else if (current->flag == 1)
-			printf("declare -x %s=\"\"\n", current->key);
+		{
+			if (!*current->key && !*current->val)
+				printf("%s", current->key);
+			else
+				printf("declare -x %s=\"\"\n", current->key);
+		}
 		current = current->next;
 	}
 	g_exit_code = 0;
