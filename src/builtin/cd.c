@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:07:13 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/15 18:58:48 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/09/16 20:32:43 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	just_cd(t_data *data, char *user, char *old, char *new)
 	find_var(data, "PWD", new);
 	free(old);
 	free(new);
+	g_exit_code = 0;
 }
 
 void	check_line(char *line)
@@ -73,10 +74,14 @@ void	minus(t_data *data)
 	if (!(chdir(min)))
 	{
 		pwd();
+		g_exit_code = 0;
 		return ;
 	}
 	else
+	{
 		printf ("ebash: cd: OLDPWD is not set\n");
+		g_exit_code = 1;
+	}
 }
 
 void	cd(t_data *data, t_parse *pars)
@@ -97,7 +102,10 @@ void	cd(t_data *data, t_parse *pars)
 	else if (pars->cmd[1][0] == '~')
 		tilda_main(data, pars, joi);
 	else if (valid_dir(pars->cmd[1]) == -1)
+	{
 		printf("cd: %s: No such file or directory\n", pars->cmd[1]);
+		g_exit_code = 1;
+	}
 	else
 		norm_cd(data, pars, old, new);
 	free(joi);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_for_bultin.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:24:41 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/16 02:36:04 by user             ###   ########.fr       */
+/*   Updated: 2023/09/16 20:51:24 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	export_env(t_env *head)
 			printf("declare -x %s=\"\"\n", current->key);
 		current = current->next;
 	}
+	g_exit_code = 0;
 }
 
 int	valid_dir(char *path)

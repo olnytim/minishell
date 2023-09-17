@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 20:37:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/16 16:00:20 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/16 21:03:41 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	for_export_cont(int flag, t_env *lst, char **keyvalue)
 		free(tmp);
 	}
 	free2d(keyvalue);
+	g_exit_code = 0;
 }
 
 void	for_export(t_data *data, char *line)
@@ -87,6 +88,7 @@ void	for_export(t_data *data, char *line)
 	}
 	env_addback(&data->env_lst, env_new(keyvalue[0], keyvalue[1], eq));
 	free(keyvalue);
+	g_exit_code = 0;
 }
 
 void	export(t_data *data, t_parse *pars)
@@ -97,10 +99,7 @@ void	export(t_data *data, t_parse *pars)
 
 	i = 1;
 	if (pars->cmd[1] == NULL)
-	{
-		export_env(data->env_lst);
-		return ;
-	}
+		return (export_env(data->env_lst));
 	tmp = ft_strdup(pars->cmd[i]);
 	keyvalue = env_split(tmp, '=');
 	i = 1;
@@ -108,11 +107,12 @@ void	export(t_data *data, t_parse *pars)
 	{
 		if (valid_variable_name(keyvalue[0]) == 0)
 		{
+			free(tmp);
 			free2d(keyvalue);
+			g_exit_code = 1;
 			return ;
 		}
-		for_export(data, pars->cmd[i]);
-		i++;
+		for_export(data, pars->cmd[i++]);
 	}
 	free2d(keyvalue);
 	free(tmp);
