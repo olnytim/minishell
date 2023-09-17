@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:31:13 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/16 15:55:08 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/17 18:21:33 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,7 +221,7 @@ void	export_env(t_env *head);
 void	cd(t_data *data, t_parse *pars);
 void	for_export(t_data *data, char *line);
 void	pwd(void);
-void	env(t_data *data);
+void	env(t_data *data, t_parse *pars);
 int		valid_dir(char *path);
 void	norm_cd(t_data *data, t_parse *pars, char *old, char *new);
 void	find_var(t_data	*data, char *line, char *pointer);
