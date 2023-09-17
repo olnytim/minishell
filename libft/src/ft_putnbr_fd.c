@@ -3,33 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/31 14:47:24 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/01/31 15:26:36 by tgalyaut         ###   ########.fr       */
+/*   Created: 2023/01/24 18:34:43 by timelkon          #+#    #+#             */
+/*   Updated: 2023/01/27 19:13:54 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+void	putnum(char c, int fd)
+
+{
+	write(fd, &c, 1);
+}
+
 void	ft_putnbr_fd(int n, int fd)
+
 {
 	if (n == -2147483648)
 	{
-		ft_putchar_fd('-', fd);
-		ft_putchar_fd('2', fd);
+		putnum('-', fd);
+		putnum('2', fd);
 		n = 147483648;
 	}
 	if (n < 0)
 	{
-		ft_putchar_fd('-', fd);
-		n = -n;
+		putnum('-', fd);
+		n *= -1;
 	}
-	if (n > 9)
+	if (n / 10 > 0)
 	{
 		ft_putnbr_fd(n / 10, fd);
-		ft_putnbr_fd(n % 10, fd);
+		putnum((n % 10) + 48, fd);
 	}
-	else
-		ft_putchar_fd(n + 48, fd);
+	if (n <= 9)
+		putnum(n + 48, fd);
 }

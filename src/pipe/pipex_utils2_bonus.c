@@ -61,7 +61,7 @@ char	*xx_path(t_pipex *pipex, char *argv, char **env)
 	}
 	write(1, "command not found", 18);
 	printf(": %s\n", argv);
-	exit(0);
+	exit(1);
 }
 
 void	opening(t_pipex *pipex, int argc, char **argv)

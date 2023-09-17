@@ -3,71 +3,85 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 20:30:35 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/02/17 22:25:37 by tgalyaut         ###   ########.fr       */
+/*   Created: 2023/01/26 15:20:47 by timelkon          #+#    #+#             */
+/*   Updated: 2023/02/06 16:24:22 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	colnum(const char *str, char c)
-{
-	int	counter;
-	int	i;
+void	ft_free(char **s, int i)
 
-	counter = 0;
-	i = 0;
-	while (str[i])
-	{
-		while (str[i] == c)
-			i++;
-		if (str[i])
-			counter++;
-		while (str[i] != c && str[i])
-			i++;
-	}
-	return (counter);
+{
+	while (i--)
+		free(s[i]);
+	free(s);
 }
 
-static char	**fill_matrix(const char *str, char c, char **matrix, int word)
-{
-	int	i;
-	int	j;
-	int	start;
-	int	end;
+int	countsplit(int i, int w, char *s, char c)
 
-	i = 0;
-	j = 0;
-	while (j < word)
+{
+	while (s[i] != '\0')
 	{
-		while (str[i] == c)
-			i++;
-		start = i;
-		while (str[i] != c)
+		if (s[i] != c)
 		{
-			if (!str[i])
-				break ;
-			i++;
+			w++;
+			while (s[i] != c && s[i] != '\0')
+				i++;
 		}
-		end = i;
-		if (end > start)
-			matrix[j] = ft_substr(str, start, end - start);
-		j++;
+		else
+		{
+			while (s[i] == c)
+				i++;
+		}
 	}
-	matrix[j] = NULL;
-	return (matrix);
+	return (w);
 }
 
-char	**ft_split(char const *s, char c)
-{
-	char	**matrix;
-	int		i;
+char	**delai(int i, int e, char *s, char c)
 
-	i = colnum(s, c);
-	matrix = (char **)malloc(sizeof(char *) * (i + 1));
-	if (!matrix)
+{
+	int		start;
+	char	**split;
+
+	split = malloc ((countsplit(0, 0, s, c) + 1) * sizeof (char *));
+	if (!split)
 		return (NULL);
-	return (fill_matrix(s, c, matrix, i));
+	while (s[i])
+	{
+		while (s[i] == c)
+			i++;
+		if (s[i] != c && s[i] != '\0')
+		{
+			start = i;
+			while (s[i] != c && s[i] != '\0')
+				i++;
+			split[e] = ft_substr(s, start, (i - start));
+			if (split[e] == NULL)
+			{
+				ft_free (split, e);
+				return (0);
+			}
+		}
+		e++;
+	}
+	return (split);
+}
+
+char	**ft_split(char const *s1, char c)
+
+{
+	char	*s;
+	char	**split;
+
+	if (!s1)
+		return (NULL);
+	s = (char *)s1;
+	split = delai(0, 0, s, c);
+	if (!split)
+		return (NULL);
+	split[countsplit(0, 0, s, c)] = 0;
+	return (split);
 }

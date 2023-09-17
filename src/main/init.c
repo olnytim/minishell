@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/15 17:32:40 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/16 22:32:01 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,15 @@ void	conditions(t_parse *input, t_data *data)
 		{
 		}
 		else
+		{
 			child(input, data);
+			if (g_exit_code == 1)
+				g_exit_code = 127;
+		}
 	}
 }
 
-void	init_empty_free(char *str, t_parse *input)
+int	init_empty_free(char *str, t_parse *input)
 {
 	add_history(str);
 	free(str);
@@ -95,6 +99,7 @@ void	init_empty_free(char *str, t_parse *input)
 	free(input->t_tig);
 	free(input);
 	g_exit_code = 127;
+	return (1);
 }
 
 void	init(t_data *data)
@@ -112,14 +117,14 @@ void	init(t_data *data)
 			add_history(str);
 			free(str);
 			printf(NO_CMD, "$");
+			g_exit_code = 127;
 			continue ;
 		}
 		input = parsing(str, data->env_lst);
 		if (input && !*input->cmd && !*input->file && !*input->lim)
 		{
-			if (*str)
-				init_empty_free(str, input);
-			continue ;
+			if (*str && init_empty_free(str, input))
+				continue ;
 		}
 		init_cont_1(data, input, str);
 	}

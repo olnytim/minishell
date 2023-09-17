@@ -3,18 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 16:24:49 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/01/20 19:00:12 by tgalyaut         ###   ########.fr       */
+/*   Created: 2023/01/16 15:14:52 by timelkon          #+#    #+#             */
+/*   Updated: 2023/01/27 18:40:31 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 int	ft_isalpha(int c)
+
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+	if ((c < 97 || c > 122) && (c < 65 || c > 90))
+		return (0);
+	else
 		return (1);
-	return (0);
 }

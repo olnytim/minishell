@@ -3,16 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgalyaut <tgalyaut@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/20 18:56:21 by tgalyaut          #+#    #+#             */
-/*   Updated: 2023/01/20 22:36:44 by tgalyaut         ###   ########.fr       */
+/*   Created: 2023/01/19 13:43:58 by timelkon          #+#    #+#             */
+/*   Updated: 2023/01/27 18:37:32 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
+
 {
-	ft_memset(s, 0, n);
+	size_t	a;
+	char	*str;
+
+	str = (char *) s;
+	a = 0;
+	if (n > 0)
+	{
+		while (a != n)
+		{
+			str[a] = '\0';
+			a++;
+		}
+		a = 0;
+	}
+	return ;
 }
