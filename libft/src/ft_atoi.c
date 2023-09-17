@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 14:18:39 by timelkon          #+#    #+#             */
-/*   Updated: 2023/06/05 17:18:06 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/17 18:39:28 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_atoi(const char *str)
 		znak *= -1;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
-	if (str[i] >= 48 || str[i] <= 57)
+	if (str[i] >= 48 && str[i] <= 57)
 	{
 		while (str[i] != '\0' && str[i] >= 48 && str[i] <= 57)
 		{

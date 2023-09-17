@@ -1,6 +1,6 @@
 NAME     = minishell
 GCC      = gcc
-CFLAGS   = -Wall -Wextra -Werror -g
+CFLAGS   = -Wall -Wextra -Werror -g -fsanitize=address
 RM       = rm -rf
 OUTPUT   = ./$(NAME)
 LIBS     = -I./hf/ -I./readline/include

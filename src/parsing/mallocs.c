@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 20:56:25 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/15 17:40:25 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/17 18:30:41 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	count_buf(int i, int w, char *line)
 	char	q;
 	int		flag;
 
+	flag = 0;
 	while (line[i] && line[i] != '|')
 	{
 		if (flag != 1 && (line[i] == 34 || line[i] == 39))
@@ -24,11 +25,13 @@ int	count_buf(int i, int w, char *line)
 			flag = 1;
 			q = line[i++];
 		}
-		if (line[i] == q && flag)
+		while (line[i] != q)
 		{
-			flag = 0;
+			w++;
 			i++;
 		}
+		flag = 0;
+		q = 0;
 		if (line[i])
 		{
 			w++;
