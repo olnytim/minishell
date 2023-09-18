@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:07:13 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/16 20:32:43 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/18 18:41:46 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,24 @@ void	check_line(char *line)
 	}
 }
 
-void	minus(t_data *data)
+void	minus(t_data *data, char *str)
 {
 	char	*min;
-
-	min = whum_find(data, "OLDPWD");
-	if (!(chdir(min)))
+	
+	if ((str[1] && str[2]) && (str[1] != '-' || str[1] != '\0'))
 	{
-		pwd();
+		if (str[2] && str[2] != '\0')
+		{
+			printf("ebash: cd: -%c: invalid option\n", str[1]);
+			g_exit_code = 1;
+			return ;
+		}
+	}
+	min = whum_find(data, "OLDPWD");
+	if (!chdir(min))
+	{
+		if (str[1] != '-')
+			pwd();
 		g_exit_code = 0;
 		return ;
 	}
@@ -98,7 +108,7 @@ void	cd(t_data *data, t_parse *pars)
 	if (pars->cmd[1] == NULL)
 		just_cd(data, joi, old, new);
 	else if (pars->cmd[1][0] == '-')
-		minus(data);
+		minus(data, pars->cmd[1]);
 	else if (pars->cmd[1][0] == '~')
 		tilda_main(data, pars, joi);
 	else if (valid_dir(pars->cmd[1]) == -1)
