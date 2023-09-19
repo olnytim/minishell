@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:07:13 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/18 18:41:46 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/09/19 20:46:35 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	check_line(char *line)
 void	minus(t_data *data, char *str)
 {
 	char	*min;
-	
+
 	if ((str[1] && str[2]) && (str[1] != '-' || str[1] != '\0'))
 	{
 		if (str[2] && str[2] != '\0')

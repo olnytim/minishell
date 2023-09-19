@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:47:03 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/15 17:03:32 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/19 20:39:50 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int	check_dollar_1(char *line, int i)
 {
 	while (line[i] && line[i] != '$' && line[i] != ' '
 		&& line[i] != '=' && line[i] != '@' && line[i] != '\t'
-		&& line[i] != '?' && !(line[i] >= 33 && line[i] <= 47))
+		&& line[i] != 92 && line[i] != '?'
+		&& !(line[i] >= 33 && line[i] <= 47))
 		i++;
 	return (i);
 }
