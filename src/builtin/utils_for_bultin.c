@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_for_bultin.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/01 12:24:41 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/20 17:22:32 by timelkon         ###   ########.fr       */
+/*   Created: 2023/09/20 21:19:14 by vfedorov          #+#    #+#             */
+/*   Updated: 2023/09/20 21:19:17 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
