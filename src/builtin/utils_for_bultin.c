@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_for_bultin.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:24:41 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/17 19:14:10 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:22:32 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int	valid_variable_name(char *var)
 			write(2, "syntax error near unexpected token\n", 35);
 			return (0);
 		}
-		b++;
+		if (var[b])
+			b++;
 	}
 	b = 0;
 	if (ft_isalpha(var[b]) == 0 && var[0] != '_')

@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:07:13 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/19 20:46:35 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/20 18:01:52 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,16 @@ void	find_var(t_data	*data, char *line, char *pointer)
 	char	*tmp;
 
 	lst = data->env_lst;
-	while (ft_strncmp(lst->key, line,
-			ft_strlen(lst->key)) != 0
-		&& ft_strncmp(lst->key, line,
-			ft_strlen(line)) != 0)
+	while (lst->next
+		&& ft_strncmp(lst->key, line, ft_strlen(lst->key)) != 0
+		&& ft_strncmp(lst->key, line, ft_strlen(line)) != 0)
 		lst = lst->next;
-	if (ft_strncmp(lst->key, line,
-			ft_strlen(lst->key)) == 0
-		&& ft_strncmp(lst->key, line,
-			ft_strlen(line)) == 0)
-	{
-		str = ft_strjoin(line, "=");
-		tmp = str;
-		str = ft_strjoin(tmp, pointer);
-		free(tmp);
-		for_export(data, str);
-		free(str);
-	}
+	str = ft_strjoin(line, "=");
+	tmp = str;
+	str = ft_strjoin(tmp, pointer);
+	free(tmp);
+	for_export(data, str);
+	free(str);
 }
 
 void	just_cd(t_data *data, char *user, char *old, char *new)

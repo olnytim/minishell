@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:31:13 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/17 18:21:33 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/09/20 18:38:22 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,6 +230,7 @@ int		tilda(t_parse *pars, char *valid);
 char	*whum_find(t_data *data, char *whum);
 void	tilda_main(t_data *data, t_parse *pars, char *joi);
 void	just_cd(t_data *data, char *user, char *old, char *new);
+void	exit_message_for_ebash(char *cmd);
 
 //							//
 

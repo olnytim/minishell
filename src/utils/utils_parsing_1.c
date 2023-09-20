@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:17:32 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/16 16:19:06 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/20 15:12:57 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ char	*file_lim_quotes(char *arg, int *i, int j)
 		if (arg[*i] == ' ' || arg[*i] == '\t')
 			break ;
 		buf[j++] = arg[*i];
-		*i += 1;
+		if (arg[*i])
+			*i += 1;
 	}
 	buf[j] = '\0';
 	str = ft_strdup(buf);

@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:47:03 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/19 20:39:50 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/20 20:05:59 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	*check_dollar(char *line, t_env *env, char *str, int flag)
 		}
 		temp = temp->next;
 	}
-	if (!*dol && line[i] != '$' && line[i - 2] != '$')
+	if (!*dol && line[i] != '$')
 		str = write_dollar("$", str, dol, flag);
 	return (free(dol), str);
 }

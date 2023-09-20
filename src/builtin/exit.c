@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:35:02 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/16 20:45:51 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/20 15:43:40 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int	ft_exit(t_parse *input)
 	int	i;
 
 	i = 0;
-	printf("exit\n");
-	if (input->cmd[2] && *input->cmd[2])
+	if (input->cmd[1] && *input->cmd[1] && input->cmd[2] && *input->cmd[2])
 		return (printf("ebash: exit: too many arguments\n"));
 	else if (input->cmd[1])
 	{
+		printf("exit\n");
 		if (!ft_isdigit(input->cmd[1][i]))
 		{
 			printf("ebash: exit: %s: numeric argument required\n",

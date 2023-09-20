@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:56 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/16 15:46:52 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/20 15:23:10 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,18 @@ int	operator_after_pipe(char *line, int i)
 		if (line[i] == 34 || line[i] == 39)
 		{
 			q = line[i++];
-			while (line[i] != q)
+			while (line[i] && line[i] != q)
 				i++;
 		}
 		if (line[i] == '|')
 		{
-			i++;
-			while ((line[i] == ' ' || line[i] == '\t') && line[i])
-				i++;
+			while ((line[++i] == ' ' || line[i] == '\t') && line[i])
+				;
 			if (line[i] == '\0' || line[i] == '|')
 				return (0);
 		}
-		i++;
+		if (line[i])
+			i++;
 	}
 	str = ft_strtrim(line, " ");
 	if (*str == '|')
