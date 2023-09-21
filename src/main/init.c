@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/20 21:21:18 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/09/22 01:50:41 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	child(t_parse *input, t_data *data)
 			execve(input->cmd[0], input->cmd, data->env);
 		execve(data->join_path, input->cmd, data->env);
 	}
-	waitpid(child, &status, 0);
+	wait(&status);
 	if (WIFEXITED(status))
 		g_exit_code = WEXITSTATUS(status);
 }

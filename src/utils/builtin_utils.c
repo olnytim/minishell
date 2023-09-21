@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:24:02 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/17 18:28:33 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/09/22 01:49:20 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int	check_builtin_with_redirect(t_parse *cmd, t_data *data)
 				check_builtin(cmd, data);
 				exit(EXIT_SUCCESS);
 			}
+			wait(NULL);
 			return (builtin);
 		}
 		else
