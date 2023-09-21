@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apiloian <apiloian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:15:25 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/09/21 20:23:40 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/21 20:37:23 by apiloian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,8 @@ void	echo(char **args)
 		if (args[i])
 			printf(" ");
 	}
-
 	if (!flag)
-		write(2, "\n", 1);
+		printf("\n");
 	g_exit_code = 0;
 }
 
