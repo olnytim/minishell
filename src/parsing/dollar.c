@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:47:03 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/20 21:25:24 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/09/21 20:09:36 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ char	*desipher_dollar(char *line, t_env *env, int i, int j)
 		}
 		while (line[i] && line[i] != '$')
 		{
+			if (line[i] == '<' && line[i + 1] == '<')
+				i = heredoc_skip(line, i, &dol, &j);
 			if (line[i] == 34 || line[i] == 39)
 				dol.q = desipher_dollar_cont_1(line, dol.q, &dol.flag, &i);
 			dol.buf[j++] = line[i++];

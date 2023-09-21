@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 22:56:44 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/20 21:24:04 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/09/21 19:28:33 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	*fill_dol_buf(char *buf, char *val, int i, int j)
 				buf[j++] = val[i++];
 			buf[j++] = 39;
 		}
-		if (buf[j] && val[i])
+		if (val[i])
 			buf[j++] = val[i++];
 	}
 	buf[j] = '\0';

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:15:25 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/09/17 18:50:22 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/09/21 20:23:40 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ void	echo(char **args)
 		if (args[i])
 			printf(" ");
 	}
+
 	if (!flag)
-		printf("\n");
+		write(2, "\n", 1);
 	g_exit_code = 0;
 }
 

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 21:21:42 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/20 21:25:37 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/09/21 20:19:28 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# define MINISHELL  "\e[1;31mebash\033[0m "
+# define MINISHELL  "\e[1;31m5051\033[0m "
 # define NO_CMD     "ebash: %s: command not found\n"
 
 # include <unistd.h>
@@ -231,6 +231,7 @@ char	*whum_find(t_data *data, char *whum);
 void	tilda_main(t_data *data, t_parse *pars, char *joi);
 void	just_cd(t_data *data, char *user, char *old, char *new);
 void	exit_message_for_ebash(char *cmd);
+int		heredoc_skip(char *line, int i, t_dol *dol, int *j);
 
 //							//
 
