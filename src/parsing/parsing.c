@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:56 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/20 21:25:11 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/10/18 18:48:44 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	operators_in_a_row(char *line, int i)
 
 	while (line[++i])
 	{
-		if (line[i] == '>' || line[i] == '<')
+		if (line[i] == '>' || line[i] == '<' || line[i] == '|')
 		{
 			c = line[i];
 			if (line[i + 1] == c)
@@ -100,10 +100,10 @@ t_parse	*parsing(char *line, t_env *env)
 
 	if (!check_quotes(line))
 		return (error(0));
-	if (!operator_after_pipe(line, 0))
-		return (error(1));
 	if (!operators_in_a_row(line, -1))
 		return (error(2));
+	if (!operator_after_pipe(line, 0))
+		return (error(1));
 	if (ft_strchr(line, 36))
 		true_line = desipher_dollar(line, env, 0, 0);
 	else

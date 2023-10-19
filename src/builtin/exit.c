@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 21:18:31 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/09/20 21:18:52 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/10/18 18:11:54 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_exit(t_parse *input)
 
 	i = 0;
 	if (input->cmd[1] && *input->cmd[1] && input->cmd[2] && *input->cmd[2])
-		return (printf("ebash: exit: too many arguments\n"));
+		return (g_exit_code = 1, printf("ebash: exit: too many arguments\n"));
 	else if (input->cmd[1])
 	{
 		printf("exit\n");
