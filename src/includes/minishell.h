@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 21:21:42 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/21 20:19:28 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/10/19 13:40:59 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MINISHELL_H
 
 # define MINISHELL  "\e[1;31m5051\033[0m "
-# define NO_CMD     "ebash: %s: command not found\n"
+# define NO_CMD     "ebash: %s: \n"
 
 # include <unistd.h>
 # include <stdio.h>
