@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/02 22:56:44 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/15 17:03:43 by timelkon         ###   ########.fr       */
+/*   Created: 2023/09/02 22:56:44 by apiloian          #+#    #+#             */
+/*   Updated: 2023/09/21 19:28:33 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,11 @@ int	count_wr_dol_buf(char *val)
 			}
 			w += 2;
 		}
-		i++;
-		w++;
+		else
+		{
+			i++;
+			w++;
+		}
 	}
 	return (w);
 }
@@ -70,10 +73,11 @@ char	*fill_dol_buf(char *buf, char *val, int i, int j)
 		{
 			buf[j++] = 39;
 			while (val[i] == '>' || val[i] == '<' || val[i] == '|')
-				i++;
+				buf[j++] = val[i++];
 			buf[j++] = 39;
 		}
-		buf[j++] = val[i++];
+		if (val[i])
+			buf[j++] = val[i++];
 	}
 	buf[j] = '\0';
 	return (buf);

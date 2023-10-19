@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_for_bultin.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/01 12:24:41 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/16 20:51:24 by timelkon         ###   ########.fr       */
+/*   Created: 2023/09/20 21:19:14 by vfedorov          #+#    #+#             */
+/*   Updated: 2023/09/20 21:19:17 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int	valid_variable_name(char *var)
 			write(2, "syntax error near unexpected token\n", 35);
 			return (0);
 		}
-		b++;
+		if (var[b])
+			b++;
 	}
 	b = 0;
 	if (ft_isalpha(var[b]) == 0 && var[0] != '_')
@@ -55,12 +56,19 @@ void	export_env(t_env *head)
 	current = head;
 	while (current != NULL)
 	{
-		if (current->val && *current->val && *current->key)
+		if (!current->key && !*current->key && !current->val)
+			printf("%s", current->key);
+		else if (current->val && *current->val && *current->key)
 			printf("declare -x %s=\"%s\"\n", current->key, current->val);
-		else if (current->flag == 0)
+		else if (current->flag == 0 && *current->key)
 			printf("declare -x %s\n", current->key);
 		else if (current->flag == 1)
-			printf("declare -x %s=\"\"\n", current->key);
+		{
+			if (!*current->key && !*current->val)
+				printf("%s", current->key);
+			else
+				printf("declare -x %s=\"\"\n", current->key);
+		}
 		current = current->next;
 	}
 	g_exit_code = 0;

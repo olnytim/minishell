@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/15 17:24:34 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/15 17:42:28 by timelkon         ###   ########.fr       */
+/*   Created: 2023/09/15 17:24:34 by apiloian          #+#    #+#             */
+/*   Updated: 2023/09/20 21:24:40 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,10 @@ void	init_cont_1(t_data *data, t_parse *input, char *str)
 	free2d(data->env);
 	free_input(input_free, input);
 	free(str);
+}
+
+void	exit_message_for_ebash(char *cmd)
+{
+	printf("ebash: %s: No such file or directory\n", cmd);
+	exit(EXIT_FAILURE);
 }

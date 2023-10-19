@@ -5,15 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/08 15:31:13 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/16 15:55:08 by timelkon         ###   ########.fr       */
+/*   Created: 2023/09/20 21:21:42 by apiloian          #+#    #+#             */
+/*   Updated: 2023/09/21 20:19:28 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# define MINISHELL  "\e[1;31mebash\033[0m "
+# define MINISHELL  "\e[1;31m5051\033[0m "
 # define NO_CMD     "ebash: %s: command not found\n"
 
 # include <unistd.h>
@@ -221,7 +221,7 @@ void	export_env(t_env *head);
 void	cd(t_data *data, t_parse *pars);
 void	for_export(t_data *data, char *line);
 void	pwd(void);
-void	env(t_data *data);
+void	env(t_data *data, t_parse *pars);
 int		valid_dir(char *path);
 void	norm_cd(t_data *data, t_parse *pars, char *old, char *new);
 void	find_var(t_data	*data, char *line, char *pointer);
@@ -230,6 +230,8 @@ int		tilda(t_parse *pars, char *valid);
 char	*whum_find(t_data *data, char *whum);
 void	tilda_main(t_data *data, t_parse *pars, char *joi);
 void	just_cd(t_data *data, char *user, char *old, char *new);
+void	exit_message_for_ebash(char *cmd);
+int		heredoc_skip(char *line, int i, t_dol *dol, int *j);
 
 //							//
 

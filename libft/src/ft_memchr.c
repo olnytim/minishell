@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/20 15:14:06 by timelkon          #+#    #+#             */
-/*   Updated: 2023/02/02 14:47:11 by timelkon         ###   ########.fr       */
+/*   Created: 2023/01/20 15:14:06 by vfedorov          #+#    #+#             */
+/*   Updated: 2023/09/20 21:22:18 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	char	d;
 	size_t	l;
 
+	(void)l;
 	if (n == 0)
 		return (NULL);
 	d = (char)c;

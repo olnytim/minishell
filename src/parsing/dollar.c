@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/24 15:47:03 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/15 17:03:32 by timelkon         ###   ########.fr       */
+/*   Created: 2023/08/24 15:47:03 by apiloian          #+#    #+#             */
+/*   Updated: 2023/09/21 20:09:36 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int	check_dollar_1(char *line, int i)
 {
 	while (line[i] && line[i] != '$' && line[i] != ' '
 		&& line[i] != '=' && line[i] != '@' && line[i] != '\t'
-		&& line[i] != '?' && !(line[i] >= 33 && line[i] <= 47))
+		&& line[i] != 92 && line[i] != '?'
+		&& !(line[i] >= 33 && line[i] <= 47))
 		i++;
 	return (i);
 }
@@ -79,7 +80,7 @@ char	*check_dollar(char *line, t_env *env, char *str, int flag)
 		}
 		temp = temp->next;
 	}
-	if (!*dol && line[i] != '$' && line[i - 2] != '$')
+	if (!*dol && line[i] != '$')
 		str = write_dollar("$", str, dol, flag);
 	return (free(dol), str);
 }
@@ -101,6 +102,8 @@ char	*desipher_dollar(char *line, t_env *env, int i, int j)
 		}
 		while (line[i] && line[i] != '$')
 		{
+			if (line[i] == '<' && line[i + 1] == '<')
+				i = heredoc_skip(line, i, &dol, &j);
 			if (line[i] == 34 || line[i] == 39)
 				dol.q = desipher_dollar_cont_1(line, dol.q, &dol.flag, &i);
 			dol.buf[j++] = line[i++];

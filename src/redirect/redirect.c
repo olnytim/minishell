@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/16 22:37:31 by timelkon          #+#    #+#             */
-/*   Updated: 2023/09/16 22:39:34 by timelkon         ###   ########.fr       */
+/*   Created: 2023/09/16 22:37:31 by vfedorov          #+#    #+#             */
+/*   Updated: 2023/09/20 21:22:18 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	ft_redirect_in(t_parse *lst)
 	{
 		close(lst->fd_in);
 		printf("ebash: %s: No such file or directory\n", *lst->file);
+		g_exit_code = 1;
 		return (1);
 	}
 	return (0);

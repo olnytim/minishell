@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/16 22:32:01 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/22 01:50:41 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,15 @@ void	child(t_parse *input, t_data *data)
 	{
 		if (!*input->cmd)
 			exit(EXIT_FAILURE);
-		if (!data->path)
-		{
-			printf("ebash: %s: No such file or directory\n", input->cmd[0]);
-			exit(EXIT_FAILURE);
-		}
+		if (!data->path && input->cmd[0][0] != '/')
+			exit_message_for_ebash(input->cmd[0]);
 		ft_redirect_dup(input, status);
 		data->join_path = x_path(data, input->cmd[0]);
+		if (!data->join_path)
+			execve(input->cmd[0], input->cmd, data->env);
 		execve(data->join_path, input->cmd, data->env);
 	}
-	waitpid(child, &status, 0);
+	wait(&status);
 	if (WIFEXITED(status))
 		g_exit_code = WEXITSTATUS(status);
 }
@@ -80,17 +79,14 @@ void	conditions(t_parse *input, t_data *data)
 		{
 		}
 		else
-		{
 			child(input, data);
-			if (g_exit_code == 1)
-				g_exit_code = 127;
-		}
 	}
 }
 
 int	init_empty_free(char *str, t_parse *input)
 {
-	add_history(str);
+	if (*str)
+		add_history(str);
 	free(str);
 	free(input->cmd);
 	free(input->file);
@@ -98,7 +94,7 @@ int	init_empty_free(char *str, t_parse *input)
 	free(input->operator);
 	free(input->t_tig);
 	free(input);
-	g_exit_code = 127;
+	g_exit_code = 0;
 	return (1);
 }
 
@@ -123,7 +119,7 @@ void	init(t_data *data)
 		input = parsing(str, data->env_lst);
 		if (input && !*input->cmd && !*input->file && !*input->lim)
 		{
-			if (*str && init_empty_free(str, input))
+			if (str && init_empty_free(str, input))
 				continue ;
 		}
 		init_cont_1(data, input, str);

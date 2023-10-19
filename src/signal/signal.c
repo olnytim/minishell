@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 20:10:57 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/15 17:40:54 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/09/20 21:22:18 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,6 @@ void	ft_sigquit(int sig)
 	printf("Quit: 3\n");
 	g_exit_code = 131;
 }
-
-// void	ft_sigempty(int sig)
-// {
-// 	(void)sig;
-// 	printf("");
-// }
 
 void	ft_sigline(int sig)
 {
