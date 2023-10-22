@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:24:53 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/20 21:24:27 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/10/22 19:16:53 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_redirect_dup(t_parse *lst, int status)
 	}
 }
 
-int	ft_input_cmp(t_parse *lst, int *status)
+int	ft_input_cmp(t_parse *lst, int *status, t_data *data)
 {
 	if (**lst->operator == '<' && *(*lst->operator + 1) != '<')
 	{
@@ -44,18 +44,18 @@ int	ft_input_cmp(t_parse *lst, int *status)
 	else if (**lst->operator == '<' && *(*lst->operator + 1) == '<')
 	{
 		if (*status == 3 || *status == 4 || *status == 5)
-			*status = ft_redirect_heredoc(lst) + 3;
+			*status = ft_redirect_heredoc(lst, data) + 3;
 		else
-			*status = ft_redirect_heredoc(lst);
+			*status = ft_redirect_heredoc(lst, data);
 		lst->lim++;
 		return (0);
 	}
 	return (1);
 }
 
-void	ft_redirect_cmp(t_parse *lst, int *status)
+void	ft_redirect_cmp(t_parse *lst, int *status, t_data *data)
 {
-	if (ft_input_cmp(lst, status) && **lst->operator == '>'
+	if (ft_input_cmp(lst, status, data) && **lst->operator == '>'
 		&& *(*lst->operator + 1) != '>')
 	{
 		if (*status == 1 || *status == 2 || *status == 5)

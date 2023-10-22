@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 12:40:03 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/09/20 21:22:18 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/10/22 15:01:51 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	while (*str1)
 		spc[i++] = *str1++;
-	while (*str2)
+	while (str2 && *str2)
 	{
 		spc[i] = *str2;
 		i++;

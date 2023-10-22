@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/22 01:50:41 by user             ###   ########.fr       */
+/*   Updated: 2023/10/22 19:37:32 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	child(t_parse *input, t_data *data)
 	int		status;
 	pid_t	child;
 
-	status = ft_redirect(input);
+	status = ft_redirect(input, data);
 	if (status == -1)
 		return ;
 	signal(SIGQUIT, ft_sigquit);
@@ -123,5 +123,6 @@ void	init(t_data *data)
 				continue ;
 		}
 		init_cont_1(data, input, str);
+		// system("leaks minishell");
 	}
 }

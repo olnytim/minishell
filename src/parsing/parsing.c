@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:35:56 by apiloian          #+#    #+#             */
-/*   Updated: 2023/10/19 17:18:28 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/10/20 19:25:37 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,10 @@ int	operators_in_a_row(char *line, int i)
 			if (line[i + 1] == c)
 				i++;
 			i++;
-			// while (line[i] == ' ' || line[i] == '\t')
-			while (line[i])
+			while (line[i] && line[i] != ' ' && line[i] != '\t')
 				i++;
-			if (line[i - 1] == '>' || line[i - 1] == '<'
-				|| line[i - 1] == '|' || line[i - 1] == '\0')
+			if (line[i] == '>' || line[i] == '<'
+				|| line[i] == '|' || line[i] == '\0')
 				return (0);
 		}
 		if (line[i] == 34 || line[i] == 39)
@@ -106,7 +105,7 @@ t_parse	*parsing(char *line, t_env *env)
 	else if (!operators_in_a_row(line, -1))
 		return error(2);
 	if (ft_strchr(line, 36))
-		true_line = desipher_dollar(line, env, 0, 0);
+		true_line = desipher_dollar(line, env, 0);
 	else
 		true_line = ft_strdup(line);
 	splited = smart_split(true_line);

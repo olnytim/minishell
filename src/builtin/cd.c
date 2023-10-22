@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 21:18:25 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/10/19 17:35:03 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/10/22 15:16:47 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	just_cd(t_data *data, char *user, char *old, char *new)
 	chdir(user);
 	find_var(data, "OLDPWD", old);
 	new = getcwd(0, 0);
+	if (!new)
+		error(3);
 	find_var(data, "PWD", new);
 	free(old);
 	free(new);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 21:21:42 by apiloian          #+#    #+#             */
-/*   Updated: 2023/10/19 13:40:59 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/10/22 15:48:40 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void	quote_handle(char *line, char *buf, int *i, int *j);
 
 char	*ft_strjoin_nl(char *str1, char *str2);
 
-char	*desipher_dollar(char *line, t_env *env, int i, int j);
+char	*desipher_dollar(char *line, t_env *env, int hdoc);
 
 char	*fill_proc_buf(char *buf);
 
@@ -151,11 +151,11 @@ int		check_pipe(t_parse *input);
 
 char	**struct_to2arr(t_parse *lst);
 
-int		ft_redirect(t_parse *lst);
+int		ft_redirect(t_parse *lst, t_data *data);
 
 int		ft_redirect_in(t_parse *lst);
 
-int		ft_redirect_heredoc(t_parse *lst);
+int		ft_redirect_heredoc(t_parse *lst, t_data *data);
 
 int		ft_redirect_out(t_parse *lst);
 
@@ -163,7 +163,7 @@ int		ft_redirect_out_append(t_parse *lst);
 
 void	ft_redirect_dup(t_parse *lst, int status);
 
-void	ft_redirect_cmp(t_parse *lst, int *status);
+void	ft_redirect_cmp(t_parse *lst, int *status, t_data *data);
 
 void	print_linked_list(t_env *head);
 
