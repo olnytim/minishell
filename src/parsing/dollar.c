@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:47:03 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/21 20:09:36 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/10/20 19:27:27 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,14 @@ char	*check_dollar(char *line, t_env *env, char *str, int flag)
 	return (free(dol), str);
 }
 
-char	*desipher_dollar(char *line, t_env *env, int i, int j)
+char	*desipher_dollar(char *line, t_env *env, int hdoc)
 {
 	t_dol	dol;
+	int		i;
+	int		j;
 
+	i = 0;
+	j = 0;
 	dol.flag = 0;
 	dol.str = NULL;
 	dol.buf = malloc(ft_strlen(line) + 1);
@@ -104,7 +108,7 @@ char	*desipher_dollar(char *line, t_env *env, int i, int j)
 		{
 			if (line[i] == '<' && line[i + 1] == '<')
 				i = heredoc_skip(line, i, &dol, &j);
-			if (line[i] == 34 || line[i] == 39)
+			if (hdoc == 0 && (line[i] == 34 || line[i] == 39))
 				dol.q = desipher_dollar_cont_1(line, dol.q, &dol.flag, &i);
 			dol.buf[j++] = line[i++];
 		}

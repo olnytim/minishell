@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   one_more_bu.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 21:18:44 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/09/20 21:18:48 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/10/22 15:18:47 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	norm_cd(t_data *data, t_parse *pars, char *old, char *new)
 	chdir(pars->cmd[1]);
 	find_var(data, "OLDPWD", old);
 	new = getcwd(0, 0);
+	if (!new)
+		error(3);
 	find_var(data, "PWD", new);
 	free(old);
 	free(new);

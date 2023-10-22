@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 22:37:31 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/09/20 21:22:18 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/10/22 19:35:05 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@ int	ft_redirect_in(t_parse *lst)
 	return (0);
 }
 
-int	ft_redirect_heredoc(t_parse *lst)
+int	ft_redirect_heredoc(t_parse *lst, t_data *data)
 {
 	char	*str;
 	char	*lim;
+	char	*dol;
 
 	lim = *lst->lim;
 	lst->fd_in = open("heredoc", O_RDWR | O_CREAT, 0644);
@@ -41,10 +42,15 @@ int	ft_redirect_heredoc(t_parse *lst)
 			free(str);
 			break ;
 		}
-		write(lst->fd_in, str, ft_strlen(str));
-		if (*str != '\n')
-			write(lst->fd_in, "\n", 1);
+		if (ft_strchr(str, '$'))
+			dol = desipher_dollar(str, data->env_lst, 1);
+		else
+			dol = ft_strdup(str);
 		free(str);
+		write(lst->fd_in, dol, ft_strlen(dol));
+		if (*dol != '\n')
+			write(lst->fd_in, "\n", 1);
+		free(dol);
 	}
 	close(lst->fd_in);
 	lst->fd_in = open("heredoc", O_RDONLY);
@@ -63,7 +69,7 @@ int	ft_redirect_out_append(t_parse *lst)
 	return (4);
 }
 
-int	ft_redirect(t_parse *lst)
+int	ft_redirect(t_parse *lst, t_data *data)
 {
 	int	status;
 
@@ -72,7 +78,7 @@ int	ft_redirect(t_parse *lst)
 		return (0);
 	while (*lst->operator)
 	{
-		ft_redirect_cmp(lst, &status);
+		ft_redirect_cmp(lst, &status, data);
 		if (status == -1)
 			return (status);
 		lst->operator++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:24:02 by apiloian          #+#    #+#             */
-/*   Updated: 2023/09/22 01:49:20 by user             ###   ########.fr       */
+/*   Updated: 2023/10/20 19:37:23 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	check_builtin_with_redirect(t_parse *cmd, t_data *data)
 		if (*cmd->operator && (**cmd->operator == '>'
 				|| **cmd->operator == '<'))
 		{
-			status = ft_redirect(cmd);
+			status = ft_redirect(cmd, data);
 			if (fork() == 0)
 			{
 				ft_redirect_dup(cmd, status);
