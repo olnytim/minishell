@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/10/22 19:37:32 by mac              ###   ########.fr       */
+/*   Updated: 2023/10/23 18:48:42 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	init(t_data *data)
 	{
 		sig_event_loop();
 		str = readline(MINISHELL);
-		sig_ex(str);
+		sig_ex(/binstr);
 		if (str[0] == '$' && str[1] == '\0')
 		{
 			add_history(str);
