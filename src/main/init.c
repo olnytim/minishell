@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 14:40:37 by apiloian          #+#    #+#             */
-/*   Updated: 2023/10/23 18:48:42 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/10/23 19:14:59 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	child(t_parse *input, t_data *data)
 		if (!*input->cmd)
 			exit(EXIT_FAILURE);
 		if (!data->path && input->cmd[0][0] != '/')
-			exit_message_for_ebash(input->cmd[0]);
+			exit_message_for_5051(input->cmd[0]);
 		ft_redirect_dup(input, status);
 		data->join_path = x_path(data, input->cmd[0]);
 		if (!data->join_path)
@@ -107,7 +107,7 @@ void	init(t_data *data)
 	{
 		sig_event_loop();
 		str = readline(MINISHELL);
-		sig_ex(/binstr);
+		sig_ex(str);
 		if (str[0] == '$' && str[1] == '\0')
 		{
 			add_history(str);
@@ -123,6 +123,5 @@ void	init(t_data *data)
 				continue ;
 		}
 		init_cont_1(data, input, str);
-		// system("leaks minishell");
 	}
 }

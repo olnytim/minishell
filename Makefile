@@ -1,5 +1,5 @@
 NAME     = minishell
-GCC      = gcc
+GCC      = cc
 CFLAGS   = -Wall -Wextra -Werror -g #-fsanitize=address
 RM       = rm -rf
 OUTPUT   = ./$(NAME)

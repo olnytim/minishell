@@ -6,7 +6,7 @@
 /*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:04:30 by apiloian          #+#    #+#             */
-/*   Updated: 2023/10/23 18:39:57 by timelkon         ###   ########.fr       */
+/*   Updated: 2023/10/23 19:08:09 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,29 @@ void	check_dir(char *argv)
 {
 	if (ft_strncmp(argv, ".", 1) == 0 && ft_strlen(argv) == 1)
 	{
-		printf("ebash: %s: Eto nam ne zadavali\n", argv);
+		printf("5051: %s: Eto nam ne zadavali\n", argv);
 		exit(2);
 	}
 	if (ft_isdir(argv) == 0)
 	{
-		printf("ebash: %s: is a directory\n", argv);
+		printf("5051: %s: is a directory\n", argv);
 		exit(126);
+	}
+}
+
+void	x_path_2(char *argv)
+{
+	ft_putstr_fd("5051: ", 2);
+	ft_putstr_fd(argv, 2);
+	if (argv[0] == '/')
+	{
+		ft_putstr_fd(": not a directory\n", 2);
+		exit (126);
+	}
+	else
+	{
+		ft_putstr_fd(": command not found\n", 2);
+		exit(127);
 	}
 }
 
@@ -73,8 +89,6 @@ char	*x_path(t_data *data, char *argv)
 		}
 		i++;
 	}
-	ft_putstr_fd("ebash: ", 2);
-	ft_putstr_fd(argv, 2);
-	ft_putstr_fd(": command not found\n", 2);
-	exit(127);
+	x_path_2(argv);
+	return (argv);
 }

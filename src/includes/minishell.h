@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 21:21:42 by apiloian          #+#    #+#             */
-/*   Updated: 2023/10/22 15:48:40 by mac              ###   ########.fr       */
+/*   Updated: 2023/10/23 19:05:01 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MINISHELL_H
 
 # define MINISHELL  "\e[1;31m5051\033[0m "
-# define NO_CMD     "ebash: %s: \n"
+# define NO_CMD     "5051: %s: \n"
 
 # include <unistd.h>
 # include <stdio.h>
@@ -230,7 +230,7 @@ int		tilda(t_parse *pars, char *valid);
 char	*whum_find(t_data *data, char *whum);
 void	tilda_main(t_data *data, t_parse *pars, char *joi);
 void	just_cd(t_data *data, char *user, char *old, char *new);
-void	exit_message_for_ebash(char *cmd);
+void	exit_message_for_5051(char *cmd);
 int		heredoc_skip(char *line, int i, t_dol *dol, int *j);
 
 //							//

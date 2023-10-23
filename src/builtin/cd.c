@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: timelkon <timelkon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 21:18:25 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/10/22 15:16:47 by mac              ###   ########.fr       */
+/*   Updated: 2023/10/23 19:05:01 by timelkon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	minus(t_data *data, char *str)
 	{
 		if (str[2] && str[2] != '\0')
 		{
-			printf("ebash: cd: -%c: invalid option\n", str[1]);
+			printf("5051: cd: -%c: invalid option\n", str[1]);
 			g_exit_code = 1;
 			return ;
 		}
@@ -84,7 +84,7 @@ void	minus(t_data *data, char *str)
 	}
 	else
 	{
-		printf ("ebash: cd: OLDPWD is not set\n");
+		printf ("5051: cd: OLDPWD is not set\n");
 		g_exit_code = 1;
 	}
 }
